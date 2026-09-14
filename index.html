@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calvin Okoth — Data Scientist & ML Engineer</title>
+    <meta name="description" content="Data Scientist and ML Engineer at Kenya Medical Research Institute (KEMRI). Specializing in machine learning pipelines, disease surveillance, and public health analytics.">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=DM+Sans:wght@400;500;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Preloader -->
+    <div id="preloader"><div class="loader"></div></div>
+
+    <!-- Background Grid -->
+    <div class="bg-grid"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="container nav-container">
+            <a href="#" class="logo">
+                <span class="logo-text">calvin okoth</span>
+                <span class="logo-dot"></span>
+            </a>
+            <div class="nav-links" id="navLinks">
+                <a href="#work" class="nav-link scroll-link">Work</a>
+                <a href="#skills" class="nav-link scroll-link">Skills</a>
+                <a href="#about" class="nav-link scroll-link">About</a>
+                <a href="#experience" class="nav-link scroll-link">Experience</a>
+                <a href="#contact" class="nav-link scroll-link">Contact</a>
+                <a href="https://github.com/calvinokoth9528-cloud" class="nav-link nav-cta" target="_blank" rel="noopener">GitHub</a>
+            </div>
+            <button class="nav-toggle" id="navToggle">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero section" id="hero">
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-content" data-animate>
+                    <h1 class="hero-title">
+                        <span class="hero-line">Data Scientist</span>
+                        <span class="hero-line hero-accent">&amp; ML Engineer</span>
+                    </h1>
+                    <p class="hero-subtitle">
+                        Building machine learning systems that predict disease outbreaks and strengthen public health surveillance. 
+                        Currently working with the Kenya Medical Research Institute (KEMRI) on an R²=0.990 malaria prediction system.
+                    </p>
+                    <div class="hero-actions">
+                        <a href="#work" class="btn btn-primary scroll-link">View My Work</a>
+                        <a href="#contact" class="btn btn-secondary scroll-link">Contact</a>
+                    </div>
+                </div>
+                <div class="hero-portrait" data-animate>
+                    <div class="portrait-frame">
+                        <img src="profile-photo.jpg" alt="Calvin Okoth" class="portrait-img">
+                    </div>
+                    <div class="portrait-badge">
+                        <span class="badge-text">R² = 0.990</span>
+                        <span class="badge-label">Malaria Prediction</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Work / Projects -->
+    <section class="projects section" id="work">
+        <div class="container">
+            <div class="section-header" data-animate>
+                <span class="section-tag">Selected Work</span>
+                <h2 class="section-title">Machine Learning for Public Health</h2>
+                <p class="section-subtitle">End-to-end ML systems that turn climate and health data into life-saving predictions.</p>
+            </div>
+            <div class="projects-grid">
+                <!-- Project 1 -->
+                <div class="project-card" data-animate>
+                    <div class="project-header">
+                        <span class="project-icon">🦟</span>
+                        <div>
+                            <h3 class="project-title">Malaria Outbreak Predictor</h3>
+                            <span class="project-year">2024</span>
+                        </div>
+                    </div>
+                    <p class="project-description">
+                        KEMRI-inspired ML system forecasting malaria incidence 1-2 years ahead. Achieved R² = 0.990 using 
+                        51 engineered features and a 7-model XGBoost ensemble. Ingests 44,282 data points from WHO, World Bank, and NASA APIs.
+                    </p>
+                    <div class="project-stats">
+                        <span class="stat-chip">44k+ records</span>
+                        <span class="stat-chip">51 features</span>
+                        <span class="stat-chip">R²=0.990</span>
+                    </div>
+                    <div class="project-tech">
+                        <span class="tech-badge">Python</span>
+                        <span class="tech-badge">R</span>
+                        <span class="tech-badge">XGBoost</span>
+                        <span class="tech-badge">FastAPI</span>
+                        <span class="tech-badge">Docker</span>
+                    </div>
+                    <div class="project-impact">
+                        <span class="impact-label">Tech Stack:</span>
+                        <span class="impact-text">Python (ETL, ML), R (Shiny, ggplot2), FastAPI (7 endpoints), Docker, GitHub Actions CI/CD</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/calvinokoth9528-cloud/malaria-outbreak-predictor" class="project-link" target="_blank">Source →</a>
+                        <a href="https://calvinokoth9528-cloud.github.io/malaria-outbreak-predictor/" class="project-link" target="_blank">Live Demo →</a>
+                    </div>
+                </div>
+                <!-- Project 2 -->
+                <div class="project-card" data-animate>
+                    <div class="project-header">
+                        <span class="project-icon">📊</span>
+                        <div>
+                            <h3 class="project-title">Kenya Malaria Dashboard</h3>
+                            <span class="project-year">2024</span>
+                        </div>
+                    </div>
+                    <p class="project-description">
+                        Power BI-style dashboard analyzing P. falciparum prevalence from 2,149 geo-referenced surveys (1985-2020). 
+                        Uses binomial logistic regression and Chart.js for interactive visualization across 20.4% prevalence data.
+                    </p>
+                    <div class="project-stats">
+                        <span class="stat-chip">2,149 surveys</span>
+                        <span class="stat-chip">186k individuals</span>
+                        <span class="stat-chip">35 years</span>
+                    </div>
+                    <div class="project-tech">
+                        <span class="tech-badge">R</span>
+                        <span class="tech-badge">Shiny</span>
+                        <span class="tech-badge">ggplot2</span>
+                        <span class="tech-badge">Power BI</span>
+                    </div>
+                    <div class="project-impact">
+                        <span class="impact-label">Outcome:</span>
+                        <span class="impact-text">Full R analysis pipeline with geospatial mapping and time-series prevalence trends.</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/calvinokoth9528-cloud/kenya-malaria-dashboard" class="project-link" target="_blank">Source →</a>
+                        <a href="https://calvinokoth9528-cloud.github.io/kenya-malaria-dashboard/" class="project-link" target="_blank">Live Demo →</a>
+                    </div>
+                </div>
+                <!-- Project 3 -->
+                <div class="project-card" data-animate>
+                    <div class="project-header">
+                        <span class="project-icon">📈</span>
+                        <div>
+                            <h3 class="project-title">Excel PowerBI Dashboard</h3>
+                            <span class="project-year">2023</span>
+                        </div>
+                    </div>
+                    <p class="project-description">
+                        Complete Excel-to-analytics-to-presentation pipeline. Analyzes Microsoft Power BI Financial Sample 
+                        ($118.7M sales) and a chocolate company shipment ledger using Python (openpyxl) and Chart.js.
+                    </p>
+                    <div class="project-stats">
+                        <span class="stat-chip">$118.7M sales</span>
+                        <span class="stat-chip">2 datasets</span>
+                        <span class="stat-chip">4 tabs</span>
+                    </div>
+                    <div class="project-tech">
+                        <span class="tech-badge">Python</span>
+                        <span class="tech-badge">Excel</span>
+                        <span class="tech-badge">Power BI</span>
+                        <span class="tech-badge">DAX</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/calvinokoth9528-cloud/excel-powerbi-dashboard" class="project-link" target="_blank">Source →</a>
+                        <a href="https://calvinokoth9528-cloud.github.io/excel-powerbi-dashboard/dashboard.html" class="project-link" target="_blank">Live Demo →</a>
+                    </div>
+                </div>
+                <!-- Project 4 -->
+                <div class="project-card" data-animate>
+                    <div class="project-header">
+                        <span class="project-icon">☁️</span>
+                        <div>
+                            <h3 class="project-title">Forecast Dashboard</h3>
+                            <span class="project-year">2025</span>
+                        </div>
+                    </div>
+                    <p class="project-description">
+                        Interactive browser-based time-series forecasting dashboard. Supports 4 methods (Linear Regression, 
+                        Moving Average, Holt Exponential Smoothing, Holt-Winters) with backtesting and 95% confidence intervals.
+                    </p>
+                    <div class="project-stats">
+                        <span class="stat-chip">4 methods</span>
+                        <span class="stat-chip">Backtesting</span>
+                        <span class="stat-chip">CSV/Excel</span>
+                    </div>
+                    <div class="project-tech">
+                        <span class="tech-badge">React</span>
+                        <span class="tech-badge">Vite</span>
+                        <span class="tech-badge">JavaScript</span>
+                        <span class="tech-badge">Chart.js</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/calvinokoth9528-cloud/cloud" class="project-link" target="_blank">Source →</a>
+                        <a href="https://calvinokoth9528-cloud.github.io/cloud/" class="project-link" target="_blank">Live Demo →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills -->
+    <section class="skills section section-alt" id="skills">
+        <div class="container">
+            <div class="section-header" data-animate>
+                <span class="section-tag">Technical Skills</span>
+                <h2 class="section-title">My Toolkit</h2>
+                <p class="section-subtitle">Technologies I use daily to build ML systems and data pipelines.</p>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-category" data-animate>
+                    <h3 class="skill-category-title">Languages</h3>
+                    <div class="skills-pills">
+                        <span class="skill-pill">Python</span>
+                        <span class="skill-pill">R</span>
+                        <span class="skill-pill">SQL</span>
+                        <span class="skill-pill">JavaScript</span>
+                        <span class="skill-pill">Bash</span>
+                    </div>
+                </div>
+                <div class="skill-category" data-animate>
+                    <h3 class="skill-category-title">Machine Learning</h3>
+                    <div class="skills-pills">
+                        <span class="skill-pill">XGBoost</span>
+                        <span class="skill-pill">Scikit-Learn</span>
+                        <span class="skill-pill">Tidymodels</span>
+                        <span class="skill-pill">Ensemble Methods</span>
+                        <span class="skill-pill">Time Series</span>
+                    </div>
+                </div>
+                <div class="skill-category" data-animate>
+                    <h3 class="skill-category-title">Data &amp; Viz</h3>
+                    <div class="skills-pills">
+                        <span class="skill-pill">Pandas</span>
+                        <span class="skill-pill">NumPy</span>
+                        <span class="skill-pill">ggplot2</span>
+                        <span class="skill-pill">Shiny</span>
+                        <span class="skill-pill">Power BI</span>
+                    </div>
+                </div>
+                <div class="skill-category" data-animate>
+                    <h3 class="skill-category-title">Web &amp; DevOps</h3>
+                    <div class="skills-pills">
+                        <span class="skill-pill">FastAPI</span>
+                        <span class="skill-pill">React</span>
+                        <span class="skill-pill">Docker</span>
+                        <span class="skill-pill">GitHub Actions</span>
+                        <span class="skill-pill">Linux</span>
+                    </div>
+                </div>
+            </div>
+            <div class="skills-chart" data-animate>
+                <canvas id="skillsChart" width="400" height="300"></canvas>
+            </div>
+        </div>
+    </div>
+    </section>
+
+    <!-- About -->
+    <section class="about section" id="about">
+        <div class="container">
+            <div class="section-header" data-animate>
+                <span class="section-tag">About</span>
+                <h2 class="section-title">Data Science for Public Health</h2>
+                <p class="section-subtitle">My mission and background.</p>
+            </div>
+            <div class="about-content">
+                <div class="about-text" data-animate>
+                    <p>
+                        I'm a Data Scientist and ML Engineer working with the Kenya Medical Research Institute (KEMRI),
+                        East Africa's premier health research institution. My work focuses on building data-driven
+                        systems for disease surveillance and outbreak prediction.
+                    </p>
+                    <p>
+                        My flagship project — a KEMRI-inspired malaria outbreak prediction system — integrates climate
+                        data from NASA POWER, health indicators from WHO GHO, and socioeconomic data from the World Bank.
+                        The system achieved R² = 0.990 using a 7-model XGBoost ensemble with 51 engineered features, 
+                        forecasting malaria risk 1-2 years ahead with 95% confidence intervals.
+                    </p>
+                    <p>
+                        I hold a Bachelor of Science in Statistics from Jomo Kenyatta University of Agriculture and 
+                        Technology (JKUAT), with focus on statistical modeling, machine learning, data visualization, 
+                        and applied data science. I'm based in Nairobi, Kenya.
+                    </p>
+                    <p>
+                        I'm passionate about using data science to solve real-world public health challenges in 
+                        sub-Saharan Africa. Currently accepting senior data science roles, research collaborations, 
+                        and speaking opportunities. <a href="https://www.linkedin.com/in/calvin-klein-9528c2004/" target="_blank" rel="noopener">Let's connect.</a>
+                    </p>
+                </div>
+                <div class="about-stats" data-animate>
+                    <div class="stat-item">
+                        <span class="stat-number">44,282</span>
+                        <span class="stat-label">Data Points</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">51</span>
+                        <span class="stat-label">Features Engineered</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">0.990</span>
+                        <span class="stat-label">R² Score</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience -->
+    <section class="experience section section-alt" id="experience">
+        <div class="container">
+            <div class="section-header" data-animate>
+                <span class="section-tag">Experience</span>
+                <h2 class="section-title">Professional Journey</h2>
+                <p class="section-subtitle">Building data solutions that matter</p>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item" data-animate>
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <div>
+                                <h3 class="timeline-title">Data Analytics Attachment</h3>
+                                <div class="timeline-company">Kenya Medical Research Institute (KEMRI) — Kisumu/Nairobi, Kenya</div>
+                            </div>
+                        </div>
+                        <span class="timeline-date">2025 — Present</span>
+                        <ul class="timeline-list">
+                            <li>Built a KEMRI-inspired malaria outbreak prediction system using Python (XGBoost, Scikit-learn) and R (Shiny, ggplot2), achieving R² = 0.990 with 51 engineered features across 44,282 data points</li>
+                            <li>Designed and deployed a FastAPI REST API with 7 endpoints for real-time malaria predictions and 5-year forecasts with 95% confidence intervals</li>
+                            <li>Engineered a full ETL pipeline: automated fetching from 3 global APIs (WHO, World Bank, NASA POWER), processing 44k+ records, and feature engineering with lagged variables, rolling statistics, and seasonal encoding</li>
+                            <li>Created interactive dashboards in R Shiny and Streamlit for visualizing malaria trends, climate correlations, and risk simulation</li>
+                            <li>Built a Kenya malaria prevalence dashboard analyzing 2,149 geo-referenced surveys (1985-2020) using binomial logistic regression and Chart.js</li>
+                            <li>Developed an Excel-to-Power BI analytics dashboard processing financial and shipment datasets using Python (openpyxl) and Chart.js</li>
+                            <li>Published project documentation and live demos on GitHub Pages with automated CI/CD via GitHub Actions</li>
+                        </ul>
+                        <div class="project-tech">
+                            <span class="tech-badge">Python</span>
+                            <span class="tech-badge">R</span>
+                            <span class="tech-badge">XGBoost</span>
+                            <span class="tech-badge">FastAPI</span>
+                            <span class="tech-badge">Docker</span>
+                            <span class="tech-badge">GitHub Actions</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-item" data-animate>
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <div>
+                                <h3 class="timeline-title">Forecast Dashboard Developer</h3>
+                                <div class="timeline-company">Personal Project — React + Vite</div>
+                            </div>
+                        </div>
+                        <span class="timeline-date">2026</span>
+                        <ul class="timeline-list">
+                            <li>Built an interactive time-series forecasting dashboard supporting 4 methods (Linear Regression, Moving Average, Holt Exponential Smoothing, Holt-Winters)</li>
+                            <li>Implemented backtesting, confidence intervals, model comparison, and CSV/Excel import/export</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education & Certifications -->
+    <section class="education section" id="education">
+        <div class="container">
+            <div class="section-header" data-animate>
+                <span class="section-tag">Education</span>
+                <h2 class="section-title">Academic Background</h2>
+            </div>
+            <div class="education-grid">
+                <div class="education-card" data-animate>
+                    <h3>Bachelor of Science in Statistics</h3>
+                    <div class="education-institution">Jomo Kenyatta University of Agriculture and Technology (JKUAT)</div>
+                    <div class="education-date">Year 4 — Graduating June 2026</div>
+                    <p class="education-description">
+                        Focus on statistical modeling, machine learning, data visualization, and applied data science. 
+                        Coursework includes probability theory, linear algebra, database systems, time-series analysis, 
+                        and statistical computing.
+                    </p>
+                </div>
+                <div class="education-card" data-animate>
+                    <h3>Data Analytics Training</h3>
+                    <div class="education-institution">KEMRI Data Analytics Attachment</div>
+                    <div class="education-date">2025</div>
+                    <p class="education-description">
+                        Public health data pipelines, statistical analysis (Python, R), dashboard development (Shiny, 
+                        Power BI), and production ML deployment with FastAPI and Docker.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="contact section section-alt" id="contact">
+        <div class="container">
+            <div class="section-header" data-animate>
+                <span class="section-tag">Contact</span>
+                <h2 class="section-title">Let's Work Together</h2>
+                <p class="section-subtitle">
+                    Available for senior data science roles, research collaborations, and speaking opportunities.
+                </p>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-info" data-animate>
+                    <img src="profile-photo.jpg" alt="Calvin Okoth" class="contact-photo">
+                    <div class="contact-item">
+                        <span class="contact-icon">✉️</span>
+                        <div>
+                            <span class="contact-label">Email</span>
+                            <a href="mailto:calvinokoth9528@gmail.com" class="contact-value">calvinokoth9528@gmail.com</a>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-icon">📍</span>
+                        <div>
+                            <span class="contact-label">Location</span>
+                            <span class="contact-value">Nairobi, Kenya</span>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-icon">🎓</span>
+                        <div>
+                            <span class="contact-label">Education</span>
+                            <span class="contact-value">JKUAT (Statistics)</span>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-icon">🏢</span>
+                        <div>
+                            <span class="contact-label">Currently</span>
+                            <span class="contact-value">KEMRI</span>
+                        </div>
+                    </div>
+                    <div class="social-links">
+                        <a href="https://github.com/calvinokoth9528-cloud" class="social-link" target="_blank" rel="noopener" aria-label="GitHub">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.627 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577 0-.285-.01-1.04-.015-2.04-3.338.726-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.085 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.108-.775.418-1.305.76-1.604-2.665-.3-5.467-1.332-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301-1.23A11.509 11.509 0 0112 5.803c1.01.005 2.03.138 3.001.406 2.292-.882 3.297-1.217 3.297-1.217.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-3.338 4.609-5.475 5.921.43.372.823 1.103.823 2.224 0 1.606-.014 2.898-.014 3.293 0 .318.212.694.803.576C20.565 22.092 24 20.673 24 15.967 24 10.373 18.627 5.803 12 5.803 5.373 5.803 0 10.373 0 15.967 0 18.627 5.373 24 12c0 2.33-.184 4.606-.552 6.78z"/></svg>
+                        </a>
+                        <a href="https://www.linkedin.com/in/calvin-klein-9528c2004/" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 11-2.063-2.065 2.063 2.063 0 012.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C24 24 24 23.227 24 22.271V1.729C24 .774 23.207 0 22.225 0z"/></svg>
+                        </a>
+                    </div>
+                </div>
+                <form class="contact-form" id="contactForm" data-animate>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <input type="text" id="name" placeholder="Your name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="email" placeholder="Your email" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="subject" placeholder="Subject">
+                    </div>
+                    <div class="form-group">
+                        <textarea id="message" rows="5" placeholder="Your message..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-container">
+            <div class="footer-brand">
+                <div class="footer-logo">
+                    <img src="profile-photo.jpg" alt="Calvin Okoth" class="footer-logo-img">
+                    <span class="logo-text">calvin okoth</span>
+                </div>
+                <p class="footer-tagline">Data Scientist &amp; ML Engineer at KEMRI</p>
+                <p class="footer-location">Nairobi, Kenya</p>
+            </div>
+            <div class="footer-nav">
+                <a href="#work" class="scroll-link">Work</a>
+                <a href="#skills" class="scroll-link">Skills</a>
+                <a href="#about" class="scroll-link">About</a>
+                <a href="#experience" class="scroll-link">Experience</a>
+                <a href="#contact" class="scroll-link">Contact</a>
+            </div>
+            <div class="footer-social">
+                <a href="https://github.com/calvinokoth9528-cloud" target="_blank" rel="noopener">GitHub</a>
+                <a href="https://www.linkedin.com/in/calvin-klein-9528c2004/" target="_blank" rel="noopener">LinkedIn</a>
+                <a href="mailto:calvinokoth9528@gmail.com">Email</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>&copy; 2026 Calvin Okoth. All rights reserved.</span>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

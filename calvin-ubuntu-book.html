@@ -1,0 +1,5346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calvin's Guide to Ubuntu</title>
+<style>
+  body {
+    font-family: 'Segoe UI', 'San Francisco', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+    color: #242929;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem;
+    background: #fff;
+  }
+  body.dark { background: #1a1a1a; color: #d0d0d0; }
+  h1 { border-bottom: 3px solid #333; padding-bottom: 0.3rem; margin-top: 2rem; }
+  body.dark h1 { border-color: #888; }
+  h2 { border-bottom: 1px solid #ccc; padding-bottom: 0.2rem; margin-top: 1.5rem; margin-top: 2rem; }
+  body.dark h2 { border-color: #555; }
+  h3 { margin-top: 1.2rem; }
+  code { background: #f4f4f4; padding: 0.1rem 0.3rem; border-radius: 3px; font-family: 'Fira Code', 'Courier New', monospace; font-size: 0.9em; }
+  body.dark code { background: #2d2d2d; }
+  pre {
+    background: #f4f4f4;
+    border-left: 3px solid #333;
+    padding: 1rem;
+    overflow-x: auto;
+    border-radius: 4px;
+    margin: 1rem 0;
+  }
+  body.dark pre { background: #2d2d2d; border-left-color: #666; }
+  pre code { background: none; padding: 0; }
+  table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
+  th, td { border: 1px solid #ddd; padding: 0.5rem; text-align: left; }
+  th { background: #f4f4f4; }
+  body.dark th { background: #2d2d2d; }
+  blockquote { border-left: 4px solid #3498db; margin: 1rem 0; padding: 0.5rem 1rem; background: #f9f9f9; }
+  body.dark blockquote { background: #2a2a2a; }
+  .chapter { page-break-before: auto; }
+  .chapter h1 { page-break-after: avoid; }
+  ul, ol { margin-top: 0.3rem; }
+  .nav { position: sticky; top: 0; background: #fff; padding: 0.5rem 0; border-bottom: 1px solid #ddd; z-index: 100; margin-bottom: 1rem; }
+  body.dark .nav { background: #1a1a1a; border-color: #333; }
+  .nav h1 { margin: 0; font-size: 1.2rem; }
+  .toc { background: #f9f9f9; padding: 1rem; border-radius: 4px; margin: 1rem 0; }
+  body.dark .toc { background: #222; }
+  .toc ol { margin: 0.5rem 0; }
+  a { color: #2980b9; }
+  body.dark a { color: #4da6ff; }
+  .theme-toggle { position: fixed; top: 10px; right: 10px; background: #eee; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; }
+  body.dark .theme-toggle { background: #444; color: #ddd; }
+  .review-q { font-weight: bold; }
+  .quick-ref { background: #fff3cd; border-left: 4px solid #ffc107; padding: 0.5rem 1rem; margin: 1rem 0; }
+</style>
+</head>
+<body>
+<button class="theme-toggle" onclick="toggleTheme()">Toggle Dark/Light</button>
+<section class="chapter"><h1>Calvin&#39;s Guide to Ubuntu</h1>
+<p><em>A comprehensive, hands-on guide to the Ubuntu Linux operating system.</em></p>
+<hr>
+<h2>Table of Contents</h2>
+<ol>
+<li><a href="chapters/chapter1.md">Introduction to Linux and Ubuntu</a></li>
+<li><a href="chapters/chapter2.md">Installation and Setup</a></li>
+<li><a href="chapters/chapter3.md">Desktop Environment (GNOME, Unity, alternatives)</a></li>
+<li><a href="chapters/chapter4.md">File System Hierarchy and Management</a></li>
+<li><a href="chapters/chapter5.md">Command Line Fundamentals</a></li>
+<li><a href="chapters/chapter6.md">Package Management (APT, Snap, Flatpak)</a></li>
+<li><a href="chapters/chapter7.md">User and Group Management</a></li>
+<li><a href="chapters/chapter8.md">System Administration and Services</a></li>
+<li><a href="chapters/chapter9.md">Networking and Security</a></li>
+<li><a href="chapters/chapter10.md">Advanced Topics and Troubleshooting</a></li>
+<li><a href="chapters/chapter11.md">Development and Programming on Ubuntu</a></li>
+</ol>
+<hr>
+<h2>Overview</h2>
+<p>This book provides a complete guide to the Ubuntu Linux distribution. Starting from the fundamentals of how Linux works, it progresses through installation, desktop navigation, the command line, package management, system administration, networking, security, and advanced development topics.</p>
+<p>Whether you&#39;re new to Linux or looking to deepen your Ubuntu expertise, this guide covers everything you need to know to be productive on the platform.</p>
+<h2>How to Use This Book</h2>
+<p>Each chapter is designed to be read sequentially but is also self-contained for reference. Each chapter ends with review questions and a quick reference section. The chapters build on concepts introduced in earlier chapters.</p>
+<h2>Prerequisites</h2>
+<ul>
+<li>A computer where you can install or run Ubuntu (bare metal, virtual machine, or WSL)</li>
+<li>Willingness to experiment with the command line</li>
+</ul>
+<h2>License</h2>
+<p>This book is free to use, modify, and distribute for any purpose.</p>
+</section>
+<section class="chapter"><h1>Chapter 1: Introduction to Linux and Ubuntu</h1>
+<h2>What Is Linux?</h2>
+<p>Linux is a family of open-source Unix-like operating systems based on the Linux kernel. The kernel — created by Linus Torvalds in 1991 — is the core layer that manages hardware resources such as CPU, memory, storage, and peripherals. What makes Linux unique is that it is <strong>open source</strong>: anyone can view, modify, and redistribute the source code under licenses like the GNU General Public License (GPL).</p>
+<p>While the kernel itself is the &quot;Linux&quot; kernel, the term &quot;Linux&quot; is often used colloquially to refer to a complete operating system built around the kernel, combined with software from the GNU Project and countless other contributors. These complete systems are properly called <strong>GNU/Linux distributions</strong> (or simply &quot;distros&quot;).</p>
+<h3>Key Characteristics of Linux</h3>
+<table>
+<thead>
+<tr>
+<th>Characteristic</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Open Source</strong></td>
+<td>Free to use, study, modify, and distribute</td>
+</tr>
+<tr>
+<td><strong>Multiuser</strong></td>
+<td>Multiple users can log in and use the system simultaneously</td>
+</tr>
+<tr>
+<td><strong>Multitasking</strong></td>
+<td>Runs many processes concurrently</td>
+</tr>
+<tr>
+<td><strong>Portable</strong></td>
+<td>Runs on a wide range of hardware architectures</td>
+</tr>
+<tr>
+<td><strong>Security-focused</strong></td>
+<td>Granular permission model and strong user isolation</td>
+</tr>
+<tr>
+<td><strong>Customizable</strong></td>
+<td>Highly configurable from the kernel level up</td>
+</tr>
+</tbody></table>
+<h3>The Linux Philosophy</h3>
+<p>Linux follows a philosophy of small, focused tools that do one thing well and can be combined through pipelines. As Doug McIlroy (creator of Unix pipes) put it:</p>
+<blockquote>
+<p>&quot;Write programs that do one thing and do it well. Write programs to work together.&quot;</p>
+</blockquote>
+<p>This design principle explains why Linux offers hundreds of small utilities that can be chained together to perform complex operations.</p>
+<h2>What Is a Distribution?</h2>
+<p>A <strong>Linux distribution</strong> (or &quot;distro&quot;) is a complete, ready-to-use operating system built around the Linux kernel. Since the kernel alone is not usable as an OS, distributions bundle it with:</p>
+<ul>
+<li><strong>System utilities</strong> (core Unix tools like <code>ls</code>, <code>grep</code>, <code>bash</code>)</li>
+<li><strong>System libraries</strong> (shared code that programs link against)</li>
+<li><strong>Package manager</strong> (handles software installation, updates, and removal)</li>
+<li><strong>Desktop environment</strong> (graphical interface like GNOME, KDE, etc.)</li>
+<li><strong>Default applications</strong> (browser, text editor, media player)</li>
+<li><strong>System configuration</strong> (init system, services, boot process)</li>
+</ul>
+<p>There are hundreds of distributions, each tailored for different audiences — servers, desktops, embedded systems, privacy, education, and more.</p>
+<h2>A Brief History of Ubuntu</h2>
+<p>Ubuntu is a Debian-based Linux distribution founded by Mark Shuttleworth and launched by Canonical Ltd. on <strong>October 20, 2004</strong> (hence the version naming scheme explained below). The name &quot;Ubuntu&quot; comes from the Zulu and Xhosa languages and roughly means &quot;<strong>I am because we are</strong>&quot; — reflecting a philosophy of community and interconnectedness.</p>
+<h3>Release Model</h3>
+<p>Ubuntu follows a predictable <strong>six-month release cycle</strong>, with new versions released every April and October. Version numbers reflect the year and month of release:</p>
+<ul>
+<li><strong>YY.MM</strong> format: e.g., 22.04 (April 2022), 24.04 (April 2024)</li>
+<li><strong>LTS (Long Term Support)</strong> releases: Every two years, the April release is designated LTS, receiving 5 years of security updates for both desktop and server. Non-LTS releases receive 9 months of support.</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Release</th>
+<th>Codename</th>
+<th>Type</th>
+<th>Support Period</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>20.04</td>
+<td>Focal Fossa</td>
+<td>LTS</td>
+<td>Until 2025</td>
+</tr>
+<tr>
+<td>20.10</td>
+<td>Groovy Gorilla</td>
+<td>Standard</td>
+<td>Until 2021</td>
+</tr>
+<tr>
+<td>21.04</td>
+<td>Hirsute Hippo</td>
+<td>Standard</td>
+<td>Until 2022</td>
+</tr>
+<tr>
+<td>21.10</td>
+<td>Impish Indri</td>
+<td>Standard</td>
+<td>Until 2022</td>
+</tr>
+<tr>
+<td>22.04</td>
+<td>Jammy Jellyfish</td>
+<td>LTS</td>
+<td>Until 2027</td>
+</tr>
+<tr>
+<td>22.10</td>
+<td>Kinetic Kudu</td>
+<td>Standard</td>
+<td>Until 2023</td>
+</tr>
+<tr>
+<td>23.04</td>
+<td>Lunar Lobster</td>
+<td>Standard</td>
+<td>Until 2024</td>
+</tr>
+<tr>
+<td>23.10</td>
+<td>Mantic Minotaur</td>
+<td>Standard</td>
+<td>Until 2024</td>
+</tr>
+<tr>
+<td>24.04</td>
+<td>Noble Numbat</td>
+<td>LTS</td>
+<td>Until 2029</td>
+</tr>
+</tbody></table>
+<h3>Ubuntu Flavors</h3>
+<p>Ubuntu has official &quot;flavors&quot; — each targeting a different desktop environment or use case:</p>
+<ul>
+<li><strong>Kubuntu</strong>: KDE Plasma desktop</li>
+<li><strong>Xubuntu</strong>: XFCE lightweight desktop</li>
+<li><strong>Lubuntu</strong>: LXQt ultra-lightweight</li>
+<li><strong>Ubuntu MATE</strong>: MATE desktop (GNOME 2 fork)</li>
+<li><strong>Ubuntu Budgie</strong>: Budgie desktop</li>
+<li><strong>Ubuntu Studio</strong>: Creative/media production</li>
+<li><strong>Edubuntu</strong>: Education-focused (discontinued as default, community-maintained)</li>
+</ul>
+<h3>Comparison: Ubuntu vs. Other Distributions</h3>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Ubuntu</th>
+<th>Fedora</th>
+<th>Debian</th>
+<th>Arch</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Base release</td>
+<td>Debian Unstable/Testing</td>
+<td>Independent</td>
+<td>Independent (rolling)</td>
+<td>Rolling</td>
+</tr>
+<tr>
+<td>Package manager</td>
+<td>APT (DEB) + Snap</td>
+<td>DNF (RPM)</td>
+<td>APT (DEB)</td>
+<td>Pacman (PKG)</td>
+</tr>
+<tr>
+<td>Release model</td>
+<td>6-month + LTS</td>
+<td>~6-month</td>
+<td>Stable (years apart)</td>
+<td>Rolling</td>
+</tr>
+<tr>
+<td>Target audience</td>
+<td>Desktop + Server</td>
+<td>Developers/Enterprise</td>
+<td>Stability-focused</td>
+<td>Advanced users</td>
+</tr>
+<tr>
+<td>Default desktop</td>
+<td>GNOME</td>
+<td>GNOME</td>
+<td>Choice</td>
+<td>Choice</td>
+</tr>
+<tr>
+<td>Support</td>
+<td>5 years (LTS)</td>
+<td>~13 months</td>
+<td>Indefinite</td>
+<td>Community</td>
+</tr>
+</tbody></table>
+<h2>Why Choose Ubuntu?</h2>
+<h3>For Beginners</h3>
+<p>Ubuntu pioneered many user-friendly features:</p>
+<ul>
+<li>Out-of-the-box hardware support</li>
+<li>Automatic driver installation</li>
+<li>Simple graphical installer</li>
+<li>Extensive documentation and community</li>
+<li>Pre-installed productivity software</li>
+</ul>
+<h3>For Developers</h3>
+<ul>
+<li>First-class support for Python, Node.js, Go, Rust, Docker, and more</li>
+<li>Built-in support for multiple Python versions</li>
+<li>Easy setup of development environments</li>
+<li>Snap and Flatpak for application distribution</li>
+<li>WSL (Windows Subsystem for Linux) support</li>
+</ul>
+<h3>For Servers</h3>
+<ul>
+<li>Dominant cloud/server platform (used by AWS, Azure, Google Cloud)</li>
+<li>Predictable LTS release schedule</li>
+<li>Strong container support (Kubernetes, Docker)</li>
+<li>Minimal server image option</li>
+<li>Enterprise support available from Canonical</li>
+</ul>
+<h2>The Ubuntu Community</h2>
+<p>Ubuntu is backed by Canonical (the company behind the project) and a massive global community. Key community elements include:</p>
+<ul>
+<li><strong>Ubuntu Forums</strong>: Community-driven support forums</li>
+<li><strong>Ask Ubuntu</strong>: Stack Exchange Q&amp;A site for Ubuntu questions</li>
+<li><strong>Ubuntu Discourse</strong>: Discussion platform for development topics</li>
+<li><strong>Launchpad</strong>: Bug tracking, code hosting, and translation platform</li>
+<li><strong>Local Community Teams (LoCos)</strong>: Regional meetups and events</li>
+<li><strong>Ubuntu Membership</strong>: Recognition for significant community contributions</li>
+</ul>
+<h2>Ubuntu Summit and Events</h2>
+<p>The annual Ubuntu Summit brings together developers, users, and community members. The &quot;Ubuntu Party&quot; is held in various countries. These events are excellent opportunities to learn and network.</p>
+<h2>What You Will Learn in This Book</h2>
+<p>By the end of this book, you will:</p>
+<ol>
+<li>Understand Linux fundamentals and Ubuntu&#39;s place in the ecosystem</li>
+<li>Install and configure Ubuntu for desktop and server use</li>
+<li>Navigate the desktop environment and use the command line confidently</li>
+<li>Manage files, permissions, users, and packages</li>
+<li>Perform system administration tasks (services, networking, security)</li>
+<li>Troubleshoot common problems</li>
+<li>Develop and run applications on Ubuntu</li>
+<li>Understand advanced topics like containers, systemd, and the kernel</li>
+</ol>
+<hr>
+<h3>Review Questions</h3>
+<ol>
+<li>What is the difference between the Linux kernel and a Linux distribution?</li>
+<li>When was Ubuntu first released, and who founded it?</li>
+<li>What does &quot;LTS&quot; stand for, and how often are LTS releases published?</li>
+<li>Explain the meaning of the Ubuntu philosophy in your own words.</li>
+<li>Name three Ubuntu flavors and the desktop environments they use.</li>
+</ol>
+<h3>Quick Reference</h3>
+<pre><code class="language-bash"># Check your Ubuntu version
+lsb_release -a
+
+# Check kernel version
+uname -r
+
+# Check OS information
+cat /etc/os-release
+
+# Check uptime
+uptime
+</code></pre>
+</section>
+<section class="chapter"><h1>Chapter 2: Installation and Setup</h1>
+<h2>Preparing for Installation</h2>
+<p>Before installing Ubuntu, gather the following:</p>
+<ul>
+<li>A USB flash drive (8GB or larger recommended)</li>
+<li>The Ubuntu ISO file downloaded from <a href="https://ubuntu.com/download">ubuntu.com/download</a></li>
+<li>Time for the installation process (30–60 minutes)</li>
+</ul>
+<h3>Checking System Requirements</h3>
+<h4>Desktop (Graphical)</h4>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Minimum</th>
+<th>Recommended</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CPU</td>
+<td>2 GHz dual-core</td>
+<td>4-core or better</td>
+</tr>
+<tr>
+<td>RAM</td>
+<td>4 GB</td>
+<td>8 GB or more</td>
+</tr>
+<tr>
+<td>Storage</td>
+<td>25 GB SSD</td>
+<td>50+ GB SSD</td>
+</tr>
+<tr>
+<td>Graphics</td>
+<td>1024×768 display</td>
+<td>1920×1080 display</td>
+</tr>
+</tbody></table>
+<h4>Server</h4>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Minimum</th>
+<th>Recommended</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CPU</td>
+<td>1 GHz</td>
+<td>2+ GHz multi-core</td>
+</tr>
+<tr>
+<td>RAM</td>
+<td>1 GB</td>
+<td>4 GB+</td>
+</tr>
+<tr>
+<td>Storage</td>
+<td>2.5 GB</td>
+<td>10+ GB (SSD preferred)</td>
+</tr>
+</tbody></table>
+<h3>Creating a Bootable USB</h3>
+<h4>On Ubuntu</h4>
+<p>Use the built-in <strong>Startup Disk Creator</strong>:</p>
+<pre><code class="language-bash"># Launch from terminal
+usb-creator-gtk
+</code></pre>
+<p>Or use <code>dd</code> (command-line, precise but dangerous if wrong device):</p>
+<pre><code class="language-bash"># Replace /dev/sdX with your USB device and ubuntu.iso with path
+sudo dd if=ubuntu.iso of=/dev/sdX bs=4M status=progress oflag=sync
+</code></pre>
+<h4>On Windows</h4>
+<p>Use <strong>Rufus</strong>:</p>
+<ol>
+<li>Download Rufus from <a href="https://rufus.ie">rufus.ie</a></li>
+<li>Insert USB drive</li>
+<li>Select the Ubuntu ISO</li>
+<li>Choose &quot;GPT&quot; for UEFI systems or &quot;MBR&quot; for legacy BIOS</li>
+<li>Click &quot;Start&quot;</li>
+</ol>
+<h4>On macOS</h4>
+<p>Use <code>dd</code> in Terminal:</p>
+<pre><code class="language-bash"># List disks to find your USB
+diskutil list
+
+# Unmount (not eject) the disk, e.g. /dev/disk2
+diskutil unmountDisk /dev/disk2
+
+# Write the image (this takes several minutes)
+sudo dd if=ubuntu.iso of=/dev/rdisk2 bs=4m
+
+# Eject when done
+diskutil eject /dev/disk2
+</code></pre>
+<h2>The Installation Process</h2>
+<h3>Entering the Boot Menu</h3>
+<p>When you power on with the USB inserted, press the key to access the boot menu. Common keys:</p>
+<ul>
+<li><strong>F12, F10, F2, Esc</strong> (varies by manufacturer)</li>
+<li>For Mac: Hold <strong>Option</strong> during startup</li>
+</ul>
+<p>Select your USB drive from the boot menu.</p>
+<h3>Trying Ubuntu (Optional but Recommended)</h3>
+<p>The installer offers &quot;Try Ubuntu&quot; — this boots into a fully functional live environment without modifying your hard drive. This is an excellent way to verify hardware compatibility (WiFi, graphics, sound) before committing to installation.</p>
+<h3>Installation Steps</h3>
+<ol>
+<li><strong>Select language</strong>: Choose your preferred language and click &quot;Install Ubuntu&quot;.</li>
+<li><strong>Keyboard layout</strong>: Select your keyboard layout.</li>
+<li><strong>Updates and third-party software</strong>: <ul>
+<li>Check &quot;Normal installation&quot; for a full set of apps</li>
+<li>Optionally check &quot;Download updates while installing&quot; and &quot;Install third-party software&quot;</li>
+</ul>
+</li>
+<li><strong>Installation type</strong>:<ul>
+<li><strong>Erase disk and install Ubuntu</strong>: Wipes everything (use for single-boot)</li>
+<li><strong>Install Ubuntu alongside [existing OS]</strong>: Dual-boot (creates partition)</li>
+<li><strong>Something else</strong>: Manual partitioning (advanced, gives full control)</li>
+<li><strong>Minimal installation</strong>: Just the browser and basic utilities</li>
+</ul>
+</li>
+<li><strong>Location</strong>: Confirm your time zone by clicking on the map or entering your city.</li>
+<li><strong>Your information</strong>: Enter your name, computer name, username, and password. The &quot;Log in automatically&quot; option skips the login screen (convenient but less secure).</li>
+<li><strong>Installation</strong>: Wait 20–40 minutes. The system will restart when finished.</li>
+</ol>
+<h3>Manual Partitioning (Something Else)</h3>
+<p>Manual partitioning is useful for dual-boot setups or custom layouts. Key partitions:</p>
+<table>
+<thead>
+<tr>
+<th>Mount Point</th>
+<th>Size</th>
+<th>Filesystem</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>/boot/efi</code></td>
+<td>512 MB</td>
+<td>FAT32</td>
+<td>UEFI boot (for UEFI systems)</td>
+</tr>
+<tr>
+<td><code>swap</code></td>
+<td>4–8 GB</td>
+<td>swap</td>
+<td>Virtual memory/hibernation</td>
+</tr>
+<tr>
+<td><code>/</code> (root)</td>
+<td>20–50 GB</td>
+<td>ext4</td>
+<td>System files</td>
+</tr>
+<tr>
+<td><code>/home</code></td>
+<td>Remaining</td>
+<td>ext4</td>
+<td>User data (recommended separately)</td>
+</tr>
+</tbody></table>
+<p><strong>Best practice</strong>: Separate <code>/home</code> from <code>/</code> so you can reinstall Ubuntu without losing personal files.</p>
+<h2>First Boot and Initial Setup</h2>
+<h3>Logging In</h3>
+<p>On first boot, you&#39;ll see the login screen (GDM). Enter the password you set during installation. If you selected automatic login, you&#39;ll go straight to the desktop.</p>
+<h3>Completing First-Time Setup</h3>
+<p>Ubuntu may prompt you with:</p>
+<ul>
+<li><strong>Privacy settings</strong>: Choose whether to send usage data to Canonical, enable location services, and share crash reports.</li>
+<li><strong>Drivers</strong>: Ubuntu usually detects proprietary drivers (especially for NVIDIA/AMD graphics) automatically. Check <strong>Software &amp; Updates → Additional Drivers</strong> if you have graphics issues.</li>
+</ul>
+<h3>Updating the System</h3>
+<p>Always update after first install:</p>
+<pre><code class="language-bash"># Update package lists
+sudo apt update
+
+# Upgrade all installed packages
+sudo apt upgrade
+
+# Full distribution upgrade (may install/remove packages)
+sudo apt full-upgrade
+
+# Remove unused packages
+sudo apt autoremove
+
+# Clean download cache
+sudo apt autoclean
+</code></pre>
+<h3>Setting Up Automatic Updates</h3>
+<pre><code class="language-bash"># Enable automatic updates
+sudo apt install unattended-upgrades
+sudo dpkg-reconfigure -plow unattended-upgrades
+</code></pre>
+<h3>Setting Up a Hostname (Desktop)</h3>
+<pre><code class="language-bash"># Set hostname
+sudo hostnamectl set-hostname myhost
+
+# Make sure /etc/hosts reflects it
+sudo sed -i &quot;s/ubuntu/myhost/g&quot; /etc/hosts
+</code></pre>
+<h2>Installing Ubuntu Server</h2>
+<h3>Downloading the Server ISO</h3>
+<p>Download the <strong>Ubuntu Server ISO</strong> from <a href="https://ubuntu.com/download/server">ubuntu.com/download/server</a>. The server edition is designed for headless operation (no GUI), though you can install a GUI later.</p>
+<h3>Server Installation Walkthrough</h3>
+<p>The Ubuntu Server installer (Subiquity) is a text-based wizard:</p>
+<ol>
+<li><strong>Language &amp; Keyboard</strong>: Select your preferences.</li>
+<li><strong>Network</strong>: Configure networking. You can set up static IP or use DHCP.</li>
+<li><strong>Storage</strong>: Default uses LVM (Logical Volume Manager). For custom setups, choose manual.</li>
+<li><strong>Filesystem</strong>: Ext4 is the default; XFS is an alternative.</li>
+<li><strong>User setup</strong>: Create a regular user with sudo privileges (no root password by default — secure practice).</li>
+<li><strong>SSH</strong>: The installer can optionally install OpenSSH server.</li>
+<li><strong>Featured Server Applications</strong>: Select additional services (OpenSSH, Docker, LAMP, etc.) via the &quot;Find...&quot; menu.</li>
+</ol>
+<p>After installation, you&#39;ll boot into a minimal system where you can log in with the user you created.</p>
+<h3>Server Post-Installation</h3>
+<pre><code class="language-bash"># Update
+sudo apt update &amp;&amp; sudo apt upgrade -y
+
+# Check connectivity and services
+ip addr show
+systemctl status ssh
+</code></pre>
+<h2>Dual-Boot with Windows</h2>
+<h3>Preparing Windows</h3>
+<ol>
+<li><strong>Disable Fast Startup</strong>: <ul>
+<li>Control Panel → Power Options → &quot;Choose what power buttons do&quot; → &quot;Change settings&quot; → Uncheck &quot;Turn on fast startup&quot;</li>
+</ul>
+</li>
+<li><strong>Shrink the Windows partition</strong>:<ul>
+<li>Disk Management → Right-click C: → &quot;Shrink Volume&quot; → Free up at least 25 GB</li>
+</ul>
+</li>
+</ol>
+<h3>Installing Alongside Windows</h3>
+<p>If you used the installer&#39;s &quot;Install alongside&quot; option, Ubuntu&#39;s GRUB bootloader will detect Windows and add it to the boot menu, allowing you to choose at startup.</p>
+<p>If you used manual partitioning, you must manually add the Windows partition to GRUB after install:</p>
+<pre><code class="language-bash">sudo update-grub
+</code></pre>
+<h2>Ubuntu on Virtual Machines</h2>
+<h3>VirtualBox</h3>
+<pre><code class="language-bash"># In your host terminal (not VM)
+# Download Ubuntu ISO
+# Create VM with 4GB+ RAM, 25GB+ disk, attach ISO
+# Install normally inside the VM
+</code></pre>
+<h3>VMware</h3>
+<p>Similar to VirtualBox — create a VM, attach the ISO, and install.</p>
+<h3>VMware/VirtualBox Guest Tools</h3>
+<p>After installation, improve performance by installing guest additions:</p>
+<pre><code class="language-bash"># For VirtualBox
+sudo apt install build-essential dkms linux-headers-$(uname -r)
+sudo mount /dev/cdrom /mnt
+sudo /mnt/VBoxLinuxAdditions.run
+</code></pre>
+<h2>Ubuntu in the Cloud</h2>
+<h3>AWS EC2</h3>
+<pre><code class="language-bash"># SSH into your instance
+ssh -i mykey.pem ubuntu@&lt;instance-public-ip&gt;
+
+# Update
+sudo apt update &amp;&amp; sudo apt upgrade -y
+</code></pre>
+<h3>Google Cloud Platform (GCP)</h3>
+<pre><code class="language-bash"># Use the gcloud CLI to create an instance
+gcloud compute instances create my-ubuntu-vm \
+    --image=ubuntu-os-cloud/ubuntu-2204-lts \
+    --zone=us-central1-a
+</code></pre>
+<h3>Azure</h3>
+<pre><code class="language-bash"># Use the Azure CLI
+az vm create \
+    --resource-group myResourceGroup \
+    --name myUbuntuVM \
+    --image UbuntuLTS \
+    --generate-ssh-keys
+</code></pre>
+<h2>Common First Boot Tasks</h2>
+<h3>Install Essential Utilities</h3>
+<pre><code class="language-bash"># Build tools
+sudo apt install build-essential
+
+# GUI tools for system management
+sudo apt install software-properties-gtk
+
+# Text editors
+sudo apt install git vim nano
+
+# Archive tools
+sudo apt install p7zip-full unrar
+
+# System monitoring
+sudo apt install htop iotop iftop
+
+# Network tools
+sudo apt install net-tools curl wget dnsutils traceroute
+</code></pre>
+<h3>Install Proprietary Codecs and Fonts</h3>
+<pre><code class="language-bash"># Add and enable the multiverse repository
+sudo add-apt-repository multiverse
+sudo apt update
+
+# Install Ubuntu restricted extras (codecs, fonts, etc.)
+sudo apt install ubuntu-restricted-extras
+</code></pre>
+<h3>Configure Power Management (Laptop)</h3>
+<p>The <strong>TLP</strong> tool optimizes power consumption:</p>
+<pre><code class="language-bash">sudo apt install tlp tlp-rdw
+sudo systemctl enable tlp
+sudo systemctl start tlp
+</code></pre>
+<h3>Set Up Firewall</h3>
+<pre><code class="language-bash"># UFW (Uncomplicated Firewall) is pre-installed
+sudo ufw enable
+
+# Allow specific services
+sudo ufw allow ssh
+sudo ufw allow http
+sudo ufw allow https
+
+# Check status
+sudo ufw status verbose
+</code></pre>
+<h2>Recovery and Reinstallation</h2>
+<h3>Recovery Mode</h3>
+<p>If the system won&#39;t boot normally, hold <strong>Shift</strong> (BIOS) or press <strong>Esc</strong> (UEFI) during boot to access the GRUB menu. From there, select &quot;Advanced options for Ubuntu&quot; → &quot;(recovery mode)&quot;. Recovery mode offers:</p>
+<ul>
+<li><strong>Resume normal boot</strong></li>
+<li><strong>Clean</strong> (free disk space)</li>
+<li><strong>dpkg</strong> (repair broken packages)</li>
+<li><strong>fsck</strong> (check/repair filesystems)</li>
+<li><strong>grub</strong> (update GRUB)</li>
+<li><strong>hostname</strong> (change hostname)</li>
+<li><strong>network</strong> (enable networking)</li>
+<li><strong>root</strong> (drop to root shell)</li>
+</ul>
+<h3>Reinstalling Ubuntu</h3>
+<p>The Ubuntu installer offers a &quot;Reinstall Ubuntu&quot; option that preserves your <code>/home</code> directory and installed packages if <code>/home</code> is on a separate partition. For full reinstalls:</p>
+<ol>
+<li>Boot from USB and choose &quot;Try Ubuntu&quot; first</li>
+<li>Open &quot;GParted&quot; or &quot;Disks&quot; to back up important data</li>
+<li>Run the installer and select &quot;Erase disk and install Ubuntu&quot;</li>
+</ol>
+<hr>
+<h3>Review Questions</h3>
+<ol>
+<li>What is the minimum recommended RAM for an Ubuntu desktop install?</li>
+<li>What does the &quot;Something else&quot; installation option allow you to do?</li>
+<li>Why should <code>/home</code> be on a separate partition?</li>
+<li>What is the default approach to root account access on Ubuntu Server?</li>
+<li>What command starts automatic updates on Ubuntu?</li>
+</ol>
+<h3>Quick Reference</h3>
+<pre><code class="language-bash"># Install build tools
+sudo apt install build-essential
+
+# Update everything
+sudo apt update &amp;&amp; sudo apt upgrade -y &amp;&amp; sudo apt autoremove -y
+
+# Reboot
+sudo reboot
+
+# Check system info
+lsb_release -a; uname -r
+</code></pre>
+</section>
+<section class="chapter"><h1>Chapter 3: Desktop Environment</h1>
+<h2>What Is a Desktop Environment?</h2>
+<p>A <strong>desktop environment (DE)</strong> is a complete graphical user interface (GUI) built on top of the X Window System (X11) or Wayland display server. It provides:</p>
+<ul>
+<li>Window manager (decorations, placement, compositing)</li>
+<li>File manager</li>
+<li>Panel / taskbar</li>
+<li>Application launcher / menu</li>
+<li>System tray and notifications</li>
+<li>Settings panels</li>
+<li>Default applications (text editor, terminal, browser)</li>
+</ul>
+<p>The desktop environment is what makes the graphical interface feel cohesive and consistent across applications.</p>
+<h2>GNOME: The Default Desktop</h2>
+<p>Ubuntu has used <strong>GNOME</strong> as its default desktop since Ubuntu 17.10 (replacing Unity). GNOME 3 features a minimalist &quot;Activities Overview&quot; design.</p>
+<h3>Key GNOME Components in Ubuntu</h3>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>GNOME Shell</strong></td>
+<td>The top panel, activities overview, and dash</td>
+</tr>
+<tr>
+<td><strong>Nautilus</strong></td>
+<td>File manager (&quot;Files&quot;)</td>
+</tr>
+<tr>
+<td><strong>GNOME Terminal</strong></td>
+<td>Default terminal emulator</td>
+</tr>
+<tr>
+<td><strong>Gedit</strong></td>
+<td>Simple text editor</td>
+</tr>
+<tr>
+<td><strong>GNOME Control Center</strong></td>
+<td>System settings</td>
+</tr>
+<tr>
+<td><strong>GNOME Extensions</strong></td>
+<td>Add-ons to customize behavior</td>
+</tr>
+</tbody></table>
+<h3>Navigating the GNOME Shell</h3>
+<ul>
+<li><strong>Activities Overview</strong>: Move the mouse to the top-left corner or press <strong>Super</strong> (Windows key) to enter the Activities overview, where you can see open windows, search for apps, and access workspaces.</li>
+<li><strong>Dash</strong>: The left sidebar in Activities shows favorite and running applications.</li>
+<li><strong>Workspaces</strong>: Virtual desktops (default 1, dynamically created — Ubuntu typically uses 2).</li>
+<li><strong>System Menu</strong>: Top-right corner: power, network, sound, user menu.</li>
+<li><strong>Notification Center</strong>: Top-right corner: clock, notifications, calendar.</li>
+</ul>
+<h3>GNOME Keyboard Shortcuts</h3>
+<table>
+<thead>
+<tr>
+<th>Shortcut</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>Super</code></td>
+<td>Open Activities Overview</td>
+</tr>
+<tr>
+<td><code>Super</code> + <code>A</code></td>
+<td>Show applications grid</td>
+</tr>
+<tr>
+<td><code>Super</code> + Number (1-9)</td>
+<td>Launch/focus favorite apps on the dash</td>
+</tr>
+<tr>
+<td><code>Super</code> + <code>Tab</code></td>
+<td>Switch between apps</td>
+</tr>
+<tr>
+<td><code>Alt</code> + <code>Tab</code></td>
+<td>Switch between windows</td>
+</tr>
+<tr>
+<td><code>Super</code> + <code>Page Up/Down</code></td>
+<td>Switch workspaces</td>
+</tr>
+<tr>
+<td><code>Super</code> + <code>Home</code></td>
+<td>Restore window size</td>
+</tr>
+<tr>
+<td><code>Super</code> + <code>Up</code></td>
+<td>Maximize window</td>
+</tr>
+<tr>
+<td><code>Super</code> + <code>Down</code></td>
+<td>Unmaximize / tile window</td>
+</tr>
+<tr>
+<td><code>Super</code> + <code>Left/Right</code></td>
+<td>Tile window left/right</td>
+</tr>
+<tr>
+<td><code>Super</code> + <code>L</code></td>
+<td>Lock screen</td>
+</tr>
+<tr>
+<td><code>Ctrl</code> + <code>Alt</code> + <code>T</code></td>
+<td>Open terminal</td>
+</tr>
+<tr>
+<td><code>Ctrl</code> + <code>Alt</code> + <code>D</code></td>
+<td>Show desktop</td>
+</tr>
+<tr>
+<td><code>PrtSc</code></td>
+<td>Screenshot of screen</td>
+</tr>
+<tr>
+<td><code>Shift</code> + <code>PrtSc</code></td>
+<td>Screenshot of selected area</td>
+</tr>
+</tbody></table>
+<h3>Customizing GNOME</h3>
+<h4>GNOME Extensions</h4>
+<p>Extensions add features to GNOME Shell. Install and manage them via:</p>
+<ol>
+<li>Install the browser extension from <a href="https://extensions.gnome.org">extensions.gnome.org</a></li>
+<li>Install the local integration package:</li>
+</ol>
+<pre><code class="language-bash">sudo apt install chrome-gnome-shell
+</code></pre>
+<p>Popular extensions:</p>
+<ul>
+<li><strong>Dash to Panel</strong>: Traditional Windows-style taskbar</li>
+<li><strong>Dash to Dock</strong>: Enhanced dock</li>
+<li><strong>User Themes</strong>: Custom shell themes</li>
+<li><strong>GSConnect</strong>: Android phone integration (KDE Connect for GNOME)</li>
+<li><strong>Clipboard Indicator</strong>: Clipboard history</li>
+<li><strong>System Monitor</strong>: Resource usage in panel</li>
+</ul>
+<h4>Appearance Settings</h4>
+<p>Open <strong>Settings → Appearance</strong> to change:</p>
+<ul>
+<li>Light/Dark mode</li>
+<li>Accent color</li>
+<li>Wallpaper</li>
+<li>Dock position and behavior</li>
+<li>Panel visibility</li>
+</ul>
+<h4>Tweaks Tool</h4>
+<p>For deeper customization:</p>
+<pre><code class="language-bash">sudo apt install gnome-tweaks
+gnome-tweaks
+</code></pre>
+<p>The Tweaks tool lets you change themes, fonts, window titlebar actions, startup applications, and more.</p>
+<h2>Alternative Desktop Environments</h2>
+<h3>KDE Plasma (Kubuntu)</h3>
+<p><strong>KDE Plasma</strong> is highly customizable with a Windows-like feel. The default file manager is <strong>Dolphin</strong>, and the terminal is <strong>Konsole</strong>.</p>
+<p>To install on Ubuntu:</p>
+<pre><code class="language-bash">sudo apt install kubuntu-desktop
+</code></pre>
+<p>This installs the full Kubuntu desktop. To get just Plasma without extra apps:</p>
+<pre><code class="language-bash">sudo apt install kde-plasma-desktop
+</code></pre>
+<h3>XFCE (Xubuntu)</h3>
+<p><strong>XFCE</strong> is a lightweight, stable desktop environment — ideal for older hardware. The default file manager is <strong>Thunar</strong>.</p>
+<p>To install on Ubuntu:</p>
+<pre><code class="language-bash">sudo apt install xubuntu-desktop
+</code></pre>
+<h3>MATE (Ubuntu MATE)</h3>
+<p><strong>MATE</strong> is a fork of GNOME 2, offering a traditional desktop layout. To install:</p>
+<pre><code class="language-bash">sudo apt install ubuntu-mate-desktop
+</code></pre>
+<h3>LXQt (Lubuntu)</h3>
+<p><strong>LXQt</strong> is an ultra-lightweight Qt-based desktop. To install:</p>
+<pre><code class="language-bash">sudo apt install lubuntu-desktop
+</code></pre>
+<h2>Switching Between Desktop Environments</h2>
+<h3>At Login Screen</h3>
+<p>At the GDM login screen, click the gear icon (⚙) to select the session type (GNOME, Plasma, XFCE, etc.) before logging in.</p>
+<h3>Changing the Default</h3>
+<p>To change the default desktop environment:</p>
+<pre><code class="language-bash"># List installed sessions
+ls /usr/share/xsessions/
+ls /usr/share/wayland-sessions/
+
+# Set default session (replace &lt;session&gt; with desired value)
+sudo dpkg-reconfigure
+</code></pre>
+<h2>Display Servers: X11 vs. Wayland</h2>
+<h3>X11 (X Window System)</h3>
+<p>The traditional display server. It works with all hardware but has limitations in security and modern display features (HiDPI, fractional scaling, touch).</p>
+<h3>Wayland</h3>
+<p>The modern display server (default since Ubuntu 21.04). Benefits:</p>
+<ul>
+<li>Better HiDPI support</li>
+<li>Proper fractional scaling</li>
+<li>Improved security (no screen recording by default)</li>
+<li>Better multi-touch support</li>
+</ul>
+<p>Limitations:</p>
+<ul>
+<li>Some legacy/proprietary apps may not work (e.g., some screencasting tools)</li>
+<li>Remote desktop support is still maturing</li>
+</ul>
+<h3>Checking Which Display Server You Use</h3>
+<pre><code class="language-bash"># Check if running under Wayland
+echo $XDG_SESSION_TYPE
+
+# Check Wayland socket
+echo $WAYLAND_DISPLAY
+</code></pre>
+<h3>Forcing X11 on Login</h3>
+<p>At the GDM login screen, click the gear icon and select &quot;Ubuntu on Xorg&quot;.</p>
+<h2>File Management</h2>
+<h3>Nautilus (Files)</h3>
+<p>Nautilus is Ubuntu&#39;s default file manager. Key features:</p>
+<ul>
+<li><strong>Sidebar</strong>: Quick access to home, devices, network, bookmarks</li>
+<li><strong>Tabs</strong>: Multiple folders in one window (Ctrl + T)</li>
+<li><strong>Search</strong>: Instant search by name or content (Ctrl + F)</li>
+<li><strong>Bookmarks</strong>: Add frequently-used folders to the sidebar (Ctrl + D)</li>
+<li><strong>List and Icon views</strong>: Switch via toolbar or Ctrl + 1/2</li>
+<li><strong>Trash</strong>: Deleted files go to Trash (not permanently deleted)</li>
+</ul>
+<h4>Nautilus Keyboard Shortcuts</h4>
+<table>
+<thead>
+<tr>
+<th>Shortcut</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>Ctrl</code> + <code>N</code></td>
+<td>New window</td>
+</tr>
+<tr>
+<td><code>Ctrl</code> + <code>T</code></td>
+<td>New tab</td>
+</tr>
+<tr>
+<td><code>Ctrl</code> + <code>W</code></td>
+<td>Close tab</td>
+</tr>
+<tr>
+<td><code>Ctrl</code> + <code>Tab</code></td>
+<td>Next tab</td>
+</tr>
+<tr>
+<td><code>Ctrl</code> + <code>L</code></td>
+<td>Focus location bar</td>
+</tr>
+<tr>
+<td><code>Ctrl</code> + <code>D</code></td>
+<td>Bookmark</td>
+</tr>
+<tr>
+<td><code>Ctrl</code> + <code>+</code></td>
+<td>Zoom in</td>
+</tr>
+<tr>
+<td><code>Ctrl</code> + <code>0</code></td>
+<td>Reset zoom</td>
+</tr>
+</tbody></table>
+<h3>Hidden Files</h3>
+<p>Files starting with <code>.</code> are hidden. Show them with:</p>
+<ul>
+<li>Nautilus: Press <code>Ctrl</code> + <code>H</code></li>
+<li>Terminal: <code>ls -a</code></li>
+</ul>
+<h3>File Permissions in GUI</h3>
+<p>Right-click a file → <strong>Properties</strong> → <strong>Permissions</strong> tab. Here you can set read/write/execute permissions for the owner, group, and others, and change ownership (requires the admin password).</p>
+<h2>The Terminal</h2>
+<p>The terminal (GNOME Terminal by default) is your gateway to the command line.</p>
+<h3>Terminal Features</h3>
+<ul>
+<li><strong>Tabs</strong>: Multiple terminal sessions (Ctrl + Shift + T for new tab)</li>
+<li><strong>Profiles</strong>: Custom colors, fonts, and shortcuts</li>
+<li><strong>Copy/Paste</strong>: Ctrl + Shift + C / Ctrl + Shift + V (or right-click)</li>
+<li><strong>Scrollback</strong>: Unlimited scrollback history (configurable)</li>
+</ul>
+<h3>Terminal Keyboard Shortcuts</h3>
+<table>
+<thead>
+<tr>
+<th>Shortcut</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>Ctrl</code> + <code>Shift</code> + <code>T</code></td>
+<td>New tab</td>
+</tr>
+<tr>
+<td><code>Ctrl</code> + <code>Shift</code> + <code>W</code></td>
+<td>Close tab</td>
+</tr>
+<tr>
+<td><code>Ctrl</code> + <code>Shift</code> + <code>Page Up/Down</code></td>
+<td>Switch tab</td>
+</tr>
+<tr>
+<td><code>Ctrl</code> + <code>Shift</code> + <code>+</code>/<code>-</code></td>
+<td>Increase/decrease font</td>
+</tr>
+<tr>
+<td><code>Ctrl</code> + <code>Shift</code> + <code>N</code></td>
+<td>New window</td>
+</tr>
+</tbody></table>
+<h3>Alternative Terminals</h3>
+<ul>
+<li><strong>Tilix</strong>: Tiling terminal emulator</li>
+<li><strong>Terminator</strong>: Split panes</li>
+<li><strong>Konsole</strong>: KDE&#39;s terminal (feature-rich)</li>
+</ul>
+<pre><code class="language-bash">sudo apt install tilix terminator
+</code></pre>
+<h2>Managing Applications</h2>
+<h3>Ubuntu Software Center</h3>
+<p>The <strong>Snap Store</strong> (formerly Ubuntu Software) lets you browse, install, and remove applications. It supports both traditional DEB packages and Snap packages.</p>
+<h3>Installing Applications via GUI</h3>
+<ol>
+<li>Open the Snap Store</li>
+<li>Search for the application</li>
+<li>Click &quot;Install&quot;</li>
+</ol>
+<h3>Finding Applications</h3>
+<ul>
+<li><strong>Activities Overview</strong>: Type the app name (Super key, then type)</li>
+<li><strong>Applications Grid</strong>: Super + A, then click the grid icon at the bottom</li>
+<li><strong>Command line</strong>: <code>which &lt;appname&gt;</code> to find the binary</li>
+</ul>
+<h2>System Settings</h2>
+<p>Ubuntu&#39;s <strong>Settings</strong> app (GNOME Control Center) centralizes system configuration:</p>
+<ul>
+<li><strong>Wi-Fi / Network</strong>: Network connections</li>
+<li><strong>Power</strong>: Battery and power button behavior</li>
+<li><strong>Sound</strong>: Audio devices and volume</li>
+<li><strong>Mouse &amp; Touchpad</strong>: Pointer speed, tapping, scrolling</li>
+<li><strong>Keyboard</strong>: Shortcuts, repeat rate, input sources</li>
+<li><strong>Displays</strong>: Resolution, orientation, Night Light</li>
+<li><strong>Users</strong>: Account settings, password, photo</li>
+<li><strong>Privacy</strong>: Usage data, search, history</li>
+<li><strong>Region &amp; Language</strong>: Timezone, locale, keyboard layouts</li>
+<li><strong>Date &amp; Time</strong>: Automatic time, time zone</li>
+<li><strong>About</strong>: System information (hardware, OS version)</li>
+</ul>
+<h2>Accessibility</h2>
+<p>GNOME has strong accessibility features under <strong>Settings → Accessibility</strong>:</p>
+<ul>
+<li><strong>Zoom</strong>: Screen magnifier</li>
+<li><strong>Large Text</strong>: Enlarge interface text</li>
+<li><strong>High Contrast</strong>: High-contrast color theme</li>
+<li><strong>Screen Keyboard</strong>: On-screen keyboard</li>
+<li><strong>Sticky Keys</strong>: One-key modifier activation</li>
+<li><strong>Slow Keys</strong>: Ignore quick keystrokes</li>
+<li><strong>Blinking Keys</strong>: Visual feedback for Caps/Num Lock</li>
+<li><strong>Reading</strong>: Screen reader (Orca)</li>
+</ul>
+<h2>Review Questions</h2>
+<ol>
+<li>What is the difference between a display server and a desktop environment?</li>
+<li>What keyboard shortcut opens the Activities Overview in GNOME?</li>
+<li>How do you install the KDE Plasma desktop on standard Ubuntu?</li>
+<li>What are two advantages of Wayland over X11?</li>
+<li>What file manager does XFCE use by default?</li>
+</ol>
+<h3>Quick Reference</h3>
+<pre><code class="language-bash"># Install GNOME Tweaks for customization
+sudo apt install gnome-tweaks
+
+# Install kde-plasma-desktop
+sudo apt install kde-plasma-desktop
+
+# Install xubuntu-desktop
+sudo apt install xubuntu-desktop
+
+# Check current desktop session
+echo $XDG_CURRENT_DESKTOP
+
+# Check display server
+echo $XDG_SESSION_TYPE
+</code></pre>
+</section>
+<section class="chapter"><h1>Chapter 4: File System Hierarchy and Management</h1>
+<h2>The Linux Filesystem Hierarchy</h2>
+<p>Unlike Windows, which assigns a drive letter (C:, D:, etc.) to each partition, Linux uses a unified <strong>directory tree</strong> rooted at <code>/</code>. Every file, folder, and device appears somewhere under this single root.</p>
+<h3>The Filesystem Hierarchy Standard (FHS)</h3>
+<p>The <strong>FHS</strong> defines the directory structure and directory contents in Unix-like operating systems. Understanding it is essential for navigating and managing a Linux system.</p>
+<table>
+<thead>
+<tr>
+<th>Directory</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>/</code></td>
+<td>Root — the top of the filesystem hierarchy</td>
+</tr>
+<tr>
+<td><code>/bin</code></td>
+<td>Essential user binaries (ls, cp, cat, bash) — needed for all users</td>
+</tr>
+<tr>
+<td><code>/boot</code></td>
+<td>Boot files — kernel images, initramfs, bootloader config</td>
+</tr>
+<tr>
+<td><code>/dev</code></td>
+<td>Device files — represents hardware (e.g., /dev/sda, /dev/tty1)</td>
+</tr>
+<tr>
+<td><code>/etc</code></td>
+<td>System-wide configuration files — host-specific</td>
+</tr>
+<tr>
+<td><code>/home</code></td>
+<td>User home directories — /home/username</td>
+</tr>
+<tr>
+<td><code>/lib</code></td>
+<td>Essential shared libraries and kernel modules</td>
+</tr>
+<tr>
+<td><code>/lib64</code></td>
+<td>64-bit shared libraries (on some systems)</td>
+</tr>
+<tr>
+<td><code>/media</code></td>
+<td>Mount point for removable media (CDs, USB drives)</td>
+</tr>
+<tr>
+<td><code>/mnt</code></td>
+<td>Temporary mount point for filesystems</td>
+</tr>
+<tr>
+<td><code>/opt</code></td>
+<td>Optional add-on software — third-party applications</td>
+</tr>
+<tr>
+<td><code>/proc</code></td>
+<td>Virtual filesystem — runtime system information (kernel, processes)</td>
+</tr>
+<tr>
+<td><code>/root</code></td>
+<td>Home directory of the root user</td>
+</tr>
+<tr>
+<td><code>/run</code></td>
+<td>Runtime data — temporary data since last boot (PID files, sockets)</td>
+</tr>
+<tr>
+<td><code>/sbin</code></td>
+<td>System binaries — admin tools (fdisk, fsck, reboot)</td>
+</tr>
+<tr>
+<td><code>/srv</code></td>
+<td>Service data — data for specific services</td>
+</tr>
+<tr>
+<td><code>/sys</code></td>
+<td>Virtual filesystem — device and driver information (sysfs)</td>
+</tr>
+<tr>
+<td><code>/tmp</code></td>
+<td>Temporary files — world-writable, cleared at boot</td>
+</tr>
+<tr>
+<td><code>/usr</code></td>
+<td>User programs — read-only shared data, not essential for boot</td>
+</tr>
+<tr>
+<td><code>/var</code></td>
+<td>Variable data — logs, databases, mail, spool files</td>
+</tr>
+</tbody></table>
+<h3><code>/bin</code> — Essential Binaries</h3>
+<p>Contains programs needed for all users even in single-user mode. Includes:</p>
+<ul>
+<li><code>bash</code>, <code>ls</code>, <code>cp</code>, <code>mv</code>, <code>rm</code>, <code>cat</code>, <code>grep</code>, <code>find</code>, <code>tar</code>, etc.</li>
+</ul>
+<h3><code>/sbin</code> — System Binaries</h3>
+<p>Contains programs typically run by the root user for system administration:</p>
+<ul>
+<li><code>fdisk</code>, <code>fsck</code>, <code>iptables</code>, <code>lsof</code>, <code>mount</code>, <code>reboot</code>, <code>shutdown</code>, <code>useradd</code>, etc.</li>
+</ul>
+<h3><code>/usr</code> — Shareable, Read-Only Data</h3>
+<p>The secondary hierarchy for read-only user data. Contains:</p>
+<ul>
+<li><code>/usr/bin</code> — Most user programs (<code>vim</code>, <code>python3</code>, <code>gcc</code>, etc.)</li>
+<li><code>/usr/sbin</code> — Non-essential system binaries</li>
+<li><code>/usr/lib</code> — Shared libraries</li>
+<li><code>/usr/share</code> — Architecture-independent data (icons, docs, translations)</li>
+<li><code>/usr/local</code> — Locally installed software (compiled by the admin)</li>
+</ul>
+<h3><code>/var</code> — Variable Data</h3>
+<p>Contains data that changes in size/growth:</p>
+<ul>
+<li><code>/var/log</code> — System and application logs (e.g., <code>/var/log/apt/history.log</code>, <code>/var/log/syslog</code>)</li>
+<li><code>/var/cache</code> — Application cache (e.g., APT package cache)</li>
+<li><code>/var/lib</code> — State information (databases, package info)</li>
+<li><code>/var/spool</code> — Spool files (mail, print jobs, cron queues)</li>
+<li><code>/var/tmp</code> — Temporary files that persist across reboots</li>
+</ul>
+<h2>File Types and Naming</h2>
+<h3>Types of Files</h3>
+<p>Linux treats everything as a file. The main types are:</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Symbol</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Regular file</td>
+<td><code>-</code></td>
+<td>Normal file containing data</td>
+<td><code>/etc/hostname</code></td>
+</tr>
+<tr>
+<td>Directory</td>
+<td><code>d</code></td>
+<td>A folder</td>
+<td><code>/home/user</code></td>
+</tr>
+<tr>
+<td>Symbolic link</td>
+<td><code>l</code></td>
+<td>Points to another file</td>
+<td><code>/usr/bin/python3</code> → <code>/usr/bin/python3.12</code></td>
+</tr>
+<tr>
+<td>Block device</td>
+<td><code>b</code></td>
+<td>Represents a block device</td>
+<td><code>/dev/sda</code></td>
+</tr>
+<tr>
+<td>Character device</td>
+<td><code>c</code></td>
+<td>Represents a character device</td>
+<td><code>/dev/tty1</code></td>
+</tr>
+<tr>
+<td>Named pipe (FIFO)</td>
+<td><code>p</code></td>
+<td>Inter-process communication pipe</td>
+<td>/var/run/...</td>
+</tr>
+<tr>
+<td>Socket</td>
+<td><code>s</code></td>
+<td>Network/IPC socket</td>
+<td><code>/run/systemd/journal/socket</code></td>
+</tr>
+</tbody></table>
+<h3>Case Sensitivity</h3>
+<p>Linux is <strong>case-sensitive</strong>. <code>file.txt</code>, <code>File.txt</code>, and <code>FILE.TXT</code> are three different files. Use consistent naming conventions (e.g., snake_case: <code>my_document.txt</code>).</p>
+<h3>Hidden Files</h3>
+<p>Files starting with a dot (<code>.</code>) are hidden from the default <code>ls</code> output. Examples include:</p>
+<ul>
+<li><code>.bashrc</code> — Bash configuration (loaded at login)</li>
+<li><code>.profile</code> — Shell profile (loaded at login)</li>
+<li><code>.ssh/</code> — SSH configuration directory</li>
+<li><code>.git/</code> — Git repository metadata</li>
+</ul>
+<p>Use <code>ls -a</code> to show hidden files.</p>
+<h2>File Permissions</h2>
+<h3>The Permission Model</h3>
+<p>Every file and directory has three types of permissions for three classes of users:</p>
+<pre><code>-rwx rwx rwx
+   ^  ^  ^
+   |  |  |
+Owner |  |
+      Group |
+              Others
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Symbol</th>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>r</code> (4)</td>
+<td>Read</td>
+<td>Permission to read the file / list directory</td>
+</tr>
+<tr>
+<td><code>w</code> (2)</td>
+<td>Write</td>
+<td>Permission to write/modify the file / create files in directory</td>
+</tr>
+<tr>
+<td><code>x</code> (1)</td>
+<td>Execute</td>
+<td>Permission to execute the file / enter (cd) the directory</td>
+</tr>
+</tbody></table>
+<p>Permissions are combined into three octal digits. For example:</p>
+<ul>
+<li><code>rwxr-xr-x</code> = <code>755</code> (owner: full; group/others: read + execute)</li>
+<li><code>rw-r--r--</code> = <code>644</code> (owner: read + write; group/others: read)</li>
+<li><code>rwxrwxrwx</code> = <code>777</code> (everyone: full access)</li>
+</ul>
+<h3>Viewing Permissions</h3>
+<pre><code class="language-bash"># List with permissions (the &quot;l&quot; flag)
+ls -l
+ls -la          # includes hidden files
+</code></pre>
+<p>Example output:</p>
+<pre><code>drwxr-xr-x  2 alice alice 4096 Feb  3 12:00 Documents
+-rw-r--r--  1 alice alice 1357 Feb  3 11:55 .bashrc
+lrwxrwxrwx  1 alice alice    9 Feb  3 10:00 python3 -&gt; python3.12
+</code></pre>
+<h3>Changing Permissions</h3>
+<pre><code class="language-bash"># Symbolic mode
+chmod u+x script.sh    # add execute for owner
+chmod g-w file.txt     # remove write for group
+chmod o=r document.txt # set others to read-only
+chmod a+rw folder/     # add read+write for all
+
+# Octal mode
+chmod 755 script.sh    # rwxr-xr-x
+chmod 644 config.cfg   # rw-r--r--
+chmod 600 secret.key   # rw------- (owner only)
+</code></pre>
+<h3>Changing Ownership</h3>
+<pre><code class="language-bash"># Change owner
+sudo chown alice file.txt
+
+# Change owner and group
+sudo chown alice:developers file.txt
+
+# Change directory and contents recursively
+sudo chown -R alice:developers /opt/myapp/
+
+# Change group only
+sudo chgrp developers file.txt
+</code></pre>
+<h3>Special Permissions</h3>
+<table>
+<thead>
+<tr>
+<th>Permission</th>
+<th>Symbol</th>
+<th>Octal</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>SetUID</strong></td>
+<td><code>s</code> in owner execute position</td>
+<td>4xxx</td>
+<td>File executes as the <strong>file owner</strong></td>
+</tr>
+<tr>
+<td><strong>SetGID</strong></td>
+<td><code>s</code> in group execute position</td>
+<td>2xxx</td>
+<td>File executes as the <strong>group</strong> or new files in dir inherit the dir&#39;s group</td>
+</tr>
+<tr>
+<td><strong>Sticky bit</strong></td>
+<td><code>t</code> in others execute position</td>
+<td>1xxx</td>
+<td>Only file owner, dir owner, or root can delete files in dir</td>
+</tr>
+</tbody></table>
+<p>Example:</p>
+<pre><code class="language-bash"># Set the sticky bit on /tmp (default)
+sudo chmod 1777 /tmp
+
+# Set SetGID on a shared directory
+sudo chmod 2775 /srv/shared
+</code></pre>
+<h2>File Operations</h2>
+<h3>Working with Files in the Command Line</h3>
+<pre><code class="language-bash"># Navigation
+pwd          # print working directory
+cd /path     # change directory
+cd ..        # go up one level
+cd ~         # go to home directory
+cd -         # go to previous directory
+
+# Listing
+ls           # list files
+ls -l        # detailed list
+ls -a        # show hidden files
+ls -la       # both
+ls -lh       # human-readable sizes (KB, MB, GB)
+ls -R        # recursive list
+
+# Manipulating files
+cp source.txt dest.txt             # copy
+cp -r sourcedir/ destdir/           # copy directory recursively
+mv old.txt new.txt                 # rename/move
+rm file.txt                        # remove file
+rm -rf directory/                  # force recursive remove (dangerous!)
+
+# Creating files and directories
+touch file.txt                     # create empty file or update timestamp
+mkdir newdir                       # create directory
+mkdir -p a/b/c                     # create nested dirs
+</code></pre>
+<h3>File Content Operations</h3>
+<pre><code class="language-bash"># Displaying content
+cat file.txt                       # print entire file
+less file.txt                      # pager (press q to quit)
+head file.txt                      # first 10 lines
+tail file.txt                      # last 10 lines
+tail -f log.txt                    # follow log in real time
+
+# Searching within files
+grep &quot;pattern&quot; file.txt            # search for lines matching pattern
+grep -i &quot;pattern&quot; file.txt         # case-insensitive
+grep -r &quot;pattern&quot; /dir/            # recursive
+grep -n &quot;pattern&quot; file.txt         # show line numbers
+
+# Redirect output
+cat file.txt &gt; copy.txt            # redirect (overwrite)
+echo &quot;text&quot; &gt;&gt; file.txt            # redirect (append)
+ls -l &gt; listing.txt                # save ls output to file
+
+# Pipes
+cat file.txt | grep &quot;pattern&quot;      # pipe output of one command to another
+cat file.txt | wc -l               # count lines
+</code></pre>
+<h3>File Compression and Archiving</h3>
+<h4>tar — Tape Archive</h4>
+<pre><code class="language-bash"># Create a tar.gz archive
+tar -czvf archive.tar.gz /path/to/dir
+
+# Create a tar.bz2 archive (better compression)
+tar -cjvf archive.tar.bz2 /path/to/dir
+
+# Extract an archive
+tar -xzvf archive.tar.gz
+tar -xjvf archive.tar.bz2
+
+# Common flags
+-c     create
+-x     extract
+-v     verbose (show progress)
+-f     file (specify filename)
+-t     list contents
+-z     gzip compression
+-j     bzip2 compression
+-C     change to directory before operating
+</code></pre>
+<h4>zip/unzip</h4>
+<pre><code class="language-bash"># Create a zip archive
+zip -r archive.zip folder/
+
+# Extract
+unzip archive.zip
+</code></pre>
+<h2>Finding Files</h2>
+<h3>locate</h3>
+<p><code>locate</code> searches a cached database (updated daily by cron):</p>
+<pre><code class="language-bash">locate filename.txt        # find by name (substring match)
+locate -i FILENAME.TXT     # case-insensitive
+</code></pre>
+<p>Update the database manually:</p>
+<pre><code class="language-bash">sudo updatedb
+</code></pre>
+<h3>find</h3>
+<p><code>find</code> searches the live filesystem and is extremely powerful:</p>
+<pre><code class="language-bash"># Find by name
+find /home -name &quot;*.txt&quot;
+
+# Find by type
+find /home -type d -name &quot;Documents&quot;
+
+# Find by modification time
+find /home -name &quot;*.log&quot; -mtime -7    # modified in last 7 days
+
+# Find and delete
+find /tmp -name &quot;*.tmp&quot; -delete
+
+# Find and execute a command
+find /home -name &quot;*.jpg&quot; -exec chmod 644 {} \;
+</code></pre>
+<h3>which, type, whereis</h3>
+<pre><code class="language-bash">which python3        # show full path to executable
+type python3         # show how python3 would be interpreted
+whereis python3      # locate binary, source, and man page
+</code></pre>
+<h2>File System Types</h2>
+<p>Linux supports many filesystems. The default for Ubuntu is <strong>ext4</strong>.</p>
+<h3>ext4 (Fourth Extended Filesystem)</h3>
+<ul>
+<li>Default since Ubuntu 9.10</li>
+<li>Journaling (prevents corruption after a crash)</li>
+<li>Supports files up to 16 TB and filesystems up to 1 EB</li>
+<li>Backward-compatible with ext2/ext3</li>
+</ul>
+<h3>Other Filesystems</h3>
+<table>
+<thead>
+<tr>
+<th>Filesystem</th>
+<th>Use Case</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>NTFS</strong></td>
+<td>Windows-compatible (used for shared USB drives)</td>
+</tr>
+<tr>
+<td><strong>FAT32/exFAT</strong></td>
+<td>USB drives shared with Windows (FAT32 has 4GB file limit)</td>
+</tr>
+<tr>
+<td><strong>Btrfs</strong></td>
+<td>Advanced features (snapshots, copy-on-write) — experimental on Ubuntu</td>
+</tr>
+<tr>
+<td><strong>XFS</strong></td>
+<td>Large files and parallel I/O — common on servers</td>
+</tr>
+<tr>
+<td><strong>ZFS</strong></td>
+<td>Enterprise filesystem with snapshots, compression, RAID-Z</td>
+</tr>
+</tbody></table>
+<h3>Checking Disk Usage</h3>
+<pre><code class="language-bash"># Show disk space
+df -h                          # human-readable
+
+# Show directory size
+du -sh /path/to/dir            # summary, human-readable
+du -sh /path/to/dir/*          # size of each item inside
+
+# Largest directories
+du -h / 2&gt;/dev/null | sort -rh | head -n 20
+</code></pre>
+<h2>Mounting Filesystems</h2>
+<h3>Mount Command</h3>
+<pre><code class="language-bash"># Mount a partition
+sudo mount /dev/sdb1 /mnt/usb
+
+# Mount with options
+sudo mount -t ntfs-3g -o rw,uid=1000 /dev/sdc1 /mnt/windows
+
+# Unmount
+umount /mnt/usb                # or: sudo umount /dev/sdb1
+</code></pre>
+<h3>/etc/fstab — Automatic Mounts</h3>
+<p>The file <code>/etc/fstab</code> (file systems table) lists filesystems to be mounted at boot:</p>
+<pre><code># file system        mount point      type    options          dump  pass
+/dev/sda1            /                ext4    defaults         0     1
+/dev/sda2            none             swap    sw               0     0
+/dev/sdb1            /mnt/windows     ntfs    defaults         0     0
+</code></pre>
+<p>To add a new mount point:</p>
+<ol>
+<li>Edit <code>/etc/fstab</code> (<code>sudo nano /etc/fstab</code>)</li>
+<li>Add a line with the device, mount point, type, and options</li>
+<li>Create the mount directory (<code>sudo mkdir /mnt/windows</code>)</li>
+<li>Test with <code>sudo mount -a</code></li>
+</ol>
+<h3>UUIDs vs Device Names</h3>
+<p>Device names (<code>/dev/sda1</code>) can change. Use <strong>UUID</strong> (Universally Unique Identifier) instead for reliability:</p>
+<pre><code class="language-bash"># Find UUIDs
+sudo blkid
+
+# Use UUID in fstab
+UUID=1234-5678  /mnt/data  ext4  defaults  0  2
+</code></pre>
+<h2>Hard Links and Symbolic Links</h2>
+<h3>Hard Links</h3>
+<p>A hard link is another name for the same file (same inode):</p>
+<pre><code class="language-bash">ln original.txt link.txt      # create hard link
+
+# Hard links cannot cross filesystems and cannot be made for directories
+</code></pre>
+<h3>Symbolic Links (Symlinks)</h3>
+<p>A soft link (symlink) is a special file that points to another file:</p>
+<pre><code class="language-bash">ln -s target.txt link.txt     # create symbolic link
+
+# Can point across filesystems and to directories
+ls -l link.txt                # shows the target
+</code></pre>
+<p>Useful for:</p>
+<ul>
+<li>Sharing configs across users</li>
+<li>Pointing to versioned binaries (e.g., <code>python3 -&gt; python3.12</code>)</li>
+<li>Organizing dotfiles</li>
+</ul>
+<h2>File System Checks and Maintenance</h2>
+<h3>fsck — File System Check</h3>
+<pre><code class="language-bash"># Run on next boot (safest)
+sudo touch /forcefsck
+sudo reboot
+
+# Or check unmounted filesystem directly (DANGEROUS for mounted filesystems)
+sudo fsck /dev/sdb1
+sudo fsck -f /dev/sdb1         # force even if marked clean
+sudo fsck -y /dev/sdb1         # auto-repair
+</code></pre>
+<h3>Checking for Bad Blocks</h3>
+<pre><code class="language-bash">sudo badblocks -v /dev/sda1 &gt; bad_blocks.txt
+</code></pre>
+<h2>Review Questions</h2>
+<ol>
+<li>What is the root directory in the Linux filesystem?</li>
+<li>What is the difference between <code>/bin</code> and <code>/usr/bin</code>?</li>
+<li>What permission string corresponds to octal <code>750</code>?</li>
+<li>What does a symbolic link point to?</li>
+<li>What is the purpose of <code>/etc/fstab</code>?</li>
+</ol>
+<h3>Quick Reference</h3>
+<pre><code class="language-bash"># Navigation
+pwd
+cd /path
+
+# File operations
+ls -la
+cp -r src dest
+mv old new
+rm -rf dir
+mkdir -p a/b/c
+
+# Find files
+find / -name &quot;file.txt&quot;
+locate file.txt
+which command
+
+# Check disk
+df -h
+du -sh /path
+
+# Permissions
+chmod 755 file
+chmod u+x file
+chown user:group file
+</code></pre>
+</section>
+<section class="chapter"><h1>Chapter 5: Command Line Fundamentals</h1>
+<h2>What Is a Shell?</h2>
+<p>The <strong>shell</strong> is the program that interprets commands typed at the terminal. Ubuntu&#39;s default shell is <strong>Bash</strong> (Bourne-Again SHell). Other popular shells include <strong>Zsh</strong>, <strong>Fish</strong>, and <strong>sh</strong> (the original Bourne shell).</p>
+<h3>Getting to the Shell</h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Shortcut</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Graphical terminal emulator</td>
+<td><code>Ctrl</code> + <code>Alt</code> + <code>T</code> (Ubuntu default)</td>
+</tr>
+<tr>
+<td>GNOME Terminal</td>
+<td>Launch from Applications grid</td>
+</tr>
+<tr>
+<td>TTY (virtual console)</td>
+<td><code>Ctrl</code> + <code>Alt</code> + <code>F1</code>-<code>F7</code> (F7 returns to GUI)</td>
+</tr>
+</tbody></table>
+<h3>Shell Prompts</h3>
+<p>When you open a terminal, you see a prompt like:</p>
+<pre><code>alice@ubuntu:~$
+</code></pre>
+<p>Breaking it down:</p>
+<ul>
+<li><code>alice</code> — your username</li>
+<li><code>ubuntu</code> — hostname of your computer</li>
+<li><code>~</code> — current working directory (<code>~</code> = home directory)</li>
+<li><code>$</code> — end of prompt (indicates a regular user; <code>#</code> means root)</li>
+</ul>
+<h3>The Command Structure</h3>
+<p>Most commands follow this pattern:</p>
+<pre><code class="language-bash">command [options] [arguments]
+</code></pre>
+<p>Example:</p>
+<pre><code class="language-bash">ls -l /home
+</code></pre>
+<ul>
+<li><code>ls</code> — the command</li>
+<li><code>-l</code> — an option (long listing format)</li>
+<li><code>/home</code> — an argument (target directory)</li>
+</ul>
+<p>Options can be combined (e.g., <code>ls -la</code>) and are usually preceded by <code>-</code> (short for <code>--long</code>).</p>
+<h2>Essential Commands</h2>
+<h3>Navigation Commands</h3>
+<pre><code class="language-bash">pwd          # Print Working Directory — show current location
+cd [dir]     # Change Directory
+cd           # Go to home (~)
+cd ..        # Go up one level
+cd -         # Go to previous directory
+ls [dir]     # List directory contents
+</code></pre>
+<h3>File and Directory Commands</h3>
+<pre><code class="language-bash">cp [src] [dst]          # Copy
+mv [src] [dst]          # Move/Rename
+rm [file]               # Remove/Delete
+rmdir [dir]             # Remove empty directory
+mkdir [dir]             # Make directory
+touch [file]            # Create empty file or update timestamp
+</code></pre>
+<h3>File Content Commands</h3>
+<pre><code class="language-bash">cat [file]              # Print entire file
+less [file]             # View file with scrolling (q to quit)
+head [file]             # Print first 10 lines
+tail [file]             # Print last 10 lines
+tail -f [file]          # Follow file in real time
+grep [pattern] [file]   # Search for pattern
+wc [file]               # Word/line/byte count
+</code></pre>
+<h3>File Permission Commands</h3>
+<pre><code class="language-bash">chmod [perms] [file]    # Change permissions (e.g., chmod 755 script.sh)
+chown [user] [file]     # Change owner (e.g., chown alice file.txt)
+chgrp [group] [file]    # Change group
+</code></pre>
+<h2>Getting Help</h2>
+<h3>man — Manual Pages</h3>
+<p>Every command has a manual page:</p>
+<pre><code class="language-bash">man ls          # Read the manual for ls
+man -k keyword  # Search for commands related to keyword
+man 5 passwd    # Read the passwd file format (section 5)
+</code></pre>
+<p>Navigate within <code>man</code>:</p>
+<ul>
+<li><strong>Space</strong> — page down</li>
+<li><strong>b</strong> — page up</li>
+<li><strong>/pattern</strong> — search forward</li>
+<li><strong>q</strong> — quit</li>
+</ul>
+<h3>--help</h3>
+<p>Most commands print a brief usage summary:</p>
+<pre><code class="language-bash">ls --help
+</code></pre>
+<h3>info</h3>
+<p>Some GNU packages provide more detailed info pages:</p>
+<pre><code class="language-bash">info ls
+</code></pre>
+<h2>Path and Environment</h2>
+<h3>Environment Variables</h3>
+<p>Environment variables store system and user configuration:</p>
+<pre><code class="language-bash"># View a variable
+echo $HOME        # usually /home/alice
+
+# List all variables
+env
+printenv
+
+# Set a variable (current session only)
+export MYVAR=&quot;hello&quot;
+
+# Permanent: add to ~/.bashrc for user, /etc/environment for system
+</code></pre>
+<p>Common variables:</p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>$HOME</code></td>
+<td>User home directory</td>
+<td><code>/home/alice</code></td>
+</tr>
+<tr>
+<td><code>$USER</code></td>
+<td>Current username</td>
+<td><code>alice</code></td>
+</tr>
+<tr>
+<td><code>$PWD</code></td>
+<td>Current directory</td>
+<td><code>/home/alice/Documents</code></td>
+</tr>
+<tr>
+<td><code>$PATH</code></td>
+<td>Directories to search for commands</td>
+<td><code>/usr/local/bin:/usr/bin:...</code></td>
+</tr>
+<tr>
+<td><code>$SHELL</code></td>
+<td>Current shell</td>
+<td><code>/bin/bash</code></td>
+</tr>
+<tr>
+<td><code>$LANG</code></td>
+<td>Locale settings</td>
+<td><code>en_US.UTF-8</code></td>
+</tr>
+</tbody></table>
+<h3>The PATH Variable</h3>
+<p><code>PATH</code> is a colon-separated list of directories that the shell searches when you type a command:</p>
+<pre><code>/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+</code></pre>
+<p>Example: When you type <code>ls</code>, the shell searches each directory in PATH for an <code>ls</code> executable and runs the first one found.</p>
+<h3>Modifying PATH</h3>
+<pre><code class="language-bash"># Add ~/bin to PATH (in ~/.bashrc)
+export PATH=&quot;$HOME/bin:$PATH&quot;
+</code></pre>
+<h2>Input/Output Redirection</h2>
+<h3>Redirecting Output</h3>
+<pre><code class="language-bash">ls -l &gt; listing.txt        # Write output to file (overwrite)
+ls -l &gt;&gt; listing.txt       # Append output to file
+</code></pre>
+<h3>Redirecting Input</h3>
+<pre><code class="language-bash">grep &quot;pattern&quot; &lt; file.txt  # Use file as input
+sort &lt; words.txt           # Sort lines from file
+</code></pre>
+<h3>Pipes</h3>
+<p>The pipe (<code>|</code>) connects the output of one command to the input of another:</p>
+<pre><code class="language-bash">ls -la | grep &quot;.txt&quot;       # List and filter for .txt files
+cat file.txt | wc -l       # Count lines in file
+dmesg | grep &quot;error&quot;       # Filter kernel messages
+</code></pre>
+<h3>Standard Streams</h3>
+<p>Every command has three standard streams:</p>
+<table>
+<thead>
+<tr>
+<th>Stream</th>
+<th>File Descriptor</th>
+<th>Description</th>
+<th>Default Destination</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>stdin</strong></td>
+<td>0</td>
+<td>Standard input</td>
+<td>Keyboard</td>
+</tr>
+<tr>
+<td><strong>stdout</strong></td>
+<td>1</td>
+<td>Standard output</td>
+<td>Terminal</td>
+</tr>
+<tr>
+<td><strong>stderr</strong></td>
+<td>2</td>
+<td>Standard error</td>
+<td>Terminal</td>
+</tr>
+</tbody></table>
+<pre><code class="language-bash"># Redirect stderr
+ls /nonexistent 2&gt; errors.log
+
+# Redirect both
+ls -la &gt; output.log 2&gt;&amp;1
+
+# Discard output
+command &gt; /dev/null 2&gt;&amp;1
+</code></pre>
+<h2>Globbing — Pattern Matching</h2>
+<p>The shell expands patterns before passing them to commands:</p>
+<pre><code class="language-bash">ls *.txt           # All files ending in .txt
+ls file?.log       # file1.log, fileA.log (but not file10.log)
+ls [abc]*          # All entries starting with a, b, or c
+echo {1..5}        # Expand to: 1 2 3 4 5
+ls ~/*.md          # All Markdown files in home directory
+</code></pre>
+<p>Special characters:</p>
+<ul>
+<li><code>*</code> — matches any string (including empty)</li>
+<li><code>?</code> — matches exactly one character</li>
+<li><code>[abc]</code> — matches one character from the set {a, b, c}</li>
+<li><code>[!abc]</code> — matches any character <strong>except</strong> a, b, c</li>
+<li><code>{...}</code> — brace expansion</li>
+</ul>
+<h2>Quoting and Escaping</h2>
+<h3>Single Quotes (<code>&#39;</code>)</h3>
+<p>Everything inside single quotes is taken literally — no variable expansion, no special characters:</p>
+<pre><code class="language-bash">echo &#39;$HOME&#39;       # Prints literally $HOME
+echo &#39;My $avings&#39;  # Prints literally My $avings
+</code></pre>
+<h3>Double Quotes (<code>&quot;</code>)</h3>
+<p>Double quotes allow variable expansion and command substitution but prevent most other special meanings:</p>
+<pre><code class="language-bash">echo &quot;Hello $USER&quot;    # Expands $USER
+echo &quot;My $avings&quot;     # $avings is empty (My  with a space)
+</code></pre>
+<h3>Escaping with Backslash (<code>\</code>)</h3>
+<pre><code class="language-bash">echo The \$avings     # Prints: The $avings
+echo &quot;Hello, world&quot;\!  # Prints: Hello, world!
+</code></pre>
+<h2>History</h2>
+<p>The shell keeps a history of commands you type:</p>
+<pre><code class="language-bash">history                  # Show history
+history -c               # Clear history
+!!                       # Repeat last command
+!n                       # Repeat command number n
+!string                 # Repeat last command starting with &quot;string&quot;
+</code></pre>
+<p>Navigate history with:</p>
+<ul>
+<li><strong>Up/Down arrow</strong> keys</li>
+<li><strong>Ctrl</strong> + <strong>R</strong> — reverse search (type to search, Enter to execute)</li>
+<li><strong>Ctrl</strong> + <strong>G</strong> — cancel search</li>
+</ul>
+<p>History is saved in <code>~/.bash_history</code>.</p>
+<h2>Tab Completion</h2>
+<p>Pressing <strong>Tab</strong> auto-completes file names, command names, variable names, etc.:</p>
+<ul>
+<li>Tab once — completes as much as possible</li>
+<li>Tab twice — shows possible completions</li>
+<li><strong>Ctrl</strong> + <strong>Alt</strong> + <strong>/ (Slash)</strong> — complete using words from your history</li>
+</ul>
+<h2>Aliases</h2>
+<p>Aliases are shortcuts for longer commands:</p>
+<pre><code class="language-bash"># Define an alias
+alias ll=&#39;ls -alF&#39;
+
+# View aliases
+alias
+
+# Make alias permanent by adding to ~/.bashrc
+echo &quot;alias ll=&#39;ls -alF&#39;&quot; &gt;&gt; ~/.bashrc
+source ~/.bashrc
+</code></pre>
+<p>Common default aliases on Ubuntu:</p>
+<pre><code class="language-bash">alias ls=&#39;ls --color=auto&#39;
+alias grep=&#39;grep --color=auto&#39;
+</code></pre>
+<h2>Command Substitution</h2>
+<p>Replace a command with its output using <code>$(...)</code> or backticks:</p>
+<pre><code class="language-bash"># Both are equivalent
+files=$(ls)
+files=`ls`
+
+echo &quot;There are $(ls | wc -l) files in this directory&quot;
+</code></pre>
+<h2>Text Processing Tools</h2>
+<h3>grep — Global Regular Expression Print</h3>
+<p>Search for patterns in files:</p>
+<pre><code class="language-bash">grep &quot;error&quot; log.txt              # find lines containing &quot;error&quot;
+grep -i &quot;warning&quot; log.txt         # case-insensitive
+grep -n &quot;pattern&quot; file.txt        # show line numbers
+grep -v &quot;pattern&quot; file.txt        # invert (lines NOT matching)
+grep -r &quot;pattern&quot; /path/          # recursive
+grep -E &quot;ext(4|3)&quot; /proc/mounts   # extended regex
+grep -c &quot;pattern&quot; file.txt        # count matches
+</code></pre>
+<h3>sed — Stream Editor</h3>
+<p>Perform text transformations:</p>
+<pre><code class="language-bash">sed &#39;s/old/new/&#39; file.txt         # replace first occurrence per line
+sed &#39;s/old/new/g&#39; file.txt        # replace all
+sed &#39;s/old/new/gi&#39; file.txt       # global + case-insensitive
+echo &quot;$var&quot; | sed &#39;s/^ *//; s/ *$//&#39;  # trim whitespace
+</code></pre>
+<h3>awk — Text Processing Language</h3>
+<p>Process fields and columns:</p>
+<pre><code class="language-bash">awk &#39;{print $1, $5}&#39; /etc/passwd  # print first and fifth fields
+awk -F: &#39;{print $1}&#39; /etc/passwd  # use : as delimiter
+ls -l | awk &#39;$5 &gt; 1000 {print $9}&#39;  # files larger than 1000 bytes
+</code></pre>
+<h2>File Viewing and Editing</h2>
+<h3>Viewing Files</h3>
+<pre><code class="language-bash">cat file                    # entire file
+less file                   # paged view
+head file                   # first 10 lines
+tail file                   # last 10 lines
+tail -f file                # follow (watch changes)
+tail -n 5 file              # last 5 lines
+</code></pre>
+<h3>Text Editors</h3>
+<h4>nano</h4>
+<p>A beginner-friendly WYSIWYG editor (default in the terminal):</p>
+<pre><code class="language-bash">nano file.txt
+</code></pre>
+<p>Common operations:</p>
+<ul>
+<li><code>Ctrl</code> + <strong>O</strong> — write out (save)</li>
+<li><code>Ctrl</code> + <strong>X</strong> — exit</li>
+<li>`Ctrl** + <strong>K</strong> — cut line</li>
+<li><code>Ctrl</code> + <strong>U</strong> — paste</li>
+</ul>
+<h4>vim</h4>
+<p>A powerful modal editor (vi improved):</p>
+<pre><code class="language-bash">vim file.txt
+</code></pre>
+<p>Basics:</p>
+<ul>
+<li><code>i</code> — insert mode (make changes)</li>
+<li><code>Esc</code> — command mode (navigate, execute commands)</li>
+<li><code>:w</code> — write/save</li>
+<li><code>:q</code> — quit</li>
+<li><code>:wq</code> — write and quit</li>
+<li><code>:x</code> — same as <code>:wq</code></li>
+<li><code>dd</code> — delete line</li>
+<li><code>yy</code> — copy line</li>
+<li><code>p</code> — paste</li>
+</ul>
+<h3>Viewing Logs</h3>
+<pre><code class="language-bash">journalctl                    # systemd journal
+journalctl -u ssh             # logs for ssh service
+journalctl -f                 # follow
+tail -f /var/log/syslog       # traditional syslog
+</code></pre>
+<h2>Process Management</h2>
+<h3>Viewing Processes</h3>
+<pre><code class="language-bash">ps                    # processes for current shell
+ps aux                # all processes, full output
+top                   # dynamic, real-time view (press q to quit)
+htop                  # enhanced top (sudo apt install htop)
+</code></pre>
+<h3>Managing Processes</h3>
+<pre><code class="language-bash">kill [pid]            # send signal to process (default: TERM)
+kill -9 [pid]         # force kill (KILL signal)
+killall name          # kill all processes by name
+pkill -f &quot;pattern&quot;    # kill processes matching pattern
+</code></pre>
+<h3>Backgrounding</h3>
+<pre><code class="language-bash">command &amp;            # run in background
+command              # run in foreground
+Ctrl + Z             # suspend (stop) a foreground process
+bg %1                # resume stopped job in background
+fg %1                # bring job to foreground
+jobs                 # list jobs
+</code></pre>
+<h2>Archiving and Compression</h2>
+<h3>tar</h3>
+<pre><code class="language-bash">tar -czvf archive.tar.gz files...    # create gzip archive
+tar -xzvf archive.tar.gz            # extract gzip archive
+tar -cjvf archive.tar.bz2 files...   # create bzip2 archive
+tar -xjvf archive.tar.bz2            # extract bzip2 archive
+</code></pre>
+<p>Common <code>tar</code> flags:</p>
+<ul>
+<li><code>-c</code> — create</li>
+<li><code>-x</code> — extract</li>
+<li><code>-v</code> — verbose (show files)</li>
+<li><code>-f</code> — file (use next argument as filename)</li>
+<li><code>-t</code> — list contents</li>
+<li><code>-z</code> — gzip</li>
+<li><code>-j</code> — bzip2</li>
+<li><code>-J</code> — xz</li>
+</ul>
+<h3>Other tools</h3>
+<pre><code class="language-bash">zip -r archive.zip files...          # create zip
+unzip archive.zip                      # extract zip
+rar a archive.rar files...           # create rar (need unrar)
+unrar x archive.rar                  # extract rar
+</code></pre>
+<h2>Review Questions</h2>
+<ol>
+<li>What command shows you your current working directory?</li>
+<li>How do you get help for a command?</li>
+<li>What redirect operator overwrites a file? Which appends?</li>
+<li>How do you search for a pattern in a file?</li>
+<li>How do you send a process to the background?</li>
+</ol>
+<h3>Quick Reference</h3>
+<pre><code class="language-bash"># Navigation
+pwd
+ls -la
+cd ~
+cd ..
+cd -
+
+# File ops
+cp src dst
+mv src dst
+rm file
+mkdir dir
+
+# Help
+man ls
+ls --help
+info ls
+
+# Pipes and redirects
+ls | grep &quot;.txt&quot;
+echo &quot;text&quot; &gt; file.txt
+cat file.txt | wc -l
+
+# Globbing
+ls *.txt
+ls file?.log
+
+# History
+history
+Ctrl + R
+!!
+
+# Completion
+Tab
+Ctrl + Alt + /
+</code></pre>
+</section>
+<section class="chapter"><h1>Chapter 6: Package Management</h1>
+<h2>What Are Packages?</h2>
+<p>A <strong>package</strong> is a compiled collection of files (binaries, libraries, configuration files, documentation) bundled together for easy installation. Package management is the process of installing, updating, removing, and configuring these collections.</p>
+<p>Ubuntu provides multiple package management approaches, each with different strengths. This chapter covers the three main systems:</p>
+<ol>
+<li><strong>APT (Advanced Package Tool)</strong> — the traditional Debian/Ubuntu package manager using <code>.deb</code> files and repositories</li>
+<li><strong>Snap</strong> — Canonical&#39;s universal packaging format</li>
+<li><strong>Flatpak</strong> — A community-driven universal packaging format</li>
+</ol>
+<h2>APT: The Debian Package System</h2>
+<p>APT is the foundation of Ubuntu&#39;s package management. It uses <strong>repositories</strong> — centralized servers hosting thousands of packages.</p>
+<h3>How Repositories Work</h3>
+<p>Repositories are defined in <code>/etc/apt/sources.list</code> and <code>/etc/apt/sources.list.d/</code>. A typical entry looks like:</p>
+<pre><code>deb http://archive.ubuntu.com/ubuntu/ noble main restricted universe multiverse
+deb http://archive.ubuntu.com/ubuntu/ noble-updates main restricted universe multiverse
+deb http://security.ubuntu.com/ubuntu/ noble-security main restricted universe multiverse
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>deb</code></td>
+<td>Binary package feed</td>
+</tr>
+<tr>
+<td>URL</td>
+<td>Repository base URL</td>
+</tr>
+<tr>
+<td><code>noble</code></td>
+<td>Release codename</td>
+</tr>
+<tr>
+<td><code>main</code>, <code>universe</code></td>
+<td>Component areas</td>
+</tr>
+</tbody></table>
+<h3>Repository Components</h3>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>main</strong></td>
+<td>Officially supported free software</td>
+</tr>
+<tr>
+<td><strong>universe</strong></td>
+<td>Community-maintained free software</td>
+</tr>
+<tr>
+<td><strong>restricted</strong></td>
+<td>Proprietary drivers with commercial support</td>
+</tr>
+<tr>
+<td><strong>multiverse</strong></td>
+<td>Non-free software (patent/copyright restrictions)</td>
+</tr>
+</tbody></table>
+<h3>Core APT Commands</h3>
+<pre><code class="language-bash"># Update the package index (list of available packages)
+sudo apt update
+
+# Install packages
+sudo apt install &lt;package&gt;
+sudo apt install package1 package2
+
+# Remove packages
+sudo apt remove &lt;package&gt;         # keep config files
+sudo apt purge &lt;package&gt;          # remove config files too
+
+# Upgrade packages
+sudo apt upgrade                  # upgrade without removing anything
+sudo apt full-upgrade             # upgrade (may remove conflicting packages)
+
+# View package info
+apt show &lt;package&gt;
+apt policy &lt;package&gt;
+
+# Search
+apt search keyword
+apt-cache search keyword          # older search interface
+</code></pre>
+<h3>Managing Package Sources</h3>
+<pre><code class="language-bash"># Add a PPA (Personal Package Archive)
+sudo add-apt-repository ppa:graphics-drivers/ppa
+sudo apt update
+
+# Add a repository manually
+sudo add-apt-repository &quot;deb http://archive.ubuntu.com/ubuntu/ noble main universe&quot;
+
+# List enabled repositories
+grep -r &quot;^deb&quot; /etc/apt/sources.list /etc/apt/sources.list.d/
+</code></pre>
+<h3>Cleaning Up</h3>
+<pre><code class="language-bash"># Remove downloaded package files no longer needed
+sudo apt clean
+
+# Remove automatically installed dependencies no longer needed
+sudo apt autoremove
+
+# Fix broken dependencies
+sudo apt --fix-broken install
+
+# Re-configure a package
+sudo dpkg-reconfigure &lt;package&gt;
+</code></pre>
+<h3>apt and dpkg: The Lower Layer</h3>
+<p><code>dpkg</code> is the lower-level package installer. APT builds on top of <code>dpkg</code>:</p>
+<pre><code class="language-bash"># Install a local .deb file
+sudo dpkg -i package.deb
+
+# If dependencies are missing, fix with apt
+sudo apt --fix-broken install
+
+# List installed packages
+dpkg -l | grep &lt;keyword&gt;
+
+# Remove a package
+sudo dpkg -r &lt;package&gt;
+
+# Completely remove (purge) a package
+sudo dpkg -P &lt;package&gt;
+
+# Show files installed by a package
+dpkg -L &lt;package&gt;
+
+# Find which package owns a file
+dpkg -S /usr/bin/ls
+</code></pre>
+<h2>Snap: Universal Packages</h2>
+<p>Snap is a package management system developed by Canonical for creating, managing, and distributing packages across Linux distributions. Snaps are containerized and bundle their own dependencies.</p>
+<h3>What Are Snaps?</h3>
+<ul>
+<li>Bundled with all their dependencies (no missing library issues)</li>
+<li>Cross-distribution (work on Ubuntu, Debian, Fedora, etc.)</li>
+<li>Auto-update by default</li>
+<li>Isolated (security sandboxing)</li>
+<li>Run in read-only filesystem</li>
+</ul>
+<h3>Snap Commands</h3>
+<pre><code class="language-bash"># Search for snaps
+snap find keyword
+
+# Install a snap
+sudo snap install &lt;name&gt;
+sudo snap install code --classic           # --classic for developer tools
+
+# List installed snaps
+snap list
+
+# Remove a snap
+sudo snap remove &lt;name&gt;
+
+# Update a snap
+sudo snap refresh &lt;name&gt;
+
+# Update all snaps
+sudo snap refresh
+
+# Check for updates manually
+sudo snap refresh --list
+
+# Switch channels (stable, candidate, edge, beta)
+sudo snap switch &lt;name&gt;/&lt;channel&gt;
+sudo snap install &lt;name&gt; --edge            # install from edge channel
+
+# View info about a snap
+snap info &lt;name&gt;
+snap changes                          # see snap operations
+</code></pre>
+<h3>Classic Confinement</h3>
+<p>Snaps are confined by default for security. Development tools (compilers, editors) often need <code>--classic</code> to access the system normally:</p>
+<pre><code class="language-bash">sudo snap install code --classic
+sudo snap install python38 --classic
+sudo snap install postman --classic
+</code></pre>
+<h3>Snap Channels</h3>
+<p>Each snap has multiple channels:</p>
+<table>
+<thead>
+<tr>
+<th>Channel</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>latest/stable</code></td>
+<td>Default — well-tested, recommended</td>
+</tr>
+<tr>
+<td><code>stable</code></td>
+<td>Latest stable (non-&quot;latest&quot;)</td>
+</tr>
+<tr>
+<td><code>candidate</code></td>
+<td>Pre-release, ready for testing</td>
+</tr>
+<tr>
+<td><code>beta</code></td>
+<td>Unstable, for testing</td>
+</tr>
+<tr>
+<td><code>edge</code></td>
+<td>Bleeding-edge, unstable</td>
+</tr>
+</tbody></table>
+<h3>Managing Snap Updates</h3>
+<p>Snaps auto-update by default. Configuration:</p>
+<pre><code class="language-bash"># Disable auto-refresh
+sudo snap set system refresh.timer=00:00-01:00    # only update at night
+
+# Set refresh schedule (4-hourly)
+sudo snap set system refresh.hold=&quot;2025-01-01T00:00:00Z&quot;
+
+# Refresh specific snap
+sudo snap refresh &lt;snap-name&gt;
+
+# Revert to a previous revision
+sudo snap revert &lt;snap-name&gt;
+</code></pre>
+<h2>Flatpak: The Universal Package Format</h2>
+<p>Flatpak is an alternative to Snap, developed by a community effort. It uses <strong>runtimes</strong> (shared libraries) and <strong>bundles</strong> (application-specific content) to build packages.</p>
+<h3>Installing Flatpak</h3>
+<p>Flatpak is not installed by default on Ubuntu but is easy to add:</p>
+<pre><code class="language-bash">sudo apt install flatpak
+
+# Optional: Graphical plugin for Software Center
+sudo apt install gnome-software-plugin-flatpak
+</code></pre>
+<h3>Setting Up Flathub</h3>
+<p><strong>Flathub</strong> is the primary Flatpak app repository:</p>
+<pre><code class="language-bash"># Add Flathub repository
+flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+</code></pre>
+<h3>Flatpak Commands</h3>
+<pre><code class="language-bash"># Search for apps
+flatpak search keyword
+
+# Install an app
+flatpak install flathub &lt;app-id&gt;
+flatpak install flathub org.gimp.GIMP
+
+# List installed apps
+flatpak list
+
+# Run an app
+flatpak run &lt;app-id&gt;
+
+# Update all apps
+flatpak update
+
+# Remove an app
+flatpak remove &lt;app-id&gt;
+
+# Repair broken installations
+flatpak repair
+</code></pre>
+<h3>Flatpak Permissions</h3>
+<p>Flatpak uses a portal-based permission system:</p>
+<pre><code class="language-bash"># List permissions for an app
+flatpak info --show-permissions &lt;app-id&gt;
+
+# Reset permissions
+flatpak permission-reset &lt;app-id&gt;
+</code></pre>
+<h3>Comparing Package Managers</h3>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>APT (DEB)</th>
+<th>Snap</th>
+<th>Flatpak</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Dependencies</strong></td>
+<td>System-wide (may cause conflicts)</td>
+<td>Bundled (no conflicts)</td>
+<td>Bundled (no conflicts)</td>
+</tr>
+<tr>
+<td><strong>Updates</strong></td>
+<td>Manual (<code>apt upgrade</code>)</td>
+<td>Automatic (every 4 hours)</td>
+<td>Manual (<code>flatpak update</code>)</td>
+</tr>
+<tr>
+<td><strong>Disk usage</strong></td>
+<td>Minimal</td>
+<td>Larger (self-contained)</td>
+<td>Moderate (shared runtimes)</td>
+</tr>
+<tr>
+<td><strong>Startup time</strong></td>
+<td>Fast</td>
+<td>Slower (overhead)</td>
+<td>Slower (overhead)</td>
+</tr>
+<tr>
+<td><strong>Isolation</strong></td>
+<td>None (traditional)</td>
+<td>Yes (sandbox)</td>
+<td>Yes (sandbox)</td>
+</tr>
+<tr>
+<td><strong>Availability</strong></td>
+<td>Ubuntu-specific repo</td>
+<td>Cross-distro</td>
+<td>Cross-distro</td>
+</tr>
+<tr>
+<td><strong>Best for</strong></td>
+<td>Core system packages</td>
+<td>End-user apps</td>
+<td>Desktop apps</td>
+</tr>
+</tbody></table>
+<h2>Best Practices for Package Management</h2>
+<h3>Mixing Package Managers</h3>
+<ul>
+<li><strong>APT</strong>: Best for core system packages (<code>build-essential</code>, <code>curl</code>, <code>vim</code>)</li>
+<li><strong>Snap</strong>: Canonical&#39;s recommended for third-party desktop apps</li>
+<li><strong>Flatpak</strong>: Good alternative to Snap for desktop apps; preferred by many users due to smaller overhead</li>
+</ul>
+<p>Avoid mixing Snap and Flatpak versions of the same app.</p>
+<h3>Updating Regularly</h3>
+<p>Keep your system up to date:</p>
+<pre><code class="language-bash">sudo apt update
+sudo apt upgrade
+sudo apt autoremove
+sudo snap refresh
+flatpak update
+</code></pre>
+<h3>Checking for Orphaned Packages</h3>
+<pre><code class="language-bash"># List automatically installed packages (potential candidates for autoremove)
+apt-mark showauto
+
+# Show why a package was installed
+aptitude why &lt;package&gt;
+
+# Mark a package as manually installed
+sudo apt-mark manual &lt;package&gt;
+</code></pre>
+<h2>Installing Software from Source</h2>
+<p>Sometimes software is not available in any package repository. In that case, you may need to compile from source:</p>
+<pre><code class="language-bash"># Install build dependencies
+sudo apt install build-essential autoconf automake libtool
+
+# Download source, extract, build, install
+./configure --prefix=/usr/local
+make
+sudo make install
+
+# Or use checkinstall to create a DEB package
+sudo checkinstall
+</code></pre>
+<h2>Package Management for Development</h2>
+<h3>Python</h3>
+<pre><code class="language-bash"># Install pip and venv
+sudo apt install python3-pip python3-venv
+
+# Create a virtual environment
+python3 -m venv myproject
+source myproject/bin/activate
+pip install requests
+
+# Install a package manager for Python
+pipx install poetry
+</code></pre>
+<h3>Node.js / npm</h3>
+<pre><code class="language-bash">sudo apt install nodejs npm
+
+# Or use a Node version manager (nvm)
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+</code></pre>
+<h3>Java</h3>
+<pre><code class="language-bash">sudo apt install openjdk-17-jdk
+
+# Or use SDKMAN!
+curl -s &quot;https://get.sdkman.io&quot; | bash
+</code></pre>
+<h3>Database Servers</h3>
+<pre><code class="language-bash">sudo apt install mysql-server postgresql redis-server
+sudo systemctl start mysql
+sudo systemctl enable mysql  # start at boot
+</code></pre>
+<h2>Repository Management</h2>
+<h3>Adding Third-Party Repositories</h3>
+<pre><code class="language-bash"># Import GPG key
+wget -qO - https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker.gpg
+
+# Add repository
+echo &quot;deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu $(. /etc/os-release &amp;&amp; echo &quot;$VERSION_CODENAME&quot;) stable&quot; | sudo tee /etc/apt/sources.list.d/docker.list &gt; /dev/null
+
+sudo apt update
+sudo apt install docker-ce
+</code></pre>
+<h3>Pinning Packages</h3>
+<p>To prevent a package from being upgraded, &quot;pin&quot; it:</p>
+<pre><code class="language-bash"># Hold a package
+sudo apt-mark hold docker-ce
+
+# Unhold
+sudo apt-mark unhold docker-ce
+
+# Show held packages
+apt-mark showhold
+</code></pre>
+<h2>Review Questions</h2>
+<ol>
+<li>What command updates the package index in APT?</li>
+<li>How do you install a Snap package?</li>
+<li>What is the difference between <code>apt remove</code> and <code>apt purge</code>?</li>
+<li>What is Flathub?</li>
+<li>How do you hold a package from being upgraded?</li>
+</ol>
+<h3>Quick Reference</h3>
+<pre><code class="language-bash"># APT
+sudo apt update
+sudo apt install &lt;pkg&gt;
+sudo apt remove &lt;pkg&gt;
+sudo apt upgrade
+sudo apt autoremove
+
+# Snap
+snap find &lt;name&gt;
+sudo snap install &lt;name&gt;
+sudo snap remove &lt;name&gt;
+sudo snap refresh
+snap list
+
+# Flatpak
+flatpak search &lt;name&gt;
+flatpak install flathub &lt;name&gt;
+flatpak remove &lt;name&gt;
+flatpak update
+
+# Manual
+dpkg -i file.deb
+dpkg -l
+dpkg -L &lt;pkg&gt;
+
+# Holds
+sudo apt-mark hold &lt;pkg&gt;
+sudo apt-mark unhold &lt;pkg&gt;
+apt-mark showhold
+</code></pre>
+</section>
+<section class="chapter"><h1>Chapter 7: User and Group Management</h1>
+<h2>The Linux User Model</h2>
+<p>Linux follows a strict permission model where every process runs as a specific user, and every file is owned by a user. Understanding users and groups is critical for system security.</p>
+<h3>User IDs (UIDs)</h3>
+<p>Each user has a unique <strong>User ID (UID)</strong>. The most important UIDs are:</p>
+<table>
+<thead>
+<tr>
+<th>UID</th>
+<th>Username</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td><code>root</code></td>
+<td>Superuser — all permissions</td>
+</tr>
+<tr>
+<td>1–999</td>
+<td>System users</td>
+<td>Service accounts (nobody, daemon, www-data, etc.)</td>
+</tr>
+<tr>
+<td>1000+</td>
+<td>Regular users</td>
+<td>Interactive user accounts</td>
+</tr>
+<tr>
+<td>65534</td>
+<td>nobody</td>
+<td>Default unprivileged user</td>
+</tr>
+</tbody></table>
+<h3>User Database Files</h3>
+<p>User account information is stored in several files:</p>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Stored Information</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>/etc/passwd</code></td>
+<td>Usernames, UIDs, home dirs, login shells</td>
+</tr>
+<tr>
+<td><code>/etc/shadow</code></td>
+<td>Password hashes and aging info</td>
+</tr>
+<tr>
+<td><code>/etc/gshadow</code></td>
+<td>Group password information</td>
+</tr>
+<tr>
+<td><code>/etc/group</code></td>
+<td>Group names and members</td>
+</tr>
+<tr>
+<td><code>/etc/login.defs</code></td>
+<td>Default login settings</td>
+</tr>
+</tbody></table>
+<h3>Viewing <code>/etc/passwd</code></h3>
+<pre><code class="language-bash"># View user accounts
+cat /etc/passwd
+
+# View only your account info
+getent passwd $USER
+
+# View a specific user
+getent passwd root
+</code></pre>
+<p>A typical line:</p>
+<pre><code>alice:x:1000:1000:Alice:/home/alice:/bin/bash
+</code></pre>
+<p>Fields (colon-separated):</p>
+<ol>
+<li><strong>Username</strong></li>
+<li><strong>Password placeholder</strong> (<code>x</code> means the hash is in <code>/etc/shadow</code>)</li>
+<li><strong>UID</strong></li>
+<li><strong>GID</strong> (primary group)</li>
+<li><strong>GECOS</strong> (full name, optional contact info)</li>
+<li><strong>Home directory</strong></li>
+<li><strong>Login shell</strong></li>
+</ol>
+<h2>User Management Commands</h2>
+<h3>useradd — Create a New User</h3>
+<pre><code class="language-bash"># Create a user with default options
+sudo useradd alice
+
+# Create with home directory, GECOS field, and default shell
+sudo useradd -m -c &quot;Alice Anderson&quot; -s /bin/bash alice
+
+# Create with specific UID and GID
+sudo useradd -u 1005 -g developers -m -s /bin/bash bob
+</code></pre>
+<p>Common <code>useradd</code> flags:</p>
+<table>
+<thead>
+<tr>
+<th>Flag</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>-m</code></td>
+<td>Create home directory</td>
+</tr>
+<tr>
+<td><code>-d /path</code></td>
+<td>Set home directory path</td>
+</tr>
+<tr>
+<td><code>-s /shell</code></td>
+<td>Set login shell</td>
+</tr>
+<tr>
+<td><code>-c &quot;comment&quot;</code></td>
+<td>Set GECOS field (full name/comment)</td>
+</tr>
+<tr>
+<td><code>-u UID</code></td>
+<td>Set specific UID</td>
+</tr>
+<tr>
+<td><code>-g GID</code></td>
+<td>Set primary group (must exist)</td>
+</tr>
+<tr>
+<td><code>-G group1,group2</code></td>
+<td>Add supplementary groups</td>
+</tr>
+<tr>
+<td><code>-e YYYY-MM-DD</code></td>
+<td>Set account expiration date</td>
+</tr>
+</tbody></table>
+<h3>adduser — The Friendly Alternative</h3>
+<p><code>adduser</code> is a high-level frontend to <code>useradd</code> that&#39;s interactive and sets the password:</p>
+<pre><code class="language-bash">sudo adduser alice
+</code></pre>
+<p>This prompts for the password, GECOS info, and creates a home directory in one step. It&#39;s the <strong>recommended way</strong> for interactive user creation.</p>
+<h3>Modifying Users (usermod)</h3>
+<pre><code class="language-bash"># Append to supplementary groups
+sudo usermod -aG developers,wheel alice
+
+# Change login shell
+sudo usermod -s /bin/zsh alice
+
+# Change home directory
+sudo usermod -d /new/home/dir alice
+
+# Lock/unlock account
+sudo usermod -L alice       # lock
+sudo usermod -U alice       # unlock
+
+# Add a grace period before password expires
+sudo usermod -l alice       # expire immediately (force password change at next login)
+</code></pre>
+<p>⚠️ <strong>Important</strong>: <code>usermod</code> and <code>usermod -G</code> <strong>replace</strong> the supplementary group list. To <strong>add</strong> a group without removing existing ones, always use <code>-aG</code> (append to groups).</p>
+<h3>Deleting Users</h3>
+<pre><code class="language-bash"># Remove user (keep home directory)
+sudo userdel alice
+
+# Remove user and home directory
+sudo userdel -r alice
+
+# Remove user and mail spool
+sudo deluser alice        # Debian/Ubuntu alternative to userdel
+</code></pre>
+<h3>Setting Passwords</h3>
+<pre><code class="language-bash"># Set/change your own password
+passwd
+
+# Set another user&#39;s password
+sudo passwd alice
+
+# View password aging (shadow/nologin accounts won&#39;t show)
+chage -l alice
+
+# Force password change at next login
+sudo chage -d 0 alice
+</code></pre>
+<h3>Password Aging</h3>
+<pre><code class="language-bash"># Display current settings
+chage -l alice
+
+# Set password to expire after 90 days
+sudo chage -M 90 alice
+
+# Set minimum days between changes
+sudo chage -m 7 alice
+
+# Set warning period (days before expiration)
+sudo chage -W 7 alice
+
+# Lock password (disable login)
+sudo passwd -l alice
+</code></pre>
+<h2>The Root Account</h2>
+<h3>Becoming Root</h3>
+<p>Ubuntu does not set a root password by default. The <code>root</code> account exists but is locked. You become root through the <code>sudo</code> mechanism.</p>
+<pre><code class="language-bash"># Run a single command as root
+sudo ls /root
+
+# Open a root shell
+sudo -i          # switch to root environment
+sudo su          # switch to root (without loading full env)
+exit             # return to your user
+</code></pre>
+<h3>Configuring sudo</h3>
+<p>The <code>/etc/sudoers</code> file controls who can do what with sudo. <strong>Never edit it directly</strong> — always use <code>visudo</code>:</p>
+<pre><code class="language-bash">sudo visudo
+</code></pre>
+<p>Basic rules:</p>
+<pre><code># User privilege specification
+root    ALL=(ALL:ALL) ALL
+%sudo   ALL=(ALL:ALL) ALL      # users in the &quot;sudo&quot; group can sudo
+%admin  ALL=(ALL) ALL          # users in the &quot;admin&quot; group can sudo
+alice   ALL=(ALL) NOPASSWD: ALL # alice can sudo without a password
+</code></pre>
+<p>The <code>sudo</code> group is the primary way regular users gain administrative privileges. By default, the first user created during installation is added to the <code>sudo</code> and <code>adm</code> groups.</p>
+<h3>Common sudo Patterns</h3>
+<pre><code class="language-bash">sudo -i              # Become root (load root&#39;s environment)
+sudo -s              # Become root (load current environment)
+sudo -u user command # Run a command as another user
+sudo !!              # Re-run the last command with sudo
+sudo !!              # Re-run with corrected permissions
+</code></pre>
+<h2>Groups</h2>
+<h3>Viewing Groups</h3>
+<pre><code class="language-bash"># Show groups you belong to
+groups
+
+# Show groups of another user
+groups alice
+
+# List all groups
+getent group
+
+# Find groups containing a user
+getent group | grep alice
+</code></pre>
+<h3>Managing Groups</h3>
+<pre><code class="language-bash"># Create a group
+sudo groupadd developers
+
+# Create a group with specific GID
+sudo groupadd -g 1500 developers
+
+# Delete a group
+sudo groupdel developers
+
+# Rename a group
+sudo groupmod -n newname oldname
+
+# Change GID
+sudo groupmod -g 1501 developers
+
+# Add user to a group
+sudo usermod -aG docker alice
+</code></pre>
+<h3>Group Files</h3>
+<ul>
+<li><code>/etc/group</code> — group accounts</li>
+<li><code>/etc/gshadow</code> — group passwords (usually empty)</li>
+</ul>
+<p>A typical <code>/etc/group</code> line:</p>
+<pre><code>developers:x:1500:alice,bob,charlie
+</code></pre>
+<p>Fields:</p>
+<ol>
+<li><strong>Group name</strong></li>
+<li><strong>Group password placeholder</strong> (<code>x</code> means in <code>/etc/gshadow</code>)</li>
+<li><strong>GID</strong></li>
+<li><strong>Member users</strong></li>
+</ol>
+<h2>Switching Users</h2>
+<h3>switch user (su)</h3>
+<pre><code class="language-bash"># Switch to another user (prompts for password)
+su - alice          # switch to alice with a login shell
+su alice            # switch without loading new env
+su -                 # switch to root
+
+# Run a single command as another user
+su - alice -c &quot;whoami&quot;
+</code></pre>
+<h3>runuser</h3>
+<p><code>runuser</code> is a <code>su</code> alternative that doesn&#39;t require a password — it must be run as root:</p>
+<pre><code class="language-bash">sudo runuser -u alice -- whoami
+</code></pre>
+<h3>Practical Example: Running a Service as a Different User</h3>
+<pre><code class="language-bash"># Create a dedicated service user
+sudo useradd -r -s /usr/sbin/nologin myapp
+
+# Run an app as that user
+sudo -u myapp /usr/local/bin/myapp --daemon
+</code></pre>
+<h2>User Configuration Files</h2>
+<h3>The Login Shell&#39;s Dotfiles</h3>
+<p>When a user logs in, the shell reads configuration files in order:</p>
+<p>For <strong>login shells</strong> (SSH, TTY login):</p>
+<pre><code>/etc/profile → ~/.profile → ~/.bash_profile (if exists, overrides ~/.profile)
+</code></pre>
+<p>For <strong>interactive non-login shells</strong> (new terminal windows in GUI):</p>
+<pre><code>/etc/bash.bashrc → ~/.bashrc
+</code></pre>
+<h3>Common User Configuration Files</h3>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>~/.bashrc</code></td>
+<td>Settings for interactive bash shells (aliases, env vars)</td>
+</tr>
+<tr>
+<td><code>~/.profile</code></td>
+<td>Settings for login shells</td>
+</tr>
+<tr>
+<td><code>~/.bash_aliases</code></td>
+<td>Separate file for aliases (sourced by .bashrc)</td>
+</tr>
+<tr>
+<td><code>~/.bash_logout</code></td>
+<td>Commands to run on logout</td>
+</tr>
+<tr>
+<td><code>~/.bash_history</code></td>
+<td>Command history</td>
+</tr>
+<tr>
+<td><code>~/.bash_profile</code></td>
+<td>Overrides ~/.profile if present</td>
+</tr>
+<tr>
+<td><code>~/.inputrc</code></td>
+<td>Readline (line-editing) configuration</td>
+</tr>
+</tbody></table>
+<h3>System-Wide Configuration</h3>
+<table>
+<thead>
+<tr>
+<th>File/Directory</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>/etc/profile</code></td>
+<td>System-wide login shell settings</td>
+</tr>
+<tr>
+<td><code>/etc/bash.bashrc</code></td>
+<td>System-wide interactive bash settings</td>
+</tr>
+<tr>
+<td><code>/etc/shells</code></td>
+<td>List of valid login shells</td>
+</tr>
+<tr>
+<td><code>/etc/skel/</code></td>
+<td>Template copied to new users&#39; home directories</td>
+</tr>
+<tr>
+<td><code>/etc/login.defs</code></td>
+<td>Password and login policies</td>
+</tr>
+</tbody></table>
+<h3>Example: Setting Up a New User&#39;s Environment</h3>
+<pre><code class="language-bash"># Add the user
+sudo adduser alice
+
+# Add to sudo group
+sudo usermod -aG sudo alice
+
+# Create a custom .bashrc
+sudo cp /home/alice/.bashrc /home/alice/.bashrc.bak
+cat &gt;&gt; /home/alice/.bashrc &lt;&lt; &#39;EOF&#39;
+
+# Custom aliases
+alias ll=&#39;ls -alF&#39;
+alias gs=&#39;git status&#39;
+
+# Custom PATH for local scripts
+export PATH=&quot;$HOME/bin:$PATH&quot;
+EOF
+
+# Fix ownership
+sudo chown -R alice:alice /home/alice
+</code></pre>
+<h2>Managing User Sessions</h2>
+<h3>Watching Logged-In Users</h3>
+<pre><code class="language-bash"># Show who is logged in
+who
+
+# Show detailed login info (tty, IP, login time)
+w
+
+# Show recent logins
+last
+
+# Show current user only
+whoami    # or: id -un
+
+# Show user and group IDs
+id        # full info
+id -u     # UID only
+id -g     # primary GID
+id -G     # all GIDs
+</code></pre>
+<h3>Terminating Sessions</h3>
+<pre><code class="language-bash"># Kill all processes run by a user
+sudo userkill alice        # may not exist on all systems
+
+# Kill specific session
+sudo ttykill tty2
+
+# Kill a specific user&#39;s login session
+sudo pkill -u alice
+</code></pre>
+<h3>Limiting Concurrent Logins</h3>
+<pre><code class="language-bash"># Edit /etc/security/limits.conf
+sudo nano /etc/security/limits.conf
+
+# Example entry: limit alice to 2 concurrent sessions
+alice  soft  maxsyslogins  2
+</code></pre>
+<h2>PAM (Pluggable Authentication Modules)</h2>
+<p>PAM is a flexible authentication framework. Configuration files live in <code>/etc/pam.d/</code>. You rarely need to modify these, but they power:</p>
+<ul>
+<li>Login authentication</li>
+<li>Sudo access</li>
+<li>Session limits</li>
+<li>Password policies</li>
+</ul>
+<p>Example PAM config for SSH login (<code>/etc/pam.d/sshd</code>):</p>
+<pre><code>@include common-auth
+@include common-account
+@include common-session
+</code></pre>
+<h2>Review Questions</h2>
+<ol>
+<li>What is the UID of the root user, and how do you access root?</li>
+<li>What does <code>usermod -aG</code> do differently from <code>usermod -G</code>?</li>
+<li>What command shows which groups a user belongs to?</li>
+<li>Where are password hashes stored?</li>
+<li>What is the difference between <code>su</code> and <code>sudo</code>?</li>
+</ol>
+<h3>Quick Reference</h3>
+<pre><code class="language-bash"># Users
+sudo adduser &lt;username&gt;
+sudo userdel -r &lt;username&gt;
+sudo usermod -aG &lt;group&gt; &lt;username&gt;
+sudo passwd &lt;username&gt;
+passwd
+
+# Root/sudo
+sudo &lt;command&gt;
+sudo -i
+sudo visudo
+
+# Groups
+sudo groupadd &lt;groupname&gt;
+sudo groupdel &lt;groupname&gt;
+groups &lt;username&gt;
+getent group &lt;groupname&gt;
+
+# Info
+who
+w
+id
+getent passwd &lt;username&gt;
+</code></pre>
+</section>
+<section class="chapter"><h1>Chapter 8: System Administration and Services</h1>
+<h2>Systemd: The Service Manager</h2>
+<p>Since Ubuntu 15.04 (and the 16.04 LTS), <strong>systemd</strong> is the default init system — the first process started (PID 1) that manages everything else. Systemd replaced the older SysVinit system.</p>
+<h3>systemd Core Concepts</h3>
+<table>
+<thead>
+<tr>
+<th>Concept</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Unit</strong></td>
+<td>A systemd-managed entity (service, mount, socket, timer, etc.)</td>
+</tr>
+<tr>
+<td><strong>Service (.service)</strong></td>
+<td>A background process</td>
+</tr>
+<tr>
+<td><strong>Target (.target)</strong></td>
+<td>A system state (like a runlevel)</td>
+</tr>
+<tr>
+<td><strong>Socket (.socket)</strong></td>
+<td>Inter-process communication endpoint</td>
+</tr>
+<tr>
+<td><strong>Timer (.timer)</strong></td>
+<td>Scheduled task</td>
+</tr>
+<tr>
+<td><strong>Journal</strong></td>
+<td>Structured log system</td>
+</tr>
+</tbody></table>
+<h3>Viewing the Boot Process</h3>
+<pre><code class="language-bash"># Show boot time analysis
+systemd-analyze
+
+# Show slowest services during boot
+systemd-analyze blame
+
+# Show the critical path (slowest-to-fastest boot chain)
+systemd-analyze critical-chain
+
+# View boot history
+journalctl --boot
+</code></pre>
+<h3>Targets (Runlevels in systemd)</h3>
+<p>Targets are similar to the old runlevels. Key targets:</p>
+<table>
+<thead>
+<tr>
+<th>Target</th>
+<th>Old Runlevel</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>graphical.target</code></td>
+<td>5</td>
+<td>Multi-user with GUI</td>
+</tr>
+<tr>
+<td><code>multi-user.target</code></td>
+<td>3</td>
+<td>Multi-user, no GUI (server mode)</td>
+</tr>
+<tr>
+<td><code>rescue.target</code></td>
+<td>1</td>
+<td>Single-user mode</td>
+</tr>
+<tr>
+<td><code>emergency.target</code></td>
+<td>S</td>
+<td>Minimal recovery</td>
+</tr>
+<tr>
+<td><code>poweroff.target</code></td>
+<td>0</td>
+<td>Power off</td>
+</tr>
+<tr>
+<td><code>reboot.target</code></td>
+<td>6</td>
+<td>Reboot</td>
+</tr>
+<tr>
+<td><code>halt.target</code></td>
+<td>—</td>
+<td>Halt (no power off)</td>
+</tr>
+</tbody></table>
+<pre><code class="language-bash"># Show current target
+systemctl get-default
+
+# Set the default target
+sudo systemctl set-default multi-user.target  # text mode
+sudo systemctl set-default graphical.target   # GUI mode
+
+# Change to a target now (no reboot)
+sudo systemctl isolate multi-user.target      # enter single-user-like mode
+</code></pre>
+<h3>Managing Services with systemctl</h3>
+<p>The <code>systemctl</code> command is the primary interface for managing systemd units.</p>
+<pre><code class="language-bash"># List all loaded services
+systemctl list-units --type=service
+
+# List all installed services (enabled + disabled)
+systemctl list-unit-files --type=service
+
+# Check status of a service
+systemctl status ssh
+
+# Start a service
+sudo systemctl start ssh
+
+# Stop a service
+sudo systemctl stop ssh
+
+# Restart a service
+sudo systemctl restart nginx
+
+# Reload configuration (without restart)
+sudo systemctl reload nginx
+
+# Enable a service to start at boot
+sudo systemctl enable ssh
+
+# Disable a service
+sudo systemctl disable ssh
+
+# Enable and start simultaneously
+sudo systemctl enable --now ssh
+
+# Disable and stop simultaneously
+sudo systemctl disable --now ssh
+
+# Check if a service is enabled
+systemctl is-enabled ssh
+
+# Check if a service is active
+systemctl is-active ssh
+
+# View service logs (journald)
+journalctl -u ssh.service
+
+# Follow logs in real-time
+journalctl -fu ssh.service
+</code></pre>
+<h3>Creating a Custom Service</h3>
+<p>Create a file at <code>/etc/systemd/system/myapp.service</code>:</p>
+<pre><code class="language-ini">[Unit]
+Description=My Custom Application
+After=network.target
+
+[Service]
+Type=simple
+User=myapp
+ExecStart=/usr/local/bin/myapp --config /etc/myapp.conf
+Restart=on-failure
+RestartSec=5
+Environment=PORT=8080
+Environment=DEBUG=false
+
+[Install]
+WantedBy=multi-user.target
+</code></pre>
+<p>Then register and start it:</p>
+<pre><code class="language-bash">sudo systemctl daemon-reload            # load the new unit file
+sudo systemctl enable --now myapp      # enable + start
+sudo systemctl status myapp            # check it&#39;s running
+</code></pre>
+<h3>Viewing Logs</h3>
+<pre><code class="language-bash"># View all logs (may be very long)
+journalctl
+
+# View logs from this boot
+journalctl -b
+
+# View logs for a service
+journalctl -u ssh
+
+# Follow logs (like tail -f)
+journalctl -f
+
+# Show last N lines
+journalctl -n 50
+
+# Filter by date
+journalctl --since=&quot;2024-01-01&quot; --until=&quot;2024-01-02&quot;
+
+# Show only errors
+journalctl -p err
+
+# Vacuum old logs (free up space)
+sudo journalctl --vacuum-time=7d
+</code></pre>
+<h2>System Configuration Files</h2>
+<h3>Key System Configuration Files</h3>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>/etc/hostname</code></td>
+<td>System hostname</td>
+</tr>
+<tr>
+<td><code>/etc/hosts</code></td>
+<td>Hostname-to-IP mappings</td>
+</tr>
+<tr>
+<td><code>/etc/fstab</code></td>
+<td>Filesystem mount table</td>
+</tr>
+<tr>
+<td><code>/etc/crontab</code></td>
+<td>System-wide cron jobs</td>
+</tr>
+<tr>
+<td><code>/etc/sudoers</code></td>
+<td>Sudo permissions</td>
+</tr>
+<tr>
+<td><code>/etc/environment</code></td>
+<td>System-wide environment variables</td>
+</tr>
+<tr>
+<td><code>/etc/resolv.conf</code></td>
+<td>DNS resolver config (linked file)</td>
+</tr>
+<tr>
+<td><code>/etc/ssh/sshd_config</code></td>
+<td>SSH daemon config</td>
+</tr>
+</tbody></table>
+<h3>Setting the Hostname</h3>
+<pre><code class="language-bash"># Set hostname
+sudo hostnamectl set-hostname myserver
+
+# View current hostname
+hostnamectl
+
+# Verify /etc/hosts
+cat /etc/hosts
+</code></pre>
+<p>The <code>/etc/hostname</code> file contains just the hostname. The <code>hostnamectl</code> command updates this automatically.</p>
+<h3>Time and Date Management</h3>
+<pre><code class="language-bash"># Show time and date settings
+timedatectl status
+
+# Set the timezone
+sudo timedatectl set-timezone America/New_York
+
+# List available timezones
+timedatectl list-timezones
+
+# Set the date/time manually
+sudo timedatectl set-time &quot;2024-01-15 14:30:00&quot;
+
+# Enable automatic time sync (NTP)
+sudo timedatectl set-ntp true
+</code></pre>
+<h3>Network Time Protocol (NTP)</h3>
+<p>NTP keeps the system clock accurate by syncing with remote time servers:</p>
+<pre><code class="language-bash"># Check NTP sync status
+timedatectl timesync-status
+
+# View NTP peers
+systemd-timesyncd
+
+# NTP is controlled via timedatectl as shown above
+</code></pre>
+<h2>Disk Management</h2>
+<h3>Viewing Disk Layout</h3>
+<pre><code class="language-bash"># View disk usage
+df -h
+
+# View connected drives
+lsblk
+
+# Detailed partition info
+lsblk -f
+
+# Detailed info for a specific disk
+sudo fdisk -l /dev/sda
+
+# Show block device IDs
+blkid
+
+# View mounted filesystems
+mount
+
+# View the partition table (interactive, requires root)
+sudo fdisk /dev/sda
+</code></pre>
+<h3>File System Labels</h3>
+<pre><code class="language-bash"># Set a label on an ext4 partition
+sudo e2label /dev/sda1 rootfs
+
+# View labels
+blkid
+
+# Label other filesystem types
+sudo fatlabel /dev/sdb1 USB
+sudo ntfslabel /dev/sdc1 DATA
+</code></pre>
+<h3>Mounting and Unmounting</h3>
+<pre><code class="language-bash"># Manual mount (temporary)
+sudo mount /dev/sdb1 /mnt/usb
+
+# Unmount
+sudo umount /mnt/usb
+
+# Mount with options
+sudo mount -o ro,noexec /dev/sdb1 /mnt/usb  # read-only, no exec
+
+# List all mounts
+mount | column -t
+
+# Permanently mount via /etc/fstab
+# (Edit carefully — a typo can break boot)
+sudo nano /etc/fstab
+sudo mount -a  # test after editing
+</code></pre>
+<h3>LVM (Logical Volume Manager)</h3>
+<p>LVM provides flexible disk management:</p>
+<pre><code class="language-bash"># View LVM configuration
+sudo vgdisplay
+sudo lvdisplay
+
+# Create a volume group from a physical disk
+sudo pvcreate /dev/sdb
+sudo vgcreate vg_storage /dev/sdb
+
+# Create a logical volume
+sudo lvcreate -L 10G -n lv_data vg_storage
+sudo mkfs.ext4 /dev/vg_storage/lv_data
+sudo mkdir /data
+echo &quot;/dev/vg_storage/lv_data /data ext4 defaults 0 0&quot; | sudo tee -a /etc/fstab
+sudo mount /data
+</code></pre>
+<h3>RAID (Software RAID with mdadm)</h3>
+<pre><code class="language-bash">sudo apt install mdadm
+
+# Create a RAID 1 array from two disks
+sudo mdadm --create /dev/md0 --level=1 --raid-devices=2 /dev/sdb /dev/sdc
+
+# Monitor status
+cat /proc/mdstat
+
+# Save config
+sudo mdadm --detail --scan | sudo tee -a /etc/mdadm/mdadm.conf
+sudo update-initramfs -u
+</code></pre>
+<h2>Memory Management</h2>
+<h3>Swapping</h3>
+<p>Swap is space used as virtual memory when RAM is full.</p>
+<pre><code class="language-bash"># Check swap usage
+free -h
+swapon --show
+
+# Create a swap file (modern approach, replaces swap partitions)
+sudo fallocate -l 2G /swapfile
+sudo chmod 600 /swapfile
+sudo mkswap /swapfile
+sudo swapon /swapfile
+echo &#39;/swapfile none swap sw 0 0&#39; | sudo tee -a /etc/fstab
+
+# Tune swappiness (default 60)
+cat /proc/sys/vm/swappiness
+sudo sysctl vm.swappiness=10
+echo &#39;vm.swappiness=10&#39; | sudo tee -a /etc/sysctl.conf
+</code></pre>
+<h3>zram (Compressed RAM Swap)</h3>
+<p>zram provides compressed swap space in RAM (fast for low-memory systems):</p>
+<pre><code class="language-bash">sudo apt install zram-tools
+
+# Configure in /etc/default/zramswap
+sudo nano /etc/default/zramswap
+
+# Restart service
+sudo systemctl restart zramswap
+</code></pre>
+<h2>Cron and Scheduled Tasks</h2>
+<h3>crontab</h3>
+<p><code>cron</code> schedules tasks to run periodically.</p>
+<pre><code class="language-bash"># Edit your own crontab
+crontab -e
+
+# List your crontab
+crontab -l
+
+# List another user&#39;s crontab (as root)
+sudo crontab -u alice -l
+
+# Edit root&#39;s crontab
+sudo crontab -e
+</code></pre>
+<p>A crontab line format:</p>
+<pre><code>* * * * * command
+│ │ │ │ │
+│ │ │ │ └─── day of week (0-6, 0=Sunday)
+│ │ │ └───── month (1-12)
+│ │ └─────── day of month (1-31)
+│ └───────── hour (0-23)
+└─────────── minute (0-59)
+</code></pre>
+<p>Example crontabs:</p>
+<pre><code class="language-bash"># Run a backup every day at 2 AM
+0 2 * * * /home/alice/scripts/backup.sh &gt;&gt; /var/log/backup.log 2&gt;&amp;1
+
+# Run every Monday at 3:30 AM
+30 3 * * 1 /usr/local/bin/update.sh
+
+# Run every 15 minutes
+*/15 * * * * /usr/bin/check_health.sh
+
+# Run at reboot
+@reboot /home/alice/scripts/startup.sh
+</code></pre>
+<h3>System-wide cron jobs</h3>
+<p>Scripts in <code>/etc/cron.d/</code>, <code>/etc/cron.daily/</code>, <code>/etc/cron.hourly/</code>, <code>/etc/cron.weekly/</code>, <code>/etc/cron.monthly/</code> run automatically.</p>
+<h3>systemd Timers (Modern Replacement for Cron)</h3>
+<p>systemd timers are more powerful and integrate better with systemd services. Create a <code>.timer</code> and <code>.service</code> pair.</p>
+<p>Example: <code>/etc/systemd/system/backup.timer</code></p>
+<pre><code class="language-ini">[Unit]
+Description=Daily Backup Timer
+
+[Timer]
+OnCalendar=daily
+Persistent=true
+
+[Install]
+WantedBy=timers.target
+</code></pre>
+<p>Example: <code>/etc/systemd/system/backup.service</code></p>
+<pre><code class="language-ini">[Unit]
+Description=Backup Service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/backup.sh
+</code></pre>
+<p>Enable and start the timer:</p>
+<pre><code class="language-bash">sudo systemctl daemon-reload
+sudo systemctl enable --now backup.timer
+sudo systemctl list-timers
+</code></pre>
+<h2>Kernel and Boot</h2>
+<h3>Viewing Kernel Information</h3>
+<pre><code class="language-bash"># Show kernel version
+uname -r
+
+# Show all kernel info
+uname -a
+
+# Show boot messages
+dmesg | tail
+
+# Show loaded kernel modules
+lsmod
+
+# Show module info
+modinfo loop
+</code></pre>
+<h3>Kernel Parameters (sysctl)</h3>
+<pre><code class="language-bash"># View all kernel parameters
+sysctl -a
+
+# View a specific parameter
+sysctl net.ipv4.ip_forward
+
+# Set at runtime
+sudo sysctl net.ipv4.ip_forward=1
+
+# Make permanent in /etc/sysctl.conf or /etc/sysctl.d/*.conf
+echo &quot;net.ipv4.ip_forward=1&quot; | sudo tee /etc/sysctl.d/99-forwarding.conf
+sudo sysctl -p /etc/sysctl.d/99-forwarding.conf
+</code></pre>
+<h3>Boot Parameters</h3>
+<p>Kernel boot parameters can be set in GRUB:</p>
+<ol>
+<li>Edit <code>/etc/default/grub</code></li>
+<li>Modify <code>GRUB_CMDLINE_LINUX_DEFAULT</code></li>
+<li>Run <code>sudo update-grub</code></li>
+</ol>
+<p>Common parameters:</p>
+<ul>
+<li><code>quiet splash</code> — reduce boot verbosity, show graphical splash</li>
+<li><code>nomodeset</code> — fix video driver issues</li>
+<li><code>net.ifnames=0 biosdevname=0</code> — use traditional naming (eth0, wlan0)</li>
+</ul>
+<h2>GRUB (Grand Unified Bootloader)</h2>
+<p>GRUB is the bootloader. Configuration is in <code>/etc/default/grub</code>. Changes require <code>sudo update-grub</code>:</p>
+<pre><code class="language-bash"># Default OS to boot (count from 0)
+GRUB_DEFAULT=0
+
+# Countdown timer
+GRUB_TIMEOUT=10
+
+# Kernel parameters
+GRUB_CMDLINE_LINUX_DEFAULT=&quot;quiet splash&quot;
+</code></pre>
+<h3>Recovery Mode</h3>
+<p>If the system fails to boot:</p>
+<ol>
+<li>Hold <strong>Shift</strong> (BIOS) or press <strong>Esc</strong> (UEFI) during boot to access the GRUB menu</li>
+<li>Choose &quot;Advanced options for Ubuntu&quot;</li>
+<li>Select a kernel in recovery mode</li>
+</ol>
+<h2>System Monitoring and Health</h2>
+<h3>Resource Monitoring</h3>
+<pre><code class="language-bash"># Real-time system monitor
+htop
+
+# View I/O stats
+iostat -x 1
+
+# View network connections
+ss -tuln
+
+# View disk I/O
+iotop
+
+# View network traffic
+iftop
+
+# View system uptime
+uptime
+
+# Check load average
+cat /proc/loadavg
+
+# Memory usage detail
+free -h
+</code></pre>
+<h3>Log Files</h3>
+<table>
+<thead>
+<tr>
+<th>Log File</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>/var/log/syslog</code></td>
+<td>General system log (replaced by journald in recent versions)</td>
+</tr>
+<tr>
+<td><code>/var/log/auth.log</code></td>
+<td>Authentication (login, sudo) logs</td>
+</tr>
+<tr>
+<td><code>/var/log/kern.log</code></td>
+<td>Kernel messages</td>
+</tr>
+<tr>
+<td><code>/var/log/dpkg.log</code></td>
+<td>Package installation history</td>
+</tr>
+<tr>
+<td><code>/var/log/boot.log</code></td>
+<td>Boot process messages</td>
+</tr>
+<tr>
+<td><code>/var/log/Xorg.0.log</code></td>
+<td>X server (display) logs</td>
+</tr>
+</tbody></table>
+<pre><code class="language-bash"># Use journalctl instead of tailing raw logs
+journalctl -f                   # follow all logs
+journalctl -u nginx.service -n 100   # last 100 lines from nginx
+</code></pre>
+<h3>Health Checks</h3>
+<pre><code class="language-bash"># Check SMART status of drives
+sudo apt install smartmontools
+sudo smartctl -a /dev/sda
+
+# Check file system errors
+sudo fsck -f /dev/sda1
+
+# Memory test (run memtest86+ from GRUB menu)
+</code></pre>
+<h2>Review Questions</h2>
+<ol>
+<li>What command starts a service at boot?</li>
+<li>How do you list all active services?</li>
+<li>Where are systemd service files stored?</li>
+<li>What does <code>systemctl isolate rescue.target</code> do?</li>
+<li>What file controls kernel parameters at boot time?</li>
+</ol>
+<h3>Quick Reference</h3>
+<pre><code class="language-bash"># Services (systemctl)
+sudo systemctl start &lt;service&gt;
+sudo systemctl stop &lt;service&gt;
+sudo systemctl enable &lt;service&gt;
+sudo systemctl disable &lt;service&gt;
+systemctl status &lt;service&gt;
+systemctl is-enabled &lt;service&gt;
+
+# Targets (runlevels)
+sudo systemctl set-default multi-user.target
+sudo systemctl isolate graphical.target
+
+# Logs (journalctl)
+journalctl -b                       # this boot
+journalctl -u &lt;service&gt;             # service logs
+journalctl -f                       # follow
+
+# Scheduled Tasks (cron)
+crontab -e
+crontab -l
+
+# Scheduled Tasks (systemd timers)
+sudo systemctl list-timers
+
+# Disks
+df -h
+lsblk
+sudo fdisk -l /dev/sda
+sudo mount /dev/sdb1 /mnt/usb
+
+# Time
+timedatectl status
+sudo timedatectl set-timezone UTC
+</code></pre>
+</section>
+<section class="chapter"><h1>Chapter 9: Networking and Security</h1>
+<h2>Network Configuration</h2>
+<h3>Network Interfaces</h3>
+<p>Ubuntu uses <strong>Netplan</strong> as its default network configuration tool (since 17.10), backed by either NetworkManager (desktop) or systemd-networkd (server).</p>
+<h3>Viewing Network Interfaces</h3>
+<pre><code class="language-bash"># Show all network interfaces
+ip addr show
+
+# Show a specific interface
+ip addr show enp0s3
+
+# Show routing table
+ip route show
+
+# Show listening ports
+ss -tuln
+
+# Show all network connections
+ss -tulnp
+
+# Show MAC addresses
+ip neigh show
+</code></pre>
+<p>Modern interface names follow the <strong>Predictable Network Interface Name</strong> scheme (e.g., <code>enp0s3</code>, <code>wlp2s0</code>) rather than the old <code>eth0</code>, <code>wlan0</code>.</p>
+<h3>Netplan Configuration</h3>
+<p>Netplan config files are in <code>/etc/netplan/</code>. A typical configuration:</p>
+<pre><code class="language-yaml"># /etc/netplan/01-netcfg.yaml
+network:
+  version: 2
+  renderer: NetworkManager
+  ethernets:
+    enp0s3:
+      dhcp4: true
+  wifis:
+    wlp2s0:
+      dhcp4: true
+      access-points:
+        &quot;MyNetwork&quot;:
+          password: &quot;mypassword&quot;
+</code></pre>
+<p>For server (using systemd-networkd):</p>
+<pre><code class="language-yaml"># /etc/netplan/01-netcfg.yaml
+network:
+  version: 2
+  renderer: networkd
+  ethernets:
+    enp0s3:
+      dhcp4: no
+      addresses:
+        - 192.168.1.100/24
+      routes:
+        - to: default
+          via: 192.168.1.1
+      nameservers:
+        addresses: [8.8.8.8, 8.8.4.4]
+</code></pre>
+<p>Apply changes:</p>
+<pre><code class="language-bash">sudo netplan apply
+sudo netplan generate  # validate config
+sudo netplan try       # apply with a timeout (reverts on failure)
+</code></pre>
+<h3>NetworkManager</h3>
+<p>NetworkManager handles networking on desktop Ubuntu. You can also manage it via command line:</p>
+<pre><code class="language-bash"># List connections
+nmcli connection show
+
+# List devices
+nmcli device status
+
+# Up/down a connection
+nmcli connection up id &quot;Wired connection 1&quot;
+nmcli connection down id &quot;Wired connection 1&quot;
+
+# Add a static IP connection
+nmcli con add type ethernet ifname enp0s3 con-name static ip4 192.168.1.50/24 gw4 192.168.1.1 ip4-dns 8.8.8.8 con-autoconnect yes
+</code></pre>
+<h2>Network Diagnostics</h2>
+<h3>ping</h3>
+<pre><code class="language-bash">ping google.com
+ping -c 4 192.168.1.1    # send 4 packets
+ping6 ipv6.google.com    # IPv6 ping
+</code></pre>
+<h3>nslookup / dig / host</h3>
+<p>DNS lookup tools:</p>
+<pre><code class="language-bash"># Query DNS
+nslookup google.com
+
+# Advanced DNS query
+dig google.com
+
+# Show specific record types
+dig MX google.com
+dig AXFR example.com    # zone transfer (requires permission)
+
+# Simple DNS lookup
+host google.com
+</code></pre>
+<h3>traceroute</h3>
+<p>Shows the network hops to a destination:</p>
+<pre><code class="language-bash"># Install if not present
+sudo apt install traceroute
+
+# Run traceroute
+traceroute google.com
+tcptraceroute google.com 80     # TCP-based (useful if ICMP is blocked)
+</code></pre>
+<h3>mtr (My TraceRoute)</h3>
+<p>Combines <code>ping</code> and <code>traceroute</code> for continuous monitoring:</p>
+<pre><code class="language-bash">sudo apt install mtr
+mtr google.com
+</code></pre>
+<h3>Network Scanning</h3>
+<pre><code class="language-bash"># Install nmap
+sudo apt install nmap
+
+# Scan a single host
+nmap 192.168.1.1
+
+# Scan a range
+nmap 192.168.1.0/24
+
+# Scan with service detection
+nmap -sV 192.168.1.1
+
+# Scan with OS detection
+nmap -O 192.168.1.1
+</code></pre>
+<h3>SSH (Secure Shell)</h3>
+<p>SSH is the primary tool for secure remote access.</p>
+<p>Starting and managing the SSH daemon:</p>
+<pre><code class="language-bash"># Install OpenSSH server
+sudo apt install openssh-server
+
+# Check status
+sudo systemctl status ssh
+
+# Start/enable at boot
+sudo systemctl enable --now ssh
+</code></pre>
+<p>Connecting to an SSH server:</p>
+<pre><code class="language-bash"># Basic connection
+ssh username@192.168.1.100
+
+# Specify key and port
+ssh -i ~/.ssh/mykey.pem -p 2222 user@host
+
+# Forward a local port to remote
+ssh -L 8080:localhost:80 user@host
+
+# Forward a remote port to local
+ssh -R 8080:localhost:3000 user@host
+
+# Agent forwarding (use with caution)
+ssh -A user@host
+
+# Run a remote command
+ssh user@host &quot;uptime&quot;
+</code></pre>
+<h3>SSH Configuration</h3>
+<p>SSH client config (<code>~/.ssh/config</code>):</p>
+<pre><code>Host myserver
+    HostName 192.168.1.100
+    User alice
+    Port 2222
+    IdentityFile ~/.ssh/mykey
+
+Host github
+    HostName github.com
+    User git
+    IdentityFile ~/.ssh/github_key
+
+Host *
+    ServerAliveInterval 60
+</code></pre>
+<p>SSH server config (<code>/etc/ssh/sshd_config</code>):</p>
+<p>Common settings:</p>
+<pre><code>Port 22                         # change default port
+PermitRootLogin no             # disable root login
+PasswordAuthentication no     # disable password auth (require keys)
+PubkeyAuthentication yes      # enable key auth
+AllowUsers alice bob          # restrict logins
+MaxAuthTries 3                # limit attempts
+</code></pre>
+<p>Apply changes:</p>
+<pre><code class="language-bash">sudo systemctl reload ssh
+</code></pre>
+<h3>SSH Keys</h3>
+<p>Generate and manage SSH keys:</p>
+<pre><code class="language-bash"># Generate a key pair
+ssh-keygen -t ed25519 -C &quot;alice@example.com&quot;
+
+# Generate a larger RSA key
+ssh-keygen -t rsa -b 4096
+
+# Copy public key to a remote host
+ssh-copy-id user@host
+
+# Copy key to clipboard (Ubuntu 20.04+)
+cat ~/.ssh/id_ed25519.pub | xclip -selection clipboard
+</code></pre>
+<p>SSH key types:</p>
+<ul>
+<li><strong>ed25519</strong> — modern, secure, efficient (recommended)</li>
+<li><strong>RSA</strong> — classic, widely supported (4096-bit recommended)</li>
+<li><strong>ecdsa</strong> — elliptic curve, NIST-backed</li>
+</ul>
+<h2>Firewall (UFW)</h2>
+<p><strong>UFW (Uncomplicated Firewall)</strong> simplifies netfilter firewall configuration.</p>
+<pre><code class="language-bash"># Enable UFW
+sudo ufw enable
+
+# Allow connections
+sudo ufw allow 22/tcp           # SSH
+sudo ufw allow 80/tcp           # HTTP
+sudo ufw allow 443/tcp          # HTTPS
+sudo ufw allow from 192.168.1.0/24 to any port 22  # restrict source IP
+
+# Allow named services
+sudo ufw allow OpenSSH
+sudo ufw allow &#39;Nginx Full&#39;
+
+# Deny connections
+sudo ufw deny 23/tcp            # Telnet
+
+# Remove a rule
+sudo ufw delete allow 23/tcp
+
+# Check status
+sudo ufw status verbose
+
+# Reset UFW
+sudo ufw reset
+</code></pre>
+<p>Default UFW behavior:</p>
+<ul>
+<li><strong>Default policy</strong>: Deny incoming, allow outgoing (set during <code>enable</code>)</li>
+</ul>
+<h2>VPN and Remote Access</h2>
+<h3>OpenVPN</h3>
+<pre><code class="language-bash"># Install OpenVPN
+sudo apt install openvpn
+
+# Connect to a config
+sudo openvpn --config client.ovpn
+</code></pre>
+<h3>WireGuard</h3>
+<p>WireGuard is a modern, fast, secure VPN:</p>
+<pre><code class="language-bash"># Install
+sudo apt install wireguard resolvconf
+
+# Generate keys
+wg genkey | tee privatekey | wg pubkey &gt; publickey
+
+# /etc/wireguard/wg0.conf
+[Interface]
+Address = 10.0.0.1/24
+PrivateKey = &lt;your-private-key&gt;
+ListenPort = 51820
+
+[Peer]
+PublicKey = &lt;peer-public-key&gt;
+AllowedIPs = 10.0.0.2/32
+</code></pre>
+<pre><code class="language-bash"># Start WireGuard interface
+sudo wg-quick up wg0
+
+# Stop
+sudo wg-quick down wg0
+</code></pre>
+<h2>DNS Configuration</h2>
+<h3>systemd-resolved</h3>
+<p>Ubuntu&#39;s default DNS resolver. Configuration is in <code>/etc/systemd/resolved.conf</code>:</p>
+<pre><code class="language-ini">[Resolve]
+DNS=8.8.8.8 8.8.4.4
+FallbackDNS=1.1.1.1 1.0.0.1
+#DNSStubListener=yes
+</code></pre>
+<p>Apply changes:</p>
+<pre><code class="language-bash">sudo systemctl restart systemd-resolved
+</code></pre>
+<p>View status:</p>
+<pre><code class="language-bash">resolvectl status
+</code></pre>
+<h3>Using resolv.conf</h3>
+<p><code>/etc/resolv.conf</code> is a symlink to <code>/run/systemd/resolved/stub-resolv.conf</code> on Ubuntu 20.04+.</p>
+<p>Do not edit <code>/etc/resolv.conf</code> directly — edit <code>/etc/systemd/resolved.conf</code> instead and restart <code>systemd-resolved</code>.</p>
+<h2>Security Best Practices</h2>
+<h3>Keeping the System Updated</h3>
+<pre><code class="language-bash"># Update and upgrade
+sudo apt update &amp;&amp; sudo apt upgrade -y
+
+# Full upgrade
+sudo apt full-upgrade
+
+# Install security updates only
+sudo unattended-upgrade
+
+# View available updates
+apt list --upgradable
+
+# Configure automatic security updates
+sudo apt install unattended-upgrades
+sudo dpkg-reconfigure unattended-upgrades
+</code></pre>
+<h3>AppArmor</h3>
+<p>AppArmor is a Mandatory Access Control (MAC) system that restricts programs to a defined profile.</p>
+<pre><code class="language-bash"># Check status
+sudo aa-status
+
+# Enable a profile
+sudo aa-enforce /usr/sbin/nginx
+
+# Disable a profile
+sudo aa-disable /usr/sbin/nginx
+
+# Put in complain mode (logs but doesn&#39;t block)
+sudo aa-complain /usr/bin/ping
+</code></pre>
+<p>AppArmor profiles are in <code>/etc/apparmor.d/</code>.</p>
+<h3>Fail2ban</h3>
+<p>Fail2ban scans log files for malicious behavior (e.g., repeated failed logins) and bans the offending IP.</p>
+<pre><code class="language-bash">sudo apt install fail2ban
+
+# Main config file
+sudo cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
+sudo nano /etc/fail2ban/jail.local
+
+# Restart
+sudo systemctl restart fail2ban
+sudo systemctl enable fail2ban
+</code></pre>
+<p>Default jails:</p>
+<ul>
+<li><strong>sshd</strong>: Blocks IPs with failed SSH login attempts</li>
+<li><strong>nginx-http-auth</strong>: Blocks IPs with HTTP auth failures</li>
+</ul>
+<h3>Security Updates</h3>
+<pre><code class="language-bash"># Install the unattended-upgrades package
+sudo apt install unattended-upgrades
+
+# Enable automatic updates
+sudo dpkg-reconfigure -plow unattended-upgrades
+
+# Configure in /etc/apt/apt.conf.d/50unattended-upgrades
+# (uncomment &quot;origin=Ubuntu,archive=jammy-security&quot;)
+</code></pre>
+<h3>Basic Hardening</h3>
+<h4>Disable unused services</h4>
+<pre><code class="language-bash"># List services
+systemctl list-unit-files --type=service | grep enabled
+
+# Disable a service
+sudo systemctl disable &lt;service&gt;
+sudo systemctl stop &lt;service&gt;
+</code></pre>
+<h4>Secure shared memory</h4>
+<p>Add to <code>/etc/fstab</code>:</p>
+<pre><code>tmpfs /dev/shm tmpfs defaults,ro,noexec,nosuid,size=2G 0 0
+</code></pre>
+<h4>Disable IPv6 (if not needed)</h4>
+<pre><code class="language-bash"># Temporary
+sudo sysctl -w net.ipv6.conf.all.disable_ipv6=1
+
+# Permanent
+echo &#39;net.ipv6.conf.all.disable_ipv6=1&#39; | sudo tee /etc/sysctl.d/99-disable-ipv6.conf
+sudo sysctl -p /etc/sysctl.d/99-disable-ipv6.conf
+</code></pre>
+<h2>Certificates and SSL/TLS</h2>
+<h3>Let&#39;s Encrypt with Certbot</h3>
+<pre><code class="language-bash"># Install Certbot
+sudo apt install certbot python3-certbot-apache
+
+# Get a certificate
+sudo certbot --apache -d example.com -d www.example.com
+
+# Auto-renew (add to crontab or use systemd timer)
+sudo certbot renew --dry-run
+
+# View certificates
+sudo certbot certificates
+</code></pre>
+<h3>Manual Certificate Management</h3>
+<pre><code class="language-bash"># Check a certificate
+openssl x509 -in cert.pem -text -noout
+
+# Generate a self-signed cert
+openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 365 -nodes
+
+# Convert certificate formats
+openssl x509 -inform der -in cert.crt -out cert.pem
+openssl pkcs12 -export -out cert.pfx -inkey key.pem -in cert.pem
+</code></pre>
+<h2>Network File Systems</h2>
+<h3>NFS (Network File System)</h3>
+<p>Server:</p>
+<pre><code class="language-bash">sudo apt install nfs-kernel-server
+
+# /etc/exports
+/home/nfs 192.168.1.0/24(rw,sync,no_subtree_check)
+
+# Set up shares
+sudo exportfs -a
+sudo exportfs -ra
+sudo exportfs -v
+
+# Start services
+sudo systemctl restart nfs-kernel-server
+</code></pre>
+<p>Client:</p>
+<pre><code class="language-bash">sudo apt install nfs-common
+
+# Mount
+sudo mount -t nfs server:/home/nfs /mnt/nfs
+
+# /etc/fstab entry
+server:/home/nfs /mnt/nfs nfs defaults 0 0
+</code></pre>
+<h3>Samba (SMB/CIFS)</h3>
+<pre><code class="language-bash"># Install
+sudo apt install samba
+
+# /etc/samba/smb.conf
+[shared]
+    path = /srv/shared
+    browsable = yes
+    writable = yes
+    guest ok = no
+    read only = no
+    force user = nobody
+
+# Add a user
+sudo smbpasswd -a alice
+
+# Restart
+sudo systemctl restart smbd nmbd
+sudo systemctl enable smbd nmbd
+</code></pre>
+<p>Connect from Windows: <code>\\server\shared</code></p>
+<h2>Containerization Overview</h2>
+<p>Ubuntu has strong container support (brief overview — more in Chapter 10).</p>
+<h3>Docker</h3>
+<pre><code class="language-bash"># Install
+sudo apt install docker.io
+sudo systemctl enable --now docker
+
+# Use without sudo (add to docker group)
+sudo usermod -aG docker $USER
+
+# Run a container
+sudo docker run hello-world
+sudo docker run -d -p 80:80 nginx
+</code></pre>
+<h2>Review Questions</h2>
+<ol>
+<li>What tool manages networking configuration on Ubuntu desktop?</li>
+<li>What command shows listening network ports?</li>
+<li>What is the default SSH port?</li>
+<li>How do you enable the firewall in UFW?</li>
+<li>What is Fail2ban used for?</li>
+</ol>
+<h3>Quick Reference</h3>
+<pre><code class="language-bash"># Network
+ip addr show
+ss -tuln
+nmcli device status
+sudo netplan apply
+
+# SSH
+ssh user@host
+ssh-copy-id user@host
+sudo systemctl enable --now ssh
+
+# Firewall
+sudo ufw enable
+sudo ufw allow 22
+sudo ufw status
+
+# DNS
+resolvectl status
+dig google.com
+
+# Security
+sudo apt update &amp;&amp; sudo apt upgrade
+sudo aa-status
+sudo ufw enable
+</code></pre>
+</section>
+<section class="chapter"><h1>Chapter 10: Advanced Topics and Troubleshooting</h1>
+<h2>Process Management</h2>
+<h3>The Process Lifecycle</h3>
+<p>Processes in Linux have states:</p>
+<table>
+<thead>
+<tr>
+<th>State</th>
+<th>Symbol</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Running</strong></td>
+<td>R</td>
+<td>Executing or in the run queue</td>
+</tr>
+<tr>
+<td><strong>Interruptible sleep</strong></td>
+<td>S</td>
+<td>Waiting for an event (e.g., I/O)</td>
+</tr>
+<tr>
+<td><strong>Uninterruptible sleep</strong></td>
+<td>D</td>
+<td>Waiting for I/O (can&#39;t be killed)</td>
+</tr>
+<tr>
+<td><strong>Stopped</strong></td>
+<td>T</td>
+<td>Stopped by a signal</td>
+</tr>
+<tr>
+<td><strong>Zombie</strong></td>
+<td>Z</td>
+<td>Terminated but not reaped by parent</td>
+</tr>
+<tr>
+<td><strong>Dead</strong></td>
+<td>X</td>
+<td>Being destroyed</td>
+</tr>
+</tbody></table>
+<h3>Viewing Processes</h3>
+<pre><code class="language-bash"># Simple list
+ps
+
+# Detailed list of all processes
+ps aux
+
+# Tree view
+ps auxf
+
+# Tree with process hierarchy
+pstree
+
+# Real-time monitor
+top
+htop            # must install: sudo apt install htop
+</code></pre>
+<p>Filtering and searching:</p>
+<pre><code class="language-bash">ps aux | grep nginx
+pgrep nginx
+pidof nginx
+</code></pre>
+<h3>Process Priority (nice/renice)</h3>
+<pre><code class="language-bash"># Start a process with low priority
+nice -n 19 backup.sh
+
+# Change priority of existing process
+renice -n 10 -p 1234
+
+# View priority
+top
+</code></pre>
+<h3>Killing Processes</h3>
+<pre><code class="language-bash"># Send TERM signal (graceful)
+kill 1234
+
+# Send KILL signal (force, cannot be caught)
+kill -9 1234
+
+# Kill by name (sends term signal to all matches)
+pkill nginx
+
+# Interactive process killer
+killall  # (on some distros)
+</code></pre>
+<h3>Zombie Processes</h3>
+<p>A zombie is a process that has completed but whose parent hasn&#39;t called <code>wait()</code> on it. To clean up zombies:</p>
+<pre><code class="language-bash"># Find zombies
+ps aux | awk &#39;$8 ~ /Z/ {print}&#39;
+
+# Kill the parent (the parent should reap the zombie)
+kill -1 $(ps -o ppid= -p &lt;zombie_pid&gt;)
+</code></pre>
+<h2>Performance Monitoring</h2>
+<h3>System Resources</h3>
+<pre><code class="language-bash"># CPU and memory
+top
+htop
+
+# Memory
+free -h
+
+# Disk I/O
+iostat -x 1
+
+# Network I/O
+iftop
+nethogs
+
+# Process-specific resource usage
+top -p &lt;pid&gt;
+
+# Per-process I/O
+iotop -o
+</code></pre>
+<h3>Understanding Load Average</h3>
+<p>Load average is displayed by the <code>uptime</code> command:</p>
+<pre><code> 06:45:21 up  1:23,  2 users,  load average: 0.31, 0.43, 0.39
+</code></pre>
+<p>The three numbers are the average load over 1, 5, and 15 minutes.</p>
+<p><strong>Rule of thumb</strong>: For a single-core system, load average of 1.0 = fully utilized. For an N-core system, a load average of N = fully utilized. A load average above the number of CPUs indicates contention.</p>
+<h3>CPU Profiling</h3>
+<pre><code class="language-bash"># Top 10 processes by CPU usage
+ps -eo pid,ppid,cmd,pcpu,pmem --sort=-pcpu | head
+
+# CPU info
+lscpu
+cat /proc/cpuinfo
+</code></pre>
+<h2>System Troubleshooting</h2>
+<h3>The Boot Process</h3>
+<p>The Linux boot process follows these stages:</p>
+<ol>
+<li>BIOS/UEFI initializes hardware</li>
+<li>Bootloader (GRUB) loads the kernel</li>
+<li>Kernel initializes hardware and mounts the root filesystem</li>
+<li>systemd (PID 1) starts, bringing up targets and services</li>
+<li>Login prompt or desktop appears</li>
+</ol>
+<p>If boot fails after GRUB:</p>
+<ol>
+<li>Boot into recovery mode (from GRUB menu)</li>
+<li>Use a live USB and chroot if recovery is unavailable</li>
+</ol>
+<h3>Kernel Panic</h3>
+<p>A kernel panic is a fatal error the kernel cannot recover from. It often means:</p>
+<ul>
+<li>Hardware failure (RAM, disk)</li>
+<li>Corrupted kernel or initrd</li>
+<li>Driver conflicts</li>
+</ul>
+<p>Recovery steps:</p>
+<pre><code class="language-bash"># Boot into recovery mode → run fsck
+# Check logs
+dmesg | tail
+journalctl -b -1    # logs from the previous (failed) boot
+</code></pre>
+<h3>Fixing a Broken Package Installation</h3>
+<pre><code class="language-bash"># Reconfigure all unpacked but not configured packages
+sudo dpkg --configure -a
+
+# Fix missing or broken dependencies
+sudo apt --fix-broken install
+
+# If the package database itself is broken
+sudo rm /var/lib/dpkg/lock-frontend
+sudo rm /var/lib/dpkg/lock
+sudo rm /var/cache/apt/archives/lock
+sudo dpkg --configure -a
+</code></pre>
+<h3>Disk Full Issues</h3>
+<pre><code class="language-bash"># Check disk usage
+df -h
+
+# Check largest directories
+sudo du -h --max-depth=1 / | sort -hr | head -n 20
+
+# Clean package cache
+sudo apt clean
+sudo apt autoclean
+
+# Remove old kernels
+dpkg -l &#39;linux-image*&#39;
+sudo apt remove --purge linux-image-5.x.x-xx-generic
+
+# Clean journal logs
+sudo journalctl --vacuum-time=7d
+sudo journalctl --vacuum-size=100M
+</code></pre>
+<h3>Memory Issues</h3>
+<pre><code class="language-bash"># Check memory usage
+free -h
+
+# Check swap usage
+swapon --show
+
+# Identify memory hogs
+ps -eo pid,ppid,cmd,pcpu,pmem,rss --sort=-rss | head -n 15
+
+# Clear page cache (DANGEROUS — can affect performance)
+sudo sync; echo 3 &gt; /proc/sys/vm/drop_caches
+</code></pre>
+<h3>Network Troubleshooting</h3>
+<pre><code class="language-bash"># Check if the network interface is up
+ip link show
+
+# Check for an IP address
+ip addr show dev eth0
+
+# Check routing
+ip route show
+
+# Check if the DNS is working
+nslookup google.com
+dig google.com
+
+# Check if you can reach the gateway
+ping 192.168.1.1
+
+# Check if you can reach the internet
+ping 8.8.8.8
+
+# Check for packets being dropped
+cat /proc/net/dev
+
+# Check firewall
+sudo ufw status
+sudo iptables -L -n -v
+</code></pre>
+<h3>Service Troubleshooting</h3>
+<pre><code class="language-bash"># Check if the service is running
+systemctl is-active nginx
+
+# Check if the service is enabled at boot
+systemctl is-enabled nginx
+
+# Check logs
+journalctl -u nginx.service -n 100 --no-pager
+
+# Check if it&#39;s listening on the right port
+ss -tuln | grep :80
+
+# Test the config syntax
+nginx -t
+
+# Restart after config changes
+sudo systemctl restart nginx
+
+# View dependencies
+systemctl list-dependencies nginx
+</code></pre>
+<h3>File Permission Issues</h3>
+<pre><code class="language-bash"># Check permissions
+ls -l /path/to/file
+
+# Fix ownership
+sudo chown user:group /path/to/file
+
+# Fix permissions
+sudo chmod 755 /path/to/file
+
+# Check for immutable files
+lsattr /path/to/file
+
+# Make or remove immutable flag
+sudo chattr +i /path/to/file
+sudo chattr -i /path/to/file
+</code></pre>
+<h2>Debugging Tools</h2>
+<h3>strace</h3>
+<p><code>strace</code> traces system calls made by a program:</p>
+<pre><code class="language-bash"># Trace a running process
+sudo strace -p 1234
+
+# Trace a new process
+strace ls
+
+# Trace with timestamps and filtered calls
+strace -tt -e trace=open,read ls
+</code></pre>
+<h3>lsof</h3>
+<p>List open files:</p>
+<pre><code class="language-bash"># Show files opened by a process
+lsof -p 1234
+
+# Show what&#39;s using a port
+sudo lsof -i :80
+
+# Show all TCP connections
+lsof -i TCP
+</code></pre>
+<h3>gdb</h3>
+<p>The GNU Debugger:</p>
+<pre><code class="language-bash"># Run a program under gdb
+gdb ./myprog
+
+# Attach to a running process
+gdb -p 1234
+
+# In gdb:
+# (gdb) run
+# (gdb) backtrace
+# (gdb) break main
+# (gdb) continue
+# (gdb) print variable
+</code></pre>
+<h3>SystemTap</h3>
+<p>SystemTap is a framework for tracing and profiling:</p>
+<pre><code class="language-bash">sudo apt install systemtap
+sudo stap -e &#39;probe kernel.function(&quot;do_sys_open&quot;) { println(&quot;open called&quot;); }&#39;
+</code></pre>
+<h2>Advanced Shell Features</h2>
+<h3>Aliases vs Functions vs Scripts</h3>
+<p><strong>Aliases</strong> are simple text substitutions:</p>
+<pre><code class="language-bash">alias ll=&#39;ls -alF&#39;
+</code></pre>
+<p><strong>Functions</strong> are more powerful:</p>
+<pre><code class="language-bash">extract() {
+    if [ -z &quot;$1&quot; ]; then
+        echo &quot;Usage: extract &lt;file&gt;&quot;
+        return 1
+    fi
+    if [ -f &quot;$1&quot; ]; then
+        case &quot;$1&quot; in
+            *.tar.gz)   tar -xzf &quot;$1&quot;     ;;
+            *.tar.bz2)  tar -xjf &quot;$1&quot;     ;;
+            *.zip)      unzip &quot;$1&quot;        ;;
+            *)          echo &quot;Unknown format&quot; ;;
+        esac
+    fi
+}
+</code></pre>
+<h3>Process Substitution</h3>
+<pre><code class="language-bash"># Compare the output of two commands without temp files
+diff &lt;(ls /etc) &lt;(ls /usr/local/etc)
+
+# Use a command&#39;s output as if it were a file
+paste &lt;(cut -f1 data.csv) &lt;(cut -f2 data.csv)
+</code></pre>
+<h3>Here Documents</h3>
+<pre><code class="language-bash"># Feed multiple lines to a command
+cat &lt;&lt; EOF
+Line 1
+Line 2
+Variable: $HOME
+EOF
+
+# Without variable expansion
+cat &lt;&lt; &#39;EOF&#39;
+No expansion: $HOME stays literal
+EOF
+</code></pre>
+<h2>Advanced File Operations</h2>
+<h3>rsync</h3>
+<p>A versatile file sync/copy tool:</p>
+<pre><code class="language-bash"># Basic sync
+rsync -av /source/ /destination/
+
+# Mirror (delete extra files in destination)
+rsync -av --delete /source/ /destination/
+
+# Exclude files
+rsync -av --exclude &quot;*.log&quot; --exclude &quot;/tmp/&quot; /source/ /destination/
+
+# Sync over network
+rsync -avz /source/ user@host:/destination/
+
+# Dry run (show what would change)
+rsync -avn /source/ /destination/
+</code></pre>
+<h3>find with Advanced Actions</h3>
+<pre><code class="language-bash"># Find and compress files older than 30 days
+find /var/log -name &quot;*.log&quot; -mtime +30 -exec gzip {} \;
+
+# Find and delete empty directories
+find /path -type d -empty -delete
+
+# Find duplicates using checksums
+find /path -type f -exec md5sum {} + | sort | uniq -d -w32
+</code></pre>
+<h2>Cron and systemd Timers Advanced</h2>
+<h3>Cron Environment</h3>
+<p>Cron jobs run with a minimal environment. Define variables at the top of your crontab:</p>
+<pre><code class="language-cron">SHELL=/bin/bash
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+MAILTO=admin@example.com
+
+# Now all jobs use this PATH
+* * * * * backup.sh
+</code></pre>
+<h3>Anacron</h3>
+<p>Anacron handles tasks that might not run daily (e.g., if the system is off):</p>
+<pre><code class="language-bash"># /etc/anacrontab
+1   5   cron.daily   run-parts /etc/cron.daily
+7   10  cron.weekly  run-parts /etc/cron.weekly
+</code></pre>
+<h2>System Backups</h2>
+<h3>rsync for Backup</h3>
+<pre><code class="language-bash"># Backup a directory
+rsync -av --delete /home/alice/ /backup/alice/
+
+# Backup over SSH
+rsync -avz --delete /home/ user@backup-server:/backup/
+
+# Exclude patterns
+rsync -av --exclude &quot;*.tmp&quot; --exclude &quot;.cache/&quot; /home/ /backup/
+</code></pre>
+<h3>Timeshift</h3>
+<p>Timeshift creates snapshots of the system (like Windows System Restore):</p>
+<pre><code class="language-bash">sudo apt install timeshift
+
+# Run interactively
+sudo timeshift-launcher
+
+# Create snapshot from CLI
+sudo timeshift --create --name &quot;pre-update&quot;
+
+# List snapshots
+sudo timeshift --list
+
+# Restore
+sudo timeshift --restore --snapshot &quot;...&quot;
+</code></pre>
+<h3>tar Backup</h3>
+<pre><code class="language-bash"># Backup /home
+sudo tar -czpf /backup/home-backup-$(date +%F).tar.gz /home
+
+# Restore
+sudo tar -xzpf home-backup.tar.gz -C /
+</code></pre>
+<h2>Containerization: Docker Deep Dive</h2>
+<h3>Docker Architecture</h3>
+<p>Docker uses a client-server model:</p>
+<ul>
+<li><strong>dockerd</strong>: The Docker daemon (manages containers, images, networks)</li>
+<li><strong>docker</strong>: The CLI client (communicates with the daemon)</li>
+<li><strong>containerd</strong>: Container runtime</li>
+<li><strong>runc</strong>: Low-level container runtime</li>
+</ul>
+<h3>Docker Commands</h3>
+<pre><code class="language-bash"># Images
+docker pull ubuntu:22.04
+docker build -t myapp .
+docker rmi myapp
+
+# Containers
+docker run -it --name webserver nginx
+docker start webserver
+docker stop webserver
+docker ps -a
+docker rm webserver
+
+# Port mapping
+docker run -d -p 8080:80 nginx
+
+# Volume (persistent data)
+docker volume create mydata
+docker run -v mydata:/data myapp
+
+# Inspect containers and images
+docker inspect webserver
+docker logs webserver
+docker exec -it webserver bash
+
+# Docker Compose (multi-container apps)
+docker compose up -d
+docker compose down
+</code></pre>
+<p>Dockerfile example:</p>
+<pre><code class="language-dockerfile">FROM ubuntu:22.04
+
+RUN apt-get update &amp;&amp; apt-get install -y \
+    python3 \
+    pip3 \
+    &amp;&amp; rm -rf /var/lib/apt/lists/*
+
+COPY app.py /app/
+WORKDIR /app
+CMD [&quot;python3&quot;, &quot;app.py&quot;]
+</code></pre>
+<h3>Docker Compose</h3>
+<p><code>docker-compose.yml</code>:</p>
+<pre><code class="language-yaml">version: &#39;3.8&#39;
+services:
+  web:
+    build: .
+    ports:
+      - &quot;8080:80&quot;
+    depends_on:
+      - db
+  db:
+    image: postgres:15
+    volumes:
+      - dbdata:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: example
+
+volumes:
+  dbdata:
+</code></pre>
+<h2>Virtualization</h2>
+<h3>KVM/QEMU</h3>
+<pre><code class="language-bash"># Check if KVM is supported
+kvm-ok
+
+# Install
+sudo apt install qemu-kvm libvirt-daemon-system libvirt-clients bridge-utils virt-manager
+
+# Manage VMs
+sudo virsh list --all
+sudo virsh start myvm
+sudo virsh shutdown myvm
+sudo virsh console myvm
+</code></pre>
+<h3>LXC/LXD</h3>
+<p>LXC (Linux Containers) + LXD (container manager + image server):</p>
+<pre><code class="language-bash"># Install LXD
+sudo snap install lxd
+
+# Initialize
+lxd init
+
+# Launch a container
+lxc launch ubuntu:22.04
+
+# List containers
+lxc list
+
+# Shell into a container
+lxc exec mycontainer -- /bin/bash
+</code></pre>
+<h2>Review Questions</h2>
+<ol>
+<li>How do you trace system calls made by a process?</li>
+<li>What command shows what files a process has open?</li>
+<li>How do you find and kill a zombie process?</li>
+<li>What does <code>rsync -a --delete</code> do?</li>
+<li>How do you get shell access to a running Docker container?</li>
+</ol>
+<h3>Quick Reference</h3>
+<pre><code class="language-bash"># Process management
+ps aux
+top
+htop
+kill &lt;pid&gt;
+pkill &lt;name&gt;
+
+# Monitoring
+free -h
+iotop
+df -h
+du -sh /path
+
+# Debugging
+strace -p &lt;pid&gt;
+lsof -p &lt;pid&gt;
+dmesg | tail
+journalctl -u &lt;service&gt;
+
+# Troubleshooting
+sudo fsck /dev/sda1
+sudo dpkg --configure -a
+sudo apt --fix-broken install
+
+# Backups
+rsync -av /source/ /dest/
+tar -czf backup.tar.gz /path
+
+# Docker
+docker ps
+docker exec -it &lt;container&gt; /bin/bash
+docker logs &lt;container&gt;
+</code></pre>
+</section>
+<section class="chapter"><h1>Chapter 11: Development and Programming on Ubuntu</h1>
+<h2>Setting Up a Development Environment</h2>
+<p>Ubuntu is a developer-friendly platform with excellent out-of-the-box support for programming languages, package managers, and development tools.</p>
+<h3>Essential Build Tools</h3>
+<pre><code class="language-bash"># Install the base development toolchain
+sudo apt install build-essential
+
+# This installs: gcc, g++, make, libc6-dev, dpkg-dev, and more
+
+# Verify installation
+gcc --version
+g++ --version
+make --version
+</code></pre>
+<p><code>build-essential</code> is a meta-package that pulls in the GNU Compiler Collection (GCC), make, and the C/C++ standard libraries. It&#39;s the starting point for compiling software.</p>
+<h3>Version Control with Git</h3>
+<p>Git is the standard version control system:</p>
+<pre><code class="language-bash"># Install Git
+sudo apt install git
+
+# Configure Git (set your identity)
+git config --global user.name &quot;Alice Anderson&quot;
+git config --global user.email &quot;alice@example.com&quot;
+git config --global init.defaultBranch main
+
+# Clone a repository
+git clone https://github.com/user/repo.git
+
+# Or clone with SSH (first set up SSH keys)
+ssh-keygen -t ed25519 -C &quot;alice@example.com&quot;
+ssh-copy-id git@github.com
+git clone git@github.com:user/repo.git
+</code></pre>
+<p>Common Git workflow:</p>
+<pre><code class="language-bash"># Check status
+git status
+
+# Stage changes
+git add file.txt
+git add .
+
+# Commit
+git commit -m &quot;Commit message&quot;
+
+# Push
+git push origin main
+
+# Pull
+git pull origin main
+
+# Create and switch to a branch
+git checkout -b feature-branch
+
+# Merge
+git checkout main
+git merge feature-branch
+
+# View history
+git log --oneline --graph --decorate
+</code></pre>
+<h3>Python Development</h3>
+<p>Python 3 is pre-installed on Ubuntu. For development:</p>
+<pre><code class="language-bash"># Install pip and venv
+sudo apt install python3-pip python3-venv
+
+# Create a virtual environment
+python3 -m venv myproject
+cd myproject
+source bin/activate      # activate (you&#39;ll see &quot;myproject&quot; in prompt)
+deactivate               # deactivate
+
+# Install packages
+pip install requests flask
+
+# Install a specific version
+pip install &quot;requests==2.31.0&quot;
+
+# Freeze requirements
+pip freeze &gt; requirements.txt
+
+# Install from requirements
+pip install -r requirements.txt
+
+# Install a package system-wide (not recommended — use venv instead)
+pip install --break-system-packages &lt;package&gt;
+
+# Check pip configuration
+pip config list
+</code></pre>
+<p>Virtual environments are the standard practice to avoid dependency conflicts between projects.</p>
+<h4>Modern Python Workflow with uv</h4>
+<p><strong>uv</strong> is a fast Python package and project manager (Rust-based):</p>
+<pre><code class="language-bash"># Install uv
+curl -LsSf https://astral.sh/uv/install.sh | sh
+
+# Create a project
+uv venv
+source .venv/bin/activate
+
+# Install packages
+uv pip install requests
+
+# Initialize a pyproject.toml project
+uv init
+</code></pre>
+<h3>Node.js Development</h3>
+<pre><code class="language-bash"># Option 1: Install from Ubuntu repositories (often older)
+sudo apt install nodejs npm
+
+# Option 2: Use Node Version Manager (recommended)
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+source ~/.bashrc
+nvm install --lts     # install latest LTS
+nvm use --lts         # use LTS for this shell
+nvm ls                # list installed versions
+
+# Install a package globally
+npm install -g typescript
+
+# Initialize a project
+mkdir myproject &amp;&amp; cd myproject
+npm init -y               # creates package.json
+npm install express       # install dependency
+npm install              # install all dependencies
+
+# Use yarn or pnpm instead of npm
+corepack enable yarn
+corepack enable pnpm
+</code></pre>
+<h3>Java Development</h3>
+<pre><code class="language-bash"># Install OpenJDK
+sudo apt install openjdk-17-jdk
+
+# Or use JDK management via SDKMAN!
+curl -s &quot;https://get.sdkman.io&quot; | bash
+source &quot;~/.sdkman/bin/sdkman-init.sh&quot;
+sdk install java 17.0.8-tem
+
+# Verify
+java -version
+javac -version
+
+# Set JAVA_HOME
+echo &#39;export JAVA_HOME=$HOME/.sdkman/candidates/java/current&#39; &gt;&gt; ~/.bashrc
+source ~/.bashrc
+</code></pre>
+<h3>Rust Development</h3>
+<pre><code class="language-bash"># Install Rust (via rustup)
+curl --proto &#39;=https&#39; --tlsv1.2 -sSf https://sh.rustup.rs | sh
+source &quot;$HOME/.cargo/env&quot;
+
+# Verify
+rustc --version
+cargo --version
+
+# Create a new project
+cargo new hello_world
+cd hello_world
+cargo build
+cargo run
+cargo test
+
+# Add dependencies in Cargo.toml
+# [dependencies]
+# reqwest = &quot;0.11&quot;
+</code></pre>
+<h3>Go Development</h3>
+<pre><code class="language-bash"># Option 1: Install from Ubuntu repositories
+sudo apt install golang
+
+# Option 2: Install from official site
+wget https://go.dev/dl/go1.21.5.linux-amd64.tar.gz
+sudo tar -C /usr/local -xzf go1.21.5.linux-amd64.tar.gz
+echo &#39;export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin&#39; &gt;&gt; ~/.bashrc
+source ~/.bashrc
+
+# Set up GOPATH
+mkdir -p ~/go
+echo &#39;export GOPATH=$HOME/go&#39; &gt;&gt; ~/.bashrc
+
+# Verify
+go version
+
+# Create a new project
+mkdir -p ~/go/src/hello
+cd ~/go/src/hello
+go mod init hello
+go build
+go run hello.go
+</code></pre>
+<h3>C/C++ with Modern Tooling</h3>
+<pre><code class="language-bash"># Install build tools
+sudo apt install build-essential cmake ninja-build clang lld
+
+# Install Conan (C/C++ package manager)
+pip install conan
+
+# Create a project with CMake
+mkdir myproject &amp;&amp; cd myproject
+mkdir build &amp;&amp; cd build
+cmake ..
+make
+</code></pre>
+<p>CMake is the standard build system for C/C++ projects. A <code>CMakeLists.txt</code> looks like:</p>
+<pre><code class="language-cmake">cmake_minimum_required(VERSION 3.16)
+project MyApp)
+
+set(CMAKE_CXX_STANDARD 20)
+
+find_package(Threads REQUIRED)
+
+add_executable(myapp main.cpp)
+target_link_libraries(myapp PRIVATE Threads::Threads)
+</code></pre>
+<h2>IDEs and Code Editors</h2>
+<h3>Visual Studio Code</h3>
+<p>VS Code is the most popular editor for many developers:</p>
+<pre><code class="language-bash"># Install via Snap (auto-updating)
+sudo snap install code --classic
+
+# Or install via .deb package (from Microsoft)
+wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor &gt; packages.microsoft.gpg
+sudo install -o root -g root -m 644 packages.microsoft.gpg /usr/share/keyrings/
+sudo sh -c &#39;echo &quot;deb [arch=amd64 signed-by=/usr/share/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main&quot; &gt; /etc/apt/sources.list.d/vscode.list&#39;
+sudo apt update &amp;&amp; sudo apt install code
+</code></pre>
+<p>Essential VS Code extensions:</p>
+<ul>
+<li>Python</li>
+<li>ESLint</li>
+<li>Prettier</li>
+<li>GitLens</li>
+<li>Docker</li>
+<li>Remote - SSH</li>
+</ul>
+<h3>JetBrains Toolbox</h3>
+<pre><code class="language-bash"># Download the Toolbox App
+wget https://download.jetbrains.com/toolbox/jetbrains-toolbox-2.3.2.25360.tar.gz
+tar -xzf jetbrains-toolbox-*.tar.gz
+./jetbrains-toolbox
+</code></pre>
+<h3>Vim/Neovim Configuration</h3>
+<p>For a modern vim experience, install plugins via a plugin manager like vim-plug:</p>
+<pre><code class="language-bash"># Neovim (modern vim)
+sudo apt install neovim
+
+# Install nvm and Node.js for LSP support
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+</code></pre>
+<p>Create <code>~/.config/nvim/init.lua</code>:</p>
+<pre><code class="language-lua">-- Basic settings
+vim.o.number = true
+vim.o.relativenumber = true
+vim.o.expandtab = true
+vim.o.shiftwidth = 4
+
+-- Key mappings
+vim.g.mapleader = &quot; &quot;
+vim.keymap.set(&quot;n&quot;, &quot;&lt;C-s&gt;&quot;, &quot;:w&lt;CR&gt;&quot;)
+
+-- LSP setup (requires nodejs)
+require(&#39;mason&#39;).setup()
+require(&#39;lspconfig&#39;).pyright.setup{}
+</code></pre>
+<p>Install plugins via <code>vim-plug</code> or <code>lazy.nvim</code>:</p>
+<pre><code class="language-bash">git clone https://github.com/folke/lazy.nvim.git ~/.local/share/nvim/site/pack/packer/start/lazy.nvim
+</code></pre>
+<h2>Database Development</h2>
+<h3>PostgreSQL</h3>
+<pre><code class="language-bash"># Install
+sudo apt install postgresql postgresql-contrib
+
+# Start and enable
+sudo systemctl enable --now postgresql
+
+# Check status
+sudo systemctl status postgresql
+
+# Switch to postgres user and open psql
+sudo -u postgres psql
+
+# Basic SQL commands
+# \l     - list databases
+# \c db  - connect to database
+# \dt    - list tables
+# \q     - quit
+
+# Create a database and user
+sudo -u postgres createdb mydb
+sudo -u postgres psql -c &quot;CREATE USER alice WITH ENCRYPTED PASSWORD &#39;secret&#39;;&quot;
+sudo -u postgres psql -c &quot;GRANT ALL PRIVILEGES ON DATABASE mydb TO alice;&quot;
+</code></pre>
+<h3>MySQL/MariaDB</h3>
+<pre><code class="language-bash">sudo apt install mysql-server
+
+# Secure installation (sets root password, removes test db)
+sudo mysql_secure_installation
+
+# Start
+sudo systemctl enable --now mysql
+
+# Login
+sudo mysql -u root -p
+
+# Create database and user
+CREATE DATABASE mydb;
+CREATE USER &#39;alice&#39;@&#39;localhost&#39; IDENTIFIED BY &#39;secret&#39;;
+GRANT ALL PRIVILEGES ON mydb.* TO &#39;alice&#39;@&#39;localhost&#39;;
+FLUSH PRIVILEGES;
+EXIT;
+</code></pre>
+<h3>Redis</h3>
+<pre><code class="language-bash">sudo apt install redis-server
+sudo systemctl enable --now redis
+
+# Test
+redis-cli ping
+# Should reply: PONG
+
+# Basic commands
+redis-cli SET name &quot;Alice&quot;
+redis-cli GET name
+</code></pre>
+<h3>MongoDB</h3>
+<p>Add the official MongoDB repository:</p>
+<pre><code class="language-bash"># Install the GPG key
+curl -fsSL https://www.mongodb.org/static/pgp/server-7.0.asc | sudo gpg -o /usr/share/keyrings/mongodb-server-7.0.gpg --dearmor
+
+# Add the repository
+echo &quot;deb [ signed-by=/usr/share/keyrings/mongodb-server-7.0.gpg ] https://repo.mongodb.org/apt/ubuntu $(lsb_release -cs)/mongodb-org/7.0 multiverse&quot; | sudo tee /etc/apt/sources.list.d/mongodb-org-7.0.list
+
+# Install
+sudo apt update
+sudo apt install mongodb-org
+
+# Start MongoDB
+sudo systemctl enable --now mongod
+</code></pre>
+<h2>Web Development</h2>
+<h3>Apache HTTP Server</h3>
+<pre><code class="language-bash">sudo apt install apache2
+sudo systemctl enable --now apache2
+
+# Test
+curl http://localhost
+# Should show &quot;It works!&quot; or Apache2 Ubuntu Default Page
+
+# Document root
+/var/www/html
+
+# Configuration files
+/etc/apache2/apache2.conf
+/etc/apache2/sites-available/000-default.conf
+
+# Enable a site
+sudo a2ensite mysite.conf
+# Reload config
+sudo systemctl reload apache2
+</code></pre>
+<p>Enable modules:</p>
+<pre><code class="language-bash">sudo a2enmod rewrite
+sudo a2enmod ssl
+sudo systemctl reload apache2
+</code></pre>
+<h3>Nginx</h3>
+<pre><code class="language-bash">sudo apt install nginx
+sudo systemctl enable --now nginx
+
+# Default config
+/etc/nginx/nginx.conf
+/etc/nginx/sites-available/default
+
+# Test config syntax
+sudo nginx -t
+
+# Reload
+sudo systemctl reload nginx
+</code></pre>
+<h3>Reverse Proxy Setup</h3>
+<p>Typical setup: Nginx as reverse proxy → Node.js/Python app behind it.</p>
+<p>Nginx config (<code>/etc/nginx/sites-available/myapp</code>):</p>
+<pre><code class="language-nginx">server {
+    listen 80;
+    server_name example.com;
+
+    location / {
+        proxy_pass http://localhost:3000;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+    }
+}
+</code></pre>
+<p>Enable the site:</p>
+<pre><code class="language-bash">sudo ln -s /etc/nginx/sites-available/myapp /etc/nginx/sites-enabled/
+sudo nginx -t
+sudo systemctl reload nginx
+</code></pre>
+<h2>Container-Based Development</h2>
+<h3>Docker for Development</h3>
+<pre><code class="language-bash"># Install Docker
+sudo apt install docker.io
+sudo usermod -aG docker $USER   # use docker without sudo (log out/in required)
+
+# Run a database for development
+docker run -d --name postgres -e POSTGRES_PASSWORD=secret -p 5432:5432 postgres:15
+docker run -d --name redis -p 6379:6379 redis:7-alpine
+</code></pre>
+<h3>Docker Compose for Local Dev</h3>
+<p>A <code>docker-compose.yml</code> for a full stack:</p>
+<pre><code class="language-yaml">version: &#39;3.8&#39;
+services:
+  web:
+    build: .
+    ports:
+      - &quot;3000:3000&quot;
+    volumes:
+      - .:/app
+      - /app/node_modules
+    environment:
+      DATABASE_URL: postgres://postgres:secret@db:5432/myapp
+    depends_on:
+      - db
+      - redis
+
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_PASSWORD: secret
+      POSTGRES_DB: myapp
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  redis:
+    image: redis:7-alpine
+
+  mailhog:
+    image: mailhog/mailhog
+    ports:
+      - &quot;8025:8025&quot;
+      - &quot;1025:1025&quot;
+
+volumes:
+  pgdata:
+</code></pre>
+<p>Run the development environment:</p>
+<pre><code class="language-bash">docker compose up -d
+docker compose down -v   # tear down
+</code></pre>
+<h2>Continuous Integration / Continuous Deployment (CI/CD)</h2>
+<h3>GitHub Actions</h3>
+<p>A basic workflow (<code>.github/workflows/ci.yml</code>):</p>
+<pre><code class="language-yaml">name: CI
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v4
+        with:
+          python-version: &quot;3.12&quot;
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pytest
+      - name: Run tests
+        run: pytest
+</code></pre>
+<h3>GitLab CI</h3>
+<p>A <code>.gitlab-ci.yml</code> example:</p>
+<pre><code class="language-yaml">stages:
+  - test
+  - build
+
+test:
+  stage: test
+  image: python:3.12
+  script:
+    - pip install pytest
+    - pytest
+
+build:
+  stage: build
+  image: docker:latest
+  services:
+    - docker:dind
+  script:
+    - docker build -t myapp .
+    - docker push myapp
+</code></pre>
+<h2>Debugging and Profiling</h2>
+<h3>Profiling Python</h3>
+<pre><code class="language-bash"># Install profiling tools
+pip install py-spy
+
+# Profile a running process
+py-spy top --pid &lt;PID&gt;
+py-spy record -o profile.svg --pid &lt;PID&gt;
+
+# Built-in profiler
+python -m cProfile -o profile.out myscript.py
+python -m pstats profile.out
+</code></pre>
+<h3>Profiling Node.js</h3>
+<pre><code class="language-bash"># Built-in profiler
+node --prof myscript.js
+node --prof-process isolate-*.log &gt; processed.txt
+
+# Heap snapshot
+node --inspect-brk myscript.js
+# Then connect Chrome DevTools to chrome://inspect
+</code></pre>
+<h3>Memory Debugging with Valgrind (C/C++)</h3>
+<pre><code class="language-bash"># Install
+sudo apt install valgrind
+
+# Run with memory checking
+valgrind --leak-check=full ./myprogram
+
+# With address sanitizer
+gcc -fsanitize=address -g -o myprogram myprogram.c
+./myprogram
+</code></pre>
+<h2>Review Questions</h2>
+<ol>
+<li>What package installs the GNU build tools (gcc, make)?</li>
+<li>How do you create a Python virtual environment?</li>
+<li>What is NVM used for?</li>
+<li>What tool manages containers on Ubuntu?</li>
+<li>How do you view running Docker containers?</li>
+</ol>
+<h3>Quick Reference</h3>
+<pre><code class="language-bash"># Build tools
+sudo apt install build-essential
+
+# Git
+git clone &lt;url&gt;
+git add .
+git commit -m &quot;msg&quot;
+git push
+
+# Python
+python3 -m venv .venv
+source .venv/bin/activate
+pip install &lt;package&gt;
+pip freeze &gt; requirements.txt
+
+# Node.js (via nvm)
+nvm install --lts
+npm init -y
+npm install &lt;package&gt;
+
+# Java (via SDKMAN)
+sdk install java 17-tem
+
+# Docker
+docker run &lt;image&gt;
+docker ps
+docker compose up -d
+docker compose down
+
+# Databases
+sudo systemctl enable --now postgresql
+sudo -u postgres psql
+</code></pre>
+</section>
+
+<script>
+marked.setOptions({ breaks: true, gfm: true });
+function toggleTheme() {
+  document.body.classList.toggle('dark');
+  localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
+}
+if (localStorage.getItem('theme') === 'dark') {
+  document.body.classList.add('dark');
+}
+</script>
+</body>
+</html>
