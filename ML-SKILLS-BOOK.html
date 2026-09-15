@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Machine Learning Skills - A Practical Guide</title>
+    <meta name="description" content="A comprehensive hands-on guide to building machine learning skills from fundamentals to deployment.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=DM+Sans:wght@400;500;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0a0a0f;
+            --card: #13131d;
+            --border: #222233;
+            --text: #e4e6eb;
+            --muted: #8a8a9a;
+            --accent: #00d4ff;
+            --accent2: #7b61ff;
+            --green: #00ff88;
+            --yellow: #ffd700;
+            --orange: #ff8c42;
+            --red: #ff4757;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; overflow-x: hidden; }
+        .bg-grid { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: linear-gradient(rgba(0,212,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0,212,255,0.03) 1px, transparent 1px); background-size: 50px 50px; z-index: -1; }
+        .bg-gradient { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at 20% 50%, rgba(0,212,255,0.05) 0%, transparent 50%), radial-gradient(circle at 80% 80%, rgba(123,97,255,0.05) 0%, transparent 50%); z-index: -1; }
+        .container { max-width: 900px; margin: 0 auto; padding: 2rem; }
+        header { text-align: center; padding: 5rem 2rem; border-bottom: 1px solid var(--border); margin-bottom: 3rem; }
+        .header-title { font-size: 3.5rem; font-weight: 900; font-family: 'DM Sans', sans-serif; background: linear-gradient(135deg, var(--accent), var(--accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 1rem; letter-spacing: -1px; }
+        .header-subtitle { font-size: 1.3rem; color: var(--muted); font-weight: 300; max-width: 700px; margin: 0 auto 2rem; }
+        .meta { display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap; }
+        .meta-item { display: flex; align-items: center; gap: 0.5rem; color: var(--muted); font-size: 0.9rem; }
+        .chapter { margin-bottom: 5rem; }
+        .chapter-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem; }
+        .chapter-number { font-family: 'Fira Code', monospace; color: var(--accent); font-weight: 700; font-size: 1.5rem; background: rgba(0,212,255,0.1); padding: 0.5rem 1rem; border-radius: 8px; }
+        .chapter-title { font-size: 2.2rem; font-weight: 800; color: var(--text); flex: 1; }
+        .chapter-subtitle { color: var(--muted); font-size: 1.1rem; margin-bottom: 2rem; }
+        .content { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 2.5rem; margin-bottom: 2rem; }
+        .content h2 { color: var(--accent2); font-size: 1.4rem; margin: 1.5rem 0 1rem; font-family: 'DM Sans', sans-serif; }
+        .content h3 { color: var(--text); font-size: 1.2rem; margin: 1rem 0 0.75rem; }
+        .content p { margin: 1rem 0; color: var(--muted); }
+        .content p strong { color: var(--text); }
+        .content ul, .content ol { padding-left: 1.5rem; margin: 1rem 0; }
+        .content li { margin-bottom: 0.5rem; color: var(--muted); }
+        .content li strong { color: var(--text); }
+        .content-table { width: 100%; border-collapse: collapse; margin: 1rem 0; }
+        .content-table th, .content-table td { text-align: left; padding: 0.75rem; border-bottom: 1px solid var(--border); }
+        .content-table th { color: var(--accent); font-weight: 600; }
+        .content-table td { color: var(--text); }
+        .code-block { background: #010103; border: 1px solid var(--border); border-radius: 8px; padding: 1.5rem; font-family: 'Fira Code', monospace; font-size: 0.85rem; margin: 1.5rem 0; color: #d4d4d4; overflow-x: auto; line-height: 1.5; }
+        .code-block .comment { color: #6a9955; }
+        .code-block .keyword { color: #569cd6; }
+        .code-block .string { color: #ce9178; }
+        .code-block .number { color: #b5cea8; }
+        .tip-box { background: rgba(0,255,136,0.05); border-left: 3px solid var(--green); padding: 1.5rem; border-radius: 0 8px 8px 0; margin: 1.5rem 0; }
+        .warning-box { background: rgba(255,69,81,0.05); border-left: 3px solid var(--red); padding: 1.5rem; border-radius: 0 8px 8px 0; margin: 1.5rem 0; }
+        .exercise { background: rgba(123,97,255,0.08); border: 1px solid var(--accent2); border-radius: 12px; padding: 2rem; margin: 2rem 0; }
+        .exercise h3 { color: var(--accent2); margin-bottom: 1rem; }
+        .badge { display: inline-block; padding: 0.25rem 0.75rem; border-radius: 4px; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; margin-left: 0.5rem; }
+        .badge-beginner { background: rgba(255,144,71,0.15); color: var(--orange); }
+        .badge-intermediate { background: rgba(123,97,255,0.15); color: var(--accent2); }
+        .badge-advanced { background: rgba(255,71,87,0.15); color: var(--red); }
+        .badge-python { background: rgba(255,145,0,0.2); color: #ff9100; }
+        .badge-math { background: rgba(0,255,136,0.1); color: var(--green); }
+        .quiz { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; margin: 1.5rem 0; }
+        .quiz h4 { color: var(--accent); margin-bottom: 1rem; font-size: 1.1rem; }
+        .quiz-option { display: block; width: 100%; text-align: left; padding: 0.75rem 1rem; margin: 0.5rem 0; background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 8px; color: var(--text); cursor: pointer; transition: all 0.2s; }
+        .quiz-option:hover { background: rgba(0,212,255,0.1); border-color: var(--accent); }
+        .toc { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 2rem; margin-bottom: 3rem; }
+        .toc h2 { color: var(--accent2); font-size: 1.5rem; margin-bottom: 1.5rem; }
+        .toc-list { list-style: none; }
+        .toc-list li { margin-bottom: 0.75rem; }
+        .toc-list a { color: var(--text); text-decoration: none; display: flex; align-items: center; gap: 0.75rem; padding: 0.5rem; border-radius: 6px; transition: background 0.2s; }
+        .toc-list a:hover { background: rgba(0,212,255,0.05); color: var(--accent); }
+        .toc-number { font-family: 'Fira Code', monospace; color: var(--accent); font-weight: 600; }
+        .toc-title { font-weight: 500; }
+        footer { text-align: center; padding: 3rem 2rem; border-top: 1px solid var(--border); margin-top: 3rem; color: var(--muted); }
+    </style>
+</head>
+<body>
+    <div class="bg-grid"></div>
+    <div class="bg-gradient"></div>
+
+    <header>
+        <h1 class="header-title">Machine Learning Skills</h1>
+        <p class="header-subtitle">A Hands-On Guide from Foundations to Deployment</p>
+        <div class="meta">
+            <span class="meta-item">50+ pages of content</span>
+            <span class="meta-item">10 chapters</span>
+            <span class="meta-item">Python examples</span>
+            <span class="meta-item">Beginner to Advanced</span>
+        </div>
+    </header>
+
+    <main class="container">
+
+        <section class="chapter">
+            <div class="toc">
+                <h2>Table of Contents</h2>
+                <ol class="toc-list">
+                    <li><a href="#ch1"><span class="toc-number">1</span><span class="toc-title">What is Machine Learning?</span></span></a></li>
+                    <li><a href="#ch2"><span class="toc-number">2</span><span class="toc-title">Types of Machine Learning</span></a></li>
+                    <li><a href="#ch3"><span class="toc-number">3</span><span class="toc-title">Data Preprocessing</span></a></li>
+                    <li><a href="#ch4"><span class="toc-number">4</span><span class="toc-title">Feature Engineering</span></a></li>
+                    <li><a href="#ch5"><span class="toc-number">5</span><span class="toc-title">Model Evaluation & Metrics</span></a></li>
+                    <li><a href="#ch6"><span class="toc-number">6</span><span class="toc-title">Core Algorithms</span></a></li>
+                    <li><a href="#ch7"><span class="toc-number">7</span><span class="toc-title">Model Validation</span></a></li>
+                    <li><a href="#ch8"><span class="toc-number">8</span><span class="toc-title">Hyperparameter Tuning</span></a></li>
+                    <li><a href="#ch9"><span class="toc-number">9</span><span class="toc-title">Model Deployment</span></a></li>
+                    <li><a href="#ch10"><span class="toc-number">10</span><span class="toc-title">Best Practices & Ethics</span></a></li>
+                </ol>
+            </div>
+        </section>
+
+        <section class="chapter" id="ch1">
+            <div class="chapter-header">
+                <span class="chapter-number">Chapter 1</span>
+                <h2 class="chapter-title">What is Machine Learning?</h2>
+            </div>
+            <div class="chapter-subtitle">Understanding the fundamental concept that powers AI systems today.</div>
+            <div class="content">
+                <p>Machine Learning is a subfield of computer science that enables computers to learn from data and make decisions or predictions <strong>without being explicitly programmed</strong> for every specific task.</p>
+                <p>Traditional programming works by giving the computer explicit instructions: "If this, do that." Machine Learning flips this on its head. Instead of writing rules, you <strong>feed data to a model</strong> and the model learns the underlying patterns.</p>
+                <h2>The Learning Loop</h2>
+                <div class="code-block">Data &rarr; Model &rarr; Predictions &rarr; Loss &rarr; Optimization &rarr; Updated Model</div>
+                <ul>
+                    <li><strong>Feature</strong>: An input property (age, income, temperature)</li>
+                    <li><strong>Target/Label</strong>: The value to predict</li>
+                    <li><strong>Training set</strong>: Data used to teach the model</li>
+                    <li><strong>Test set</strong>: Held-out data to evaluate performance</li>
+                    <li><strong>Overfitting</strong>: Memorizing training data, failing on new data</li>
+                    <li><strong>Underfitting</strong>: Model too simple to capture patterns</li>
+                </ul>
+                <div class="tip-box"><strong>Golden Rule:</strong> Always hold out test data the model never sees during training for an unbiased performance estimate.</div>
+                <h2>Simple Example: Linear Regression</h2>
+                <div class="code-block">import numpy as np<br>from sklearn.linear_model import LinearRegression<br><br>X = [[800],[1200],[1500],[2000],[2500]]<br>y = [150000, 200000, 250000, 350000, 450000]<br><br>model = LinearRegression()<br>model.fit(X, y)<br>print(model.predict([[1800]]))  # ~$310,000</div>
+            </div>
+            <div class="quiz">
+                <h4>Quick Quiz</h4>
+                <button class="quiz-option">Explicitly programmed with rules for every decision</button>
+                <button class="quiz-option">Learns patterns from data without explicit programming</button>
+                <button class="quiz-option">Only works on seen data</button>
+            </div>
+        </section>
+
+        <section class="chapter" id="ch2">
+            <div class="chapter-header">
+                <span class="chapter-number">Chapter 2</span>
+                <h2 class="chapter-title">Types of Machine Learning</h2>
+            </div>
+            <div class="chapter-subtitle">Understanding supervised, unsupervised, and reinforcement learning.</div>
+            <div class="content">
+                <h2>Supervised Learning</h2>
+                <p>Training data has input-output pairs. The model learns to map inputs to known outputs.</p>
+                <ul>
+                    <li><strong>Classification</strong>: Predict a category (spam/not spam)</li>
+                    <li><strong>Regression</strong>: Predict a continuous value (price, temperature)</li>
+                </ul>
+                <span class="badge badge-beginner">Beginner</span><span class="badge badge-python">Python</span>
+                <div class="code-block">from sklearn.ensemble import RandomForestClassifier<br>clf = RandomForestClassifier(n_estimators=100)<br>clf.fit(X_train, y_labels)  # known labels</div>
+
+                <h2>Unsupervised Learning</h2>
+                <p>No labels — the model finds hidden patterns or structures in the data.</p>
+                <ul>
+                    <li><strong>Clustering</strong>: Group similar data points (customer segmentation)</li>
+                    <li><strong>Dimensionality Reduction</strong>: Compress features (PCA)</li>
+                    <li><strong>Association</strong>: Find relationship rules (market basket)</li>
+                </ul>
+                <span class="badge badge-intermediate">Intermediate</span><span class="badge badge-python">Python</span>
+                <div class="code-block">from sklearn.cluster import KMeans<br>from sklearn.decomposition import PCA<br><br>kmeans = KMeans(n_clusters=3)<br>clusters = kmeans.fit_predict(X)<br><br>pca = PCA(n_components=2)<br>X_2d = pca.fit_transform(X)</div>
+
+                <h2>Reinforcement Learning</h2>
+                <p>An agent learns by interacting with an environment, receiving rewards for good actions.</p>
+                <ul>
+                    <li><strong>Agent</strong>: The learner</li>
+                    <li><strong>Environment</strong>: What the agent interacts with</li>
+                    <li><strong>Reward</strong>: Feedback signal</li>
+                    <li><strong>Policy</strong>: Strategy for actions</li>
+                </ul>
+                <span class="badge badge-advanced">Advanced</span><span class="badge badge-python">Python</span>
+                <div class="code-block">import gym<br>env = gym.make('CartPole-v1')<br>agent learns policy through trial and error</div>
+
+                <div class="warning-box"><strong>Note:</strong> Supervised learning requires labeled data, often the most expensive part of an ML project.</div>
+            </div>
+        </section>
+
+        <section class="chapter" id="ch3">
+            <div class="chapter-header">
+                <span class="chapter-number">Chapter 3</span>
+                <h2 class="chapter-title">Data Preprocessing</h2>
+            </div>
+            <div class="chapter-subtitle">70% of every ML project is cleaning and preparing data.</div>
+            <div class="content">
+                <h2>Missing Values</h2>
+                <ul>
+                    <li><strong>Drop</strong>: When missing data is minimal (< 5%)</li>
+                    <li><strong>Impute (numeric)</strong>: Mean or median</li>
+                    <li><strong>Impute (categorical)</strong>: Most frequent</li>
+                    <li><strong>Predict</strong>: Use another model to fill gaps</li>
+                </ul>
+                <div class="code-block">from sklearn.impute import SimpleImputer<br><br>num_imp = SimpleImputer(strategy='mean')<br>cat_imp = SimpleImputer(strategy='most_frequent')</div>
+
+                <h2>Data Encoding</h2>
+                <ul>
+                    <li><strong>Label Encoding</strong>: Ordinal categories (Low/Medium/High)</li>
+                    <li><strong>One-Hot Encoding</strong>: Nominal categories (colors, countries)</li>
+                </ul>
+                <div class="code-block">from sklearn.preprocessing import LabelEncoder, OneHotEncoder<br><br>le = LabelEncoder()<br>df['cat_encoded'] = le.fit_transform(df['category'])<br><br>ohe = OneHotEncoder(drop='first', sparse_output=False)</div>
+
+                <h2>Feature Scaling</h2>
+                <ul>
+                    <li><strong>Standardization</strong>: (x - mean) / std. Good for normal distributions.</li>
+                    <li><strong>Min-Max</strong>: (x - min) / (max - min). Scales to 0-1. Good for neural nets.</li>
+                    <li><strong>Robust</strong>: (x - median) / IQR. Resilient to outliers.</li>
+                </ul>
+                <div class="code-block">from sklearn.preprocessing import StandardScaler, MinMaxScaler<br><br>scaler = StandardScaler()<br>X_scaled = scaler.fit_transform(X)</div>
+
+                <h2>Outlier Handling</h2>
+                <ul>
+                    <li><strong>IQR method</strong>: Q1 - 1.5*IQR or Q3 + 1.5*IQR</li>
+                    <li><strong>Z-score</strong>: |z| > 3</li>
+                    <li><strong>Winsorization</strong>: Cap at percentile</li>
+                </ul>
+                <div class="code-block">Q1, Q3 = df['price'].quantile([0.25, 0.75])<br>IQR = Q3 - Q1<br>lower, upper = Q1 - 1.5*IQR, Q3 + 1.5*IQR<br>df_clean = df[(df['price'] >= lower) & (df['price'] <= upper)]</div>
+
+                <div class="tip-box"><strong>Pro Tip:</strong> Split data into train/test <em>before</em> preprocessing to avoid data leakage.</div>
+            </div>
+
+            <div class="exercise">
+                <h3>Exercise 3.1</h3>
+                <p>Create a preprocessing function that handles missing values, encodes categoricals, and scales numerics — all while being safe for test set usage.</p>
+            </div>
+        </section>
+
+        <section class="chapter" id="ch4">
+            <div class="chapter-header">
+                <span class="chapter-number">Chapter 4</span>
+                <h2 class="chapter-title">Feature Engineering</h2>
+            </div>
+            <div class="chapter-subtitle">Turn raw data into meaningful signals that models can learn from.</div>
+            <div class="content">
+                <h2>Feature Construction</h2>
+                <div class="code-block"># Polynomial and interaction features<br>df['area'] = df['width'] * df['length']<br>df['aspect_ratio'] = df['width'] / df['length']</div>
+
+                <h2>Binning Continuous Variables</h2>
+                <div class="code-block">df['age_group'] = pd.cut(df['age'], bins=[0,18,35,50,100], labels=['minor','young','adult','senior'])</div>
+
+                <h2>Time-Series Features</h2>
+                <div class="code-block">df['sales_lag_7'] = df['sales'].shift(7)<br>df['sales_ma_30'] = df['sales'].rolling(30).mean()<br>df['sales_std_7'] = df['sales'].rolling(7).std()</div>
+
+                <h2>Feature Selection</h2>
+                <ul>
+                    <li><strong>Correlation</strong>: Remove highly correlated (> 0.95) features</li>
+                    <li><strong>Missing ratio</strong>: Drop features with > 50% missing</li>
+                    <li><strong>Model importance</strong>: Use tree feature_importances_</li>
+                    <li><strong>RFE</strong>: Recursive Feature Elimination</li>
+                </ul>
+                <div class="code-block">from sklearn.feature_selection import SelectKBest, f_regression<br>from sklearn.linear_model import LogisticRegression<br><br>selector = SelectKBest(score_func=f_regression, k=10)<br>X_selected = selector.fit_transform(X, y)</div>
+                <div class="tip-box"><strong>Rule:</strong> Engineered features should make domain sense. "total_purchases / days_since_signup" might be mathematically valid but semantically questionable.</div>
+            </div>
+
+            <div class="exercise">
+                <h3>Exercise 4.1</h3>
+                <p>Given a dataset with date, temperature, and sales, engineer at least 8 time-based features that could help predict future sales.</p>
+            </div>
+        </section>
+
+        <section class="chapter" id="ch5">
+            <div class="chapter-header">
+                <span class="chapter-number">Chapter 5</span>
+                <h2 class="chapter-title">Model Evaluation & Metrics</h2>
+            </div>
+            <div class="chapter-subtitle">How to properly measure and compare model performance.</div>
+            <div class="content">
+                <h2>Regression Metrics</h2>
+                <ul>
+                    <li><strong>MSE</strong>: Mean Squared Error (penalizes large errors heavily)</li>
+                    <li><strong>RMSE</strong>: Root MSE (same units as target)</li>
+                    <li><strong>MAE</strong>: Mean Absolute Error (robust to outliers)</li>
+                    <li><strong>R&sup2;</strong>: Proportion of variance explained (0-1)</li>
+                </ul>
+                <div class="code-block">from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score<br>import numpy as np<br><br>rmse = np.sqrt(mean_squared_error(y_test, y_pred))<br>mae = mean_absolute_error(y_test, y_pred)<br>r2 = r2_score(y_test, y_pred)</div>
+
+                <h2>Classification Metrics</h2>
+                <p class="content-table">                        Confusion Matrix<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Predicted Positive&nbsp;&nbsp;Predicted Negative<br>Actual Positive&nbsp;&nbsp;&nbsp;&nbsp;True Positive (TP)&nbsp;&nbsp;&nbsp;&nbsp;False Negative (FN)<br>Actual Negative&nbsp;&nbsp;&nbsp;&nbsp;False Positive (FP)&nbsp;&nbsp;&nbsp;&nbsp;True Negative (TN)</p>
+                <ul>
+                    <li><strong>Accuracy</strong>: (TP + TN) / Total. Misleading with imbalanced data.</li>
+                    <li><strong>Precision</strong>: TP / (TP + FP). Of predicted positives, how many are correct?</li>
+                    <li><strong>Recall</strong>: TP / (TP + FN). Of actual positives, how many did we catch?</li>
+                    <li><strong>F1 Score</strong>: Harmonic mean of precision and recall.</li>
+                    <li><strong>AUC-ROC</strong>: Area under ROC curve (0.5 = random, 1.0 = perfect).</li>
+                </ul>
+                <div class="code-block">from sklearn.metrics import classification_report, roc_auc_score<br><br>print(classification_report(y_test, y_pred))<br>auc = roc_auc_score(y_test, y_proba)</div>
+                <div class="warning-box"><strong>Critical:</strong> For imbalanced datasets, never rely on accuracy alone. A 99% accuracy can mean the model always predicts the majority class.</div>
+            </div>
+
+            <div class="quiz">
+                <h4>Quick Quiz</h4>
+                <button class="quiz-option">Predicting house prices</button>
+                <button class="quiz-option correct">Grouping customers by behavior without labels</button>
+                <button class="quiz-option">Email spam classification</button>
+            </div>
+        </section>
+
+        <section class="chapter" id="ch6">
+            <div class="chapter-header">
+                <span class="chapter-number">Chapter 6</span>
+                <h2 class="chapter-title">Core Algorithms</h2>
+            </div>
+            <div class="chapter-subtitle">The most widely used algorithms in practice.</div>
+            <div class="content">
+
+                <h2>Linear Regression</h2>
+                <span class="badge badge-beginner">Beginner</span><span class="badge badge-math">Math</span><span class="badge badge-python">Python</span>
+                <p>Finds the line that minimizes sum of squared residuals: y = w&middot;x + b</p>
+                <ul>
+                    <li><strong>Pros</strong>: Interpretable, fast, good for linear relationships</li>
+                    <li><strong>Cons</strong>: Assumes linearity, sensitive to outliers</li>
+                </ul>
+                <div class="code-block">from sklearn.linear_model import LinearRegression<br>model = LinearRegression()<br>model.fit(X_train, y_train)</div>
+
+                <h2>Decision Trees</h2>
+                <span class="badge badge-beginner">Beginner</span><span class="badge badge-python">Python</span>
+                <div class="code-block">if feature[i] &lt; threshold:<br>&nbsp;&nbsp;if feature[j] &lt; threshold2:<br>&nbsp;&nbsp;&nbsp;&nbsp;predict A<br>&nbsp;&nbsp;else:<br>&nbsp;&nbsp;&nbsp;&nbsp;predict B<br>else:<br>&nbsp;&nbsp;predict C</div>
+                <ul>
+                    <li><strong>Pros</strong>: Interpretable, handles non-linear data, no scaling needed</li>
+                    <li><strong>Cons</strong>: Prone to overfitting</li>
+                    <li><strong>Key params</strong>: max_depth, min_samples_split, criterion</li>
+                </ul>
+                <div class="code-block">from sklearn.tree import DecisionTreeClassifier<br>dt = DecisionTreeClassifier(max_depth=5, criterion='gini')</div>
+
+                <h2>Random Forest</h2>
+                <span class="badge badge-intermediate">Intermediate</span><span class="badge badge-python">Python</span>
+                <p>An ensemble of decision trees that reduces overfitting by averaging.</p>
+                <div class="code-block">from sklearn.ensemble import RandomForestClassifier<br>rf = RandomForestClassifier(n_estimators=100, max_depth=10, random_state=42)<br>rf.fit(X_train, y_train)</div>
+                <ul>
+                    <li><strong>Pros</strong>: Robust, handles missing values, feature importance built-in</li>
+                    <li><strong>Cons</strong>: Slower prediction, less interpretable</li>
+                </ul>
+
+                <h2>XGBoost</h2>
+                <span class="badge badge-intermediate">Intermediate</span><span class="badge badge-python">Python</span>
+                <p>Gradient-boosted trees with regularization. Often wins Kaggle competitions.</p>
+                <div class="code-block">import xgboost as xgb<br>model = xgb.XGBClassifier(n_estimators=1000, learning_rate=0.1, max_depth=6, subsample=0.8)<br>model.fit(X_train, y_train, early_stopping_rounds=10, eval_set=[(X_val, y_val)])</div>
+                <ul>
+                    <li><strong>Early stopping</strong>: Halts training when validation metric stops improving</li>
+                    <li><strong>Learning rate</strong>: Controls step size (lower = more robust)</li>
+                    <li><strong>Regularization</strong>: L1/L2 penalties reduce overfitting</li>
+                </ul>
+
+                <h2>Support Vector Machines (SVM)</h2>
+                <span class="badge badge-intermediate">Intermediate</span><span class="badge badge-math">Math</span><span class="badge badge-python">Python</span>
+                <p>Finds optimal hyperplane maximizing margin between classes.</p>
+                <div class="code-block">from sklearn.svm import SVC<br>clf = SVC(kernel='rbf', C=1.0, gamma='scale')  # 'linear', 'poly', 'rbf', 'sigmoid'</div>
+                <ul>
+                    <li><strong>Best for</strong>: High-dimensional data, text classification</li>
+                    <li><strong>Requires</strong>: Feature scaling</li>
+                    <li><strong>kernels</strong>: linear, polynomial, RBF (Gaussian), sigmoid</li>
+                </ul>
+
+                <h2>K-Nearest Neighbors (KNN)</h2>
+                <span class="badge badge-beginner">Beginner</span><span class="badge badge-python">Python</span>
+                <div class="code-block">from sklearn.neighbors import KNeighborsClassifier<br>knn = KNeighborsClassifier(n_neighbors=5, weights='distance', metric='euclidean')</div>
+                <ul>
+                    <li><strong>Best for</strong>: Non-linear boundaries, small datasets</li>
+                    <li><strong>Requires</strong>: Feature scaling (distance-based)</li>
+                    <li><strong>Curse of dimensionality</strong>: Performance degrades with many features</li>
+                </ul>
+
+                <h2>Neural Networks</h2>
+                <span class="badge badge-advanced">Advanced</span><span class="badge badge-math">Math</span><span class="badge badge-python">Python</span>
+                <p>Multi-layered networks of interconnected "neurons" that learn complex patterns.</p>
+                <div class="code-block">from sklearn.neural_network import MLPClassifier<br>nn = MLPClassifier(hidden_layer_sizes=(100,), activation='relu', solver='adam', max_iter=500)</div>
+                <ul>
+                    <li><strong>Activation functions</strong>: ReLU, sigmoid, tanh</li>
+                    <li><strong>Loss optimization</strong>: Gradient descent, Adam</li>
+                    <li><strong>Considerations</strong>: Requires lots of data, computationally intensive</li>
+                </ul>
+
+                <h2>Naive Bayes</h2>
+                <span class="badge badge-beginner">Beginner</span><span class="badge badge-python">Python</span>
+                <p>Based on Bayes' theorem — assumes feature independence (naive assumption).</p>
+                <div class="code-block">from sklearn.naive_bayes import GaussianNB, MultinomialNB<br>clf = MultinomialNB()  # for text, counts<br>clf = GaussianNB()  # for continuous data</div>
+                <ul>
+                    <li><strong>Best for</strong>: Text classification, spam detection</li>
+                    <li><strong>Types</strong>: Gaussian (continuous), Multinomial (counts), Bernoulli (binary)</li>
+                </ul>
+
+                <h2>K-Means Clustering</h2>
+                <span class="badge badge-intermediate">Intermediate</span><span class="badge badge-python">Python</span>
+                <p>Partitions data into K clusters by minimizing within-cluster variance.</p>
+                <div class="code-block">from sklearn.cluster import KMeans<br>kmeans = KMeans(n_clusters=3, random_state=42)<br>kmeans.fit(X)<br>labels = kmeans.labels_</div>
+                <ul>
+                    <li><strong>Elbow method</strong>: Find optimal K by plotting inertia</li>
+                    <li><strong>Requires</strong>: Feature scaling</li>
+                </ul>
+            </div>
+
+            <div class="exercise">
+                <h3>Exercise 6.1</h3>
+                <p>Compare at least 3 algorithms on a dataset of your choice. Document which performs best and why.</p>
+            </div>
+        </section>
+
+        <section class="chapter" id="ch7">
+            <div class="chapter-header">
+                <span class="chapter-number">Chapter 7</span>
+                <h2 class="chapter-title">Model Validation</h2>
+            </div>
+            <div class="chapter-subtitle">Ensure your model generalizes well to unseen data.</div>
+            <div class="content">
+                <h2>Train-Validation-Test Split</h2>
+                <div class="code-block">Raw Data &rarr; 60-70% Training &rarr; 15% Validation &rarr; 15% Test</div>
+                <ul>
+                    <li><strong>Training set</strong>: Used to fit the model</li>
+                    <li><strong>Validation set</strong>: Used for hyperparameter tuning</li>
+                    <li><strong>Test set</strong>: Reserved for final evaluation only</li>
+                </ul>
+
+                <h2>K-Fold Cross-Validation</h2>
+                <p>Splits data into K folds, rotates validation fold K times:</p>
+                <div class="code-block">from sklearn.model_selection import cross_val_score<br><br>scores = cross_val_score(model, X, y, cv=5, scoring='r2')<br>print(f"Mean: {scores.mean():.4f} (+/- {scores.std():.4f})")</div>
+
+                <h2>Stratified Sampling</h2>
+                <p>Preserves class distribution in each split (important for imbalanced data):</p>
+                <div class="code-block">from sklearn.model_selection import StratifiedKFold<br>skf = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)</div>
+
+                <h2>Bias-Variance Tradeoff</h2>
+                <table class="content-table">
+                    <thead><tr><th>Problem</th><th>Cause</th><th>Solution</th></tr></thead>
+                    <tbody>
+                        <tr><td><strong>High Bias (Underfitting)</strong></td><td>Model too simple</td><td>More features, complex model, less regularization</td></tr>
+                        <tr><td><strong>High Variance (Overfitting)</strong></td><td>Model too complex</td><td>More data, fewer features, more regularization, early stopping</td></tr>
+                    </tbody>
+                </table>
+
+                <div class="tip-box"><strong>Key Insight:</strong> Cross-validation gives a more robust estimate of model performance than a single train/test split, especially with small datasets.</div>
+            </div>
+        </section>
+
+        <section class="chapter" id="ch8">
+            <div class="chapter-header">
+                <span class="chapter-number">Chapter 8</span>
+                <h2 class="chapter-title">Hyperparameter Tuning</h2>
+            </div>
+            <div class="chapter-subtitle">Fine-tuning models for optimal performance.</div>
+            <div class="content">
+                <h2>Grid Search</h2>
+                <p>Exhaustively searches through all hyperparameter combinations:</p>
+                <div class="code-block">from sklearn.model_selection import GridSearchCV<br><br>param_grid = {<br>&nbsp;&nbsp;'n_estimators': [50, 100, 200],<br>&nbsp;&nbsp;'max_depth': [3, 5, 10],<br>&nbsp;&nbsp;'learning_rate': [0.01, 0.1, 0.2]<br>}<br><br>grid = GridSearchCV(model, param_grid, cv=5, scoring='r2')<br>grid.fit(X, y)<br>print(f"Best: {grid.best_params_}")</div>
+
+                <h2>Random Search</h2>
+                <p>Randomly samples from hyperparameter space (faster than grid for large spaces):</p>
+                <div class="code-block">from sklearn.model_selection import RandomizedSearchCV<br><br>param_dist = {<br>&nbsp;&nbsp;'n_estimators': range(50, 200),<br>&nbsp;&nbsp;'max_depth': range(3, 20),<br>&nbsp;&nbsp;'learning_rate': [0.001, 0.01, 0.1, 0.2]<br>}<br><br>random = RandomizedSearchCV(model, param_dist, n_iter=50, cv=5)</div>
+
+                <h2>Bayesian Optimization</h2>
+                <p>Uses probabilistic models to find the best hyperparameters more efficiently:</p>
+                <ul>
+                    <li>Library: <code>Optuna</code> or <code>scikit-optimize</code></li>
+                    <li>More sample-efficient than grid/random search</li>
+                    <li>Can handle conditional parameters</li>
+                </ul>
+                <div class="code-block">import optuna<br><br>def objective(trial):<br>&nbsp;&nbsp;params = {<br>&nbsp;&nbsp;&nbsp;&nbsp;'n_estimators': trial.suggest_int('n_estimators', 50, 200),<br>&nbsp;&nbsp;&nbsp;&nbsp;'max_depth': trial.suggest_int('max_depth', 3, 15),<br>&nbsp;&nbsp;&nbsp;&nbsp;'learning_rate': trial.suggest_float('learning_rate', 0.01, 0.3)<br>&nbsp;&nbsp;}<br>&nbsp;&nbsp;model = XGBRegressor(**params)<br>&nbsp;&nbsp;scores = cross_val_score(model, X, y, cv=5)<br>&nbsp;&nbsp;return scores.mean()<br><br>study = optuna.create_study(direction='maximize')<br>study.optimize(objective, n_trials=100)</div>
+
+                <h2>Common Hyperparameters by Model</h2>
+                <table class="content-table">
+                    <thead><tr><th>Model</th><th>Key Hyperparameters</th></tr></thead>
+                    <tbody>
+                        <tr><td>Random Forest</td><td>n_estimators, max_depth, min_samples_split, max_features</td></tr>
+                        <tr><td>XGBoost</td><td>n_estimators, learning_rate, max_depth, subsample, colsample_bytree</td></tr>
+                        <tr><td>SVM</td><td>C, kernel, gamma</td></tr>
+                        <tr><td>Neural Network</td><td>hidden_layer_sizes, learning_rate, batch_size, alpha</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="chapter" id="ch9">
+            <div class="chapter-header">
+                <span class="chapter-number">Chapter 9</span>
+                <h2 class="chapter-title">Model Deployment</h2>
+            </div>
+            <div class="chapter-subtitle">Taking models from research to production.</div>
+            <div class="content">
+                <h2>Saving and Loading Models</h2>
+                <div class="code-block">import joblib<br><br># Save<br>joblib.dump(model, 'model.pkl')<br><br># Load<br>model = joblib.load('model.pkl')</div>
+
+                <h2>API Deployment with FastAPI</h2>
+                <div class="code-block">from fastapi import FastAPI<br>import joblib<br><br>app = FastAPI()<br>model = joblib.load('model.pkl')<br><br>@app.post('/predict')<br>def predict(features: dict):<br>&nbsp;&nbsp;prediction = model.predict([features['values']])<br>&nbsp;&nbsp;return {'prediction': prediction.tolist()}</div>
+
+                <h2>Docker Containerization</h2>
+                <div class="code-block">FROM python:3.11-slim<br>WORKDIR /app<br>COPY requirements.txt ./<br>RUN pip install -r requirements.txt<br>COPY . .<br>EXPOSE 8000<br>CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]</div>
+
+                <h2>Key Deployment Considerations</h2>
+                <ul>
+                    <li><strong>Model versioning</strong>: Track model changes with tools like MLflow</li>
+                    <li><strong>Monitoring</strong>: Track prediction drift and performance degradation</li>
+                    <li><strong>Scaling</strong>: Use load balancers and auto-scaling for traffic</li>
+                    <li><strong>A/B testing</strong>: Compare new model vs current in production</li>
+                    <li><strong>Latency</strong>: Optimize inference speed for real-time predictions</li>
+                </ul>
+
+                <div class="tip-box"><strong>Production Checklist:</strong> Test on realistic data, monitor for data drift, implement rollback procedures, ensure reproducibility with pinned dependencies.</div>
+            </div>
+        </section>
+
+        <section class="chapter" id="ch10">
+            <div class="chapter-header">
+                <span class="chapter-number">Chapter 10</span>
+                <h2 class="chapter-title">Best Practices & Ethics</h2>
+            </div>
+            <div class="chapter-subtitle">Building responsible machine learning systems.</div>
+            <div class="content">
+                <h2>Best Practices</h2>
+                <ol>
+                    <li><strong>Start simple</strong>: Begin with a baseline model before adding complexity</li>
+                    <li><strong>Iterate quickly</strong>: Build, measure, learn cycles</li>
+                    <li><strong>Reproducibility</strong>: Set random seeds, document everything</li>
+                    <li><strong>Version control</strong>: Code, data, and model artifacts</li>
+                    <li><strong>Pipeline your workflow</strong>: Automate data to deployment</li>
+                </ol>
+
+                <h2>Common Pitfalls</h2>
+                <table class="content-table">
+                    <thead><tr><th>Pitfall</th><th>Solution</th></tr></thead>
+                    <tbody>
+                        <tr><td><span class="red">Data leakage</span> — test data influencing training</td><td>Split before preprocessing</td></tr>
+                        <tr><td><span class="red">Overfitting</span> — memorize training data</td><td>Regularization, more data, cross-validation</td></tr>
+                        <tr><td><span class="red">Selection bias</span> — unrepresentative training data</td><td>Diverse, representative data collection</td></tr>
+                        <tr><td><span class="red">Metric myopia</span> — optimizing wrong metric</td><td>Align metrics with business objectives</td></tr>
+                    </tbody>
+                </table>
+
+                <h2>Ethics in ML</h2>
+                <ul>
+                    <li><strong>Fairness</strong>: Audit for bias against protected groups</li>
+                    <li><strong>Transparency</strong>: Document model behavior and limitations</li>
+                    <li><strong>Privacy</strong>: Minimize data collection, use differential privacy</li>
+                    <li><strong>Accountability</strong>: Clear ownership of model decisions</li>
+                </ul>
+
+                <h2>Mental Framework for ML Projects</h2>
+                <ol>
+                    <li><strong>Define</strong> the problem — what business question are you answering?</li>
+                    <li><strong>Collect & Explore</strong> data — understand distributions, correlations, anomalies</li>
+                    <li><strong>Preprocess & Engineer</strong> features — clean, transform, create features</li>
+                    <li><strong>Baseline</strong> model — establish a simple starting point</li>
+                    <li><strong>Iterate</strong> — try different algorithms, tune hyperparameters</li>
+                    <li><strong>Validate</strong> — use cross-validation, check for overfitting</li>
+                    <li><strong>Deploy</strong> — package, monitor, iterate</li>
+                </ol>
+
+                <div class="tip-box" style="text-align: center; font-style: italic; font-size: 1.2rem;">
+                    "The goal is to build ML systems that people trust."
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Machine Learning Skills Guide. For educational purposes.</p>
+    </footer>
+</body>
+</html>
